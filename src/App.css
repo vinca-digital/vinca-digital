@@ -1,0 +1,107 @@
+.App {
+  min-height: 100vh;
+  background-color: #f3f4f6;
+}
+
+/* Variables de couleurs personnalisées */
+:root {
+  --vinca-primary: #4f46e5;
+  --vinca-secondary: #8b5cf6;
+  --vinca-accent: #10b981;
+}
+
+/* Styles pour les cartes */
+.bg-white {
+  background-color: white;
+}
+
+.rounded-xl {
+  border-radius: 0.75rem;
+}
+
+.shadow-md {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+/* Styles pour les textes */
+.text-gray-800 {
+  color: #1f2937;
+}
+
+.text-gray-600 {
+  color: #4b5563;
+}
+
+.text-gray-500 {
+  color: #6b7280;
+}
+
+/* Styles pour les boutons */
+.bg-vinca-primary {
+  background-color: var(--vinca-primary);
+}
+
+.bg-vinca-secondary {
+  background-color: var(--vinca-secondary);
+}
+
+.bg-vinca-accent {
+  background-color: var(--vinca-accent);
+}
+
+/* Styles pour les grilles */
+.grid {
+  display: grid;
+}
+
+.grid-cols-1 {
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+
+@media (min-width: 1024px) {
+  .lg\:grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* Espacement */
+.gap-6 {
+  gap: 1.5rem;
+}
+
+.p-6 {
+  padding: 1.5rem;
+}
+
+.mb-6 {
+  margin-bottom: 1.5rem;
+}
+
+/* Flexbox */
+.flex {
+  display: flex;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+/* Transitions */
+.transition-colors {
+  transition-property: background-color, border-color, color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+html,
+body,
+#root {
+  min-height: 100vh;
+  overflow-x: hidden;
+  /* Surtout pas overflow-y: hidden ni height: 100vh ! */
+}
