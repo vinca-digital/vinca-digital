@@ -183,7 +183,7 @@ const Navbar = ({ onLogout }) => {
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.6 }}
             >
-              Anass Haimoud
+              Amine Raiss
             </motion.span>
           </motion.div>
 

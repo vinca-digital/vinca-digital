@@ -14,7 +14,7 @@ const Login = ({ onLogin }) => {
     setError('');
 
     // Validation des identifiants
-    if (email === 'anass@gmail.com' && password === 'anass') {
+    if (email === 'amine@gmail.com' && password === 'amine') {
       console.log('Tentative de connexion avec:', { email, password, rememberMe });
       onLogin();
       navigate('/dashboard'); // Redirection vers le Dashboard
