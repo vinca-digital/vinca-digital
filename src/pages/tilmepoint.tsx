@@ -271,39 +271,6 @@ const VincaCircleDashboard = () => {
           </p>
         </motion.div>
 
-        {/* Points Dashboard */}
-        <motion.div
-          className="max-w-4xl mx-auto mb-12"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
-        >
-          <Card className="bg-gradient-to-r from-blue-800/30 to-indigo-800/30 border-blue-600/40 backdrop-blur-sm">
-            <CardContent className="p-8">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-                <div>
-                  <div className="text-4xl font-bold text-blue-200 mb-2 flex items-center justify-center space-x-2">
-                    {userPoints.toLocaleString()}
-                    <img src="/COIN 2.png" alt="Coin" className="inline w-6 h-6 ml-2" />
-                  </div>
-                  <div className="text-slate-200 flex items-center justify-center space-x-2">
-                    <Star className="w-4 h-4" />
-                    <span>Points Disponibles</span>
-                  </div>
-                </div>
-
-                <div>
-                  <div className="text-4xl font-bold text-cyan-200 mb-2">1h = 100</div>
-                  <div className="text-slate-200 flex items-center justify-center space-x-2">
-                    <Zap className="w-4 h-4" />
-                    <span>Taux de Conversion</span>
-                  </div>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        </motion.div>
-
         {/* Rewards Section */}
         <motion.div className="mb-8" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.4 }}>
           <div className="flex items-center justify-center space-x-3 mb-8">
@@ -345,7 +312,6 @@ const VincaCircleDashboard = () => {
                           {reward.points.toLocaleString()}
                           <img src="/COIN 2.png" alt="Coin" className="inline w-5 h-5 ml-1" />
                         </span>
-                        <span className="text-xl font-semibold text-white">{getTimeEquivalent(reward.points)}</span>
                       </div>
                       <p className="text-sm text-slate-300 mb-2">{reward.description}</p>
                       <div className="space-y-3">

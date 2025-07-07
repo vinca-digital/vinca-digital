@@ -8,7 +8,7 @@ import Reportings from './pages/Reportings';
 import Boutique from './pages/Boutique';
 import Factures from './pages/Factures';
 import Forfait from './pages/Forfait';
-import ServicesExtra from './pages/service-unique';
+import ServicesUniquePage from "./pages/service-unique/ServiceUniquePage";
 import Login from './pages/Login';
 import AdminLogin from './pages/AdminLogin';
 import Register from './pages/Register';
@@ -119,7 +119,7 @@ function MainApp() {
                 <div className="flex-1 flex flex-col overflow-hidden">
                   <Navbar onLogout={handleLogout} />
                   <main className="flex-1 overflow-x-hidden overflow-y-auto bg-gray-100">
-                    <ServicesExtra />
+                    <ServicesUniquePage />
                   </main>
                 </div>
               </div>

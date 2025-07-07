@@ -358,6 +358,21 @@ const Boutique = () => {
     return Math.min(...pack.services.map(service => service.price));
   }
 
+  // Fonction utilitaire pour formater le nom du service
+  function formatServiceName(name) {
+    return name
+      .replace(/([A-Z])/g, ' $1')
+      .replace(/([0-9]+)/g, ' $1')
+      .replace(/([a-z])([A-Z])/g, '$1 $2')
+      .replace(/([a-z])([0-9])/gi, '$1 $2')
+      .replace(/^./, str => str.toUpperCase())
+      .replace(/videoyoutubelongue5min/i, 'Vidéo YouTube longue (<5 min)')
+      .replace(/creationdechartegraphiquemedium/i, 'Charte graphique Medium')
+      .replace(/bannieres/i, 'Bannières')
+      .replace(/shootingjournee/i, 'Shooting (journée)')
+      .trim();
+  }
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100 text-gray-800">
       <div className="p-8">
@@ -385,137 +400,64 @@ const Boutique = () => {
 
           {/* Pack sauvegardé */}
           {savedPack && (
-            <motion.div
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="bg-gradient-to-r from-green-50 to-emerald-50 rounded-2xl shadow-xl p-6 mb-8 border border-green-200 backdrop-blur-sm"
-            >
-              <div className="flex justify-between items-start">
-                <div className="flex-1">
-                  <div className="flex items-center mb-4">
-                    <div className="w-10 h-10 bg-gradient-to-r from-green-500 to-emerald-600 rounded-full flex items-center justify-center mr-3">
-                      <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
-                      </svg>
-                    </div>
-                    <h2 className="text-xl font-bold text-green-800">{savedPack.name || "Mon pack personnalisé"}</h2>
+            <div className="max-w-3xl mx-auto bg-white/60 backdrop-blur-lg rounded-3xl shadow-2xl p-8 flex items-center gap-8 relative mt-8">
+              {/* Badge ou icône */}
+              <div className="flex-shrink-0 w-16 h-16 rounded-full bg-gradient-to-br from-green-400 to-emerald-500 flex items-center justify-center shadow-lg">
+                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
+                </svg>
+              </div>
+              {/* Infos pack */}
+              <div className="flex-1">
+                <h2 className="text-2xl font-bold text-green-700 mb-2">{savedPack.name || "Mon pack personnalisé"}</h2>
+                {savedPack.type && (
+                  <div className="flex flex-wrap gap-2 mb-2 max-w-2xl">
+                    {Object.entries(savedPack.services || {}).map(([serviceKey, quantity]) => (
+                      quantity > 0 && (
+                        <span
+                          key={serviceKey}
+                          className="bg-green-100 text-green-800 px-3 py-1 rounded-full font-semibold text-sm mr-2 mb-2 inline-block"
+                        >
+                          {formatServiceName(serviceKey)}
+                        </span>
+                      )
+                    ))}
+                    <span className="ml-2 text-gray-500 font-medium">
+                      x{Object.values(savedPack.services || {}).reduce((a, b) => a + (b > 0 ? b : 0), 0)}
+                    </span>
                   </div>
-
-                  {savedPack.type ? (
-                    // Affichage pour les nouveaux forfaits
-                    <div className="space-y-3 mb-4">
-                      {Object.entries(savedPack.services || {}).map(([serviceKey, quantity]) => {
-                        if (quantity > 0) {
-                          return (
-                            <div
-                              key={serviceKey}
-                              className="bg-white/70 backdrop-blur-sm p-3 rounded-xl border border-gray-200"
-                            >
-                              <div className="flex justify-between items-center">
-                                <span className="font-medium text-gray-700 capitalize">
-                                  {serviceKey.replace(/([A-Z])/g, " $1").trim()}
-                                </span>
-                                <span className="text-lg font-bold text-gray-900">{quantity}</span>
-                              </div>
-                            </div>
-                          )
-                        }
-                        return null
-                      })}
-                    </div>
-                  ) : (
-                    // Affichage pour l'ancien système (Posts, Stories, Reels)
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
-                      <div className="bg-white/70 backdrop-blur-sm p-4 rounded-xl border border-gray-200">
-                        <div className="flex items-center justify-between mb-2">
-                          <span className="text-sm font-medium text-gray-700">Posts</span>
-                          <span className="text-xs bg-gray-100 text-gray-800 px-2 py-1 rounded-full font-medium">
-                            100 DH/unité
-                          </span>
-                        </div>
-                        <div className="text-3xl font-bold text-gray-900">{savedPack.posts}</div>
-                        <div className="text-sm text-green-600 mt-1 font-semibold">
-                          Total: {savedPack.posts * 100} DH
-                        </div>
-                      </div>
-                      <div className="bg-white/70 backdrop-blur-sm p-4 rounded-xl border border-gray-200">
-                        <div className="flex items-center justify-between mb-2">
-                          <span className="text-sm font-medium text-gray-700">Reels</span>
-                          <span className="text-xs bg-gray-100 text-gray-800 px-2 py-1 rounded-full font-medium">
-                            200 DH/unité
-                          </span>
-                        </div>
-                        <div className="text-3xl font-bold text-gray-900">{savedPack.reels}</div>
-                        <div className="text-sm text-green-600 mt-1 font-semibold">
-                          Total: {savedPack.reels * 200} DH
-                        </div>
-                      </div>
-                      <div className="bg-white/70 backdrop-blur-sm p-4 rounded-xl border border-gray-200">
-                        <div className="flex items-center justify-between mb-2">
-                          <span className="text-sm font-medium text-gray-700">Stories</span>
-                          <span className="text-xs bg-gray-100 text-gray-800 px-2 py-1 rounded-full font-medium">
-                            100 DH/unité
-                          </span>
-                        </div>
-                        <div className="text-3xl font-bold text-gray-900">{savedPack.stories}</div>
-                        <div className="text-sm text-green-600 mt-1 font-semibold">
-                          Total: {savedPack.stories * 100} DH
-                        </div>
-                      </div>
-                    </div>
-                  )}
-
-                  <div className="flex items-center justify-between bg-white/70 backdrop-blur-sm p-4 rounded-xl mt-4 border border-gray-200">
-                    <div>
-                      <div className="text-sm font-medium text-gray-700">Total du pack</div>
-                      <div className="text-xs text-gray-500">Tous services inclus</div>
-                    </div>
-                    <div className="text-3xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">
-                      {savedPack.total || savedPack.posts * 100 + savedPack.stories * 100 + savedPack.reels * 200} DH
-                    </div>
+                )}
+                <div className="bg-white/80 rounded-xl p-4 mt-2">
+                  <div className="flex justify-between items-center">
+                    <span className="text-lg font-medium text-gray-700">Total du pack</span>
+                    <span className="text-3xl font-extrabold text-green-600">{savedPack.total || savedPack.posts * 100 + savedPack.stories * 100 + savedPack.reels * 200} DH</span>
                   </div>
-                </div>
-
-                <div className="flex flex-col items-end ml-6">
-                  <motion.button
-                    onClick={removeSavedPack}
-                    className="text-gray-500 hover:text-red-600 transition-colors p-2 rounded-full hover:bg-red-50"
-                    title="Supprimer le pack"
-                    whileHover={{ scale: 1.1 }}
-                  >
-                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
-                      />
-                    </svg>
-                  </motion.button>
-                  <motion.button
-                    className="mt-4 bg-gradient-to-r from-gray-800 to-gray-700 text-white px-6 py-3 rounded-xl font-semibold hover:from-gray-700 hover:to-gray-600 transition-all shadow-lg"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.98 }}
-                    onClick={() => setShowPackModal(true)}
-                  >
-                    Modifier
-                  </motion.button>
-                  <motion.button
-                    className="mt-2 bg-gradient-to-r from-green-600 to-emerald-600 text-white px-6 py-3 rounded-xl font-semibold hover:from-green-500 hover:to-emerald-500 transition-all shadow-lg"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.98 }}
-                    onClick={() => {
-                      const pack = customPacks.find((p) => p.id === savedPack.type)
-                      if (pack) {
-                        handleSelectCustomPack(pack)
-                      }
-                    }}
-                  >
-                    🛒 Prendre ce forfait
-                  </motion.button>
+                  <div className="text-xs text-gray-400">Tous services inclus</div>
                 </div>
               </div>
-            </motion.div>
+              {/* Actions */}
+              <div className="flex flex-col gap-3">
+                <button onClick={removeSavedPack} className="text-gray-400 hover:text-red-500 transition p-2 self-end" title="Supprimer le pack">
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                  </svg>
+                </button>
+                <button onClick={() => setShowPackModal(true)} className="bg-gray-800 text-white px-6 py-3 rounded-xl font-semibold shadow hover:bg-gray-700 transition">
+                  Modifier
+                </button>
+                <button
+                  className="bg-green-500 text-white px-6 py-3 rounded-xl font-semibold shadow flex items-center gap-2 hover:bg-green-600 transition"
+                  onClick={() => {
+                    const pack = customPacks.find((p) => p.id === savedPack.type)
+                    if (pack) {
+                      handleSelectCustomPack(pack)
+                    }
+                  }}
+                >
+                  <span>🛒</span> Prendre ce forfait
+                </button>
+              </div>
+            </div>
           )}
 
           <div className="text-center my-16">
@@ -605,7 +547,7 @@ const Boutique = () => {
                   </div>
                   <div className="p-4 bg-gradient-to-r from-gray-50 to-gray-100 mt-auto">
                     <motion.button
-                      className="w-full bg-gradient-to-r from-gray-800 to-gray-700 text-white py-2 rounded-lg font-semibold hover:from-gray-700 hover:to-gray-600 transition-all shadow"
+                      className="w-full bg-gradient-to-r from-gray-800 to-gray-700 text-white py-2 rounded-lg font-semibold hover:from-gray-700 hover:to-gray-600 transition"
                       whileHover={{ scale: 1.03 }}
                       whileTap={{ scale: 0.98 }}
                       onClick={() => handleSelectProduct(product)}
@@ -691,7 +633,7 @@ const Boutique = () => {
                           <div key={serviceKey} className="bg-white/70 p-3 rounded-xl">
                             <div className="flex justify-between items-center">
                               <span className="font-medium text-gray-700 capitalize">
-                                {serviceKey.replace(/([A-Z])/g, " $1").trim()}
+                                {formatServiceName(serviceKey)}
                               </span>
                               <span className="text-lg font-bold text-gray-900">x{quantity}</span>
                             </div>
@@ -956,7 +898,7 @@ const Boutique = () => {
                               return (
                                 <div key={serviceKey} className="flex justify-between text-sm">
                                   <span className="text-gray-600 capitalize">
-                                    {serviceKey.replace(/([A-Z])/g, " $1").trim()}
+                                    {formatServiceName(serviceKey)}
                                   </span>
                                   <span className="font-medium">x{quantity}</span>
                                 </div>
@@ -1119,55 +1061,182 @@ const Boutique = () => {
                   </div>
 
                   <div className="space-y-6 mb-8">
-                    {selectedPack.services.map((service, serviceIndex) => {
-                      const serviceKey = service.name
-                        .toLowerCase()
-                        .replace(/[^a-z0-9]/g, "")
-                        .replace("photovideo", "")
-                        .replace("conceptioninfographique", "infographie")
-                        .replace("visuelsimp", "visuelSimple")
-                        .replace("reelvideocoure", "reel")
-                        .replace("shootingphotovideo", "shooting")
-
-                      return (
-                        <motion.div
-                          key={serviceIndex}
-                          className="bg-white/80 backdrop-blur-sm p-6 rounded-2xl shadow-lg border border-gray-200"
-                          initial={{ opacity: 0, y: 10 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ delay: serviceIndex * 0.1 }}
-                        >
-                          <div className="flex justify-between items-center mb-4">
-                            <div className="flex items-center">
-                              <span className="text-2xl mr-3">{service.icon}</span>
-                              <div>
-                                <span className="font-semibold text-gray-800 text-lg">{service.name}</span>
-                                {service.unit && <div className="text-xs text-gray-500">{service.unit}</div>}
+                    {selectedPack.id === "global" ? (
+                      (() => {
+                        const globalGroups = [
+                          {
+                            title: "Web",
+                            services: [
+                              "Articles", "Bannières", "Web page", "Produits (shopify)"
+                            ]
+                          },
+                          {
+                            title: "Visual",
+                            services: [
+                              "Shooting photo/vidéo", "Conception infographique", "Shooting (demi-journée)", "Shooting (journée)",
+                              "Conception page", "Option Drone", "Création de logo (3 propositions)",
+                              "Creation de charte graphique (Simple)", "Creation de charte graphique (Medium)"
+                            ]
+                          },
+                          {
+                            title: "Social",
+                            services: [
+                              "Visuel simple", "Carrousel", "Stories", "Reel Standard (BI simple)",
+                              "Reel Medium (Dynamique/Tournage sans ST)", "Reel Premium (Tournage avec ST)",
+                              "Vidéo YouTube courte (>5 min)", "Vidéo YouTube longue (<5 min)"
+                            ]
+                          }
+                        ];
+                        return globalGroups.map(group => (
+                          <div key={group.title} className="mb-8">
+                            <h3 className="text-2xl font-bold mb-4 text-green-900">{group.title}</h3>
+                            {selectedPack.services
+                              .filter(service => group.services.includes(service.name))
+                              .map((service, serviceIndex) => {
+                                const serviceKey = service.name
+                                  .toLowerCase()
+                                  .replace(/[^a-z0-9]/g, "")
+                                  .replace("photovideo", "")
+                                  .replace("conceptioninfographique", "infographie")
+                                  .replace("visuelsimp", "visuelSimple")
+                                  .replace("reelvideocoure", "reel")
+                                  .replace("shootingphotovideo", "shooting");
+                                return (
+                                  <motion.div
+                                    key={serviceIndex}
+                                    className="bg-white/80 backdrop-blur-sm p-6 rounded-2xl shadow-lg border border-gray-200 mb-4"
+                                    initial={{ opacity: 0, y: 10 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ delay: serviceIndex * 0.1 }}
+                                  >
+                                    <div className="flex justify-between items-center mb-4">
+                                      <div className="flex items-center">
+                                        <span className="text-2xl mr-3">{service.icon}</span>
+                                        <div>
+                                          <span className="font-semibold text-gray-800 text-lg">{service.name}</span>
+                                          {service.unit && <div className="text-xs text-gray-500">{service.unit}</div>}
+                                        </div>
+                                      </div>
+                                      <div className="text-right">
+                                        <span className="font-bold text-2xl bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent">
+                                          {service.price} DH
+                                        </span>
+                                      </div>
+                                    </div>
+                                    <div className="flex items-center gap-4">
+                                      <label className="text-sm text-gray-600 font-medium min-w-0 flex-shrink-0">Quantité:</label>
+                                      <button
+                                        type="button"
+                                        className="w-8 h-8 rounded-full bg-red-200 hover:bg-red-400 text-red-700 hover:text-white flex items-center justify-center text-xl font-bold transition"
+                                        onClick={() =>
+                                          handlePackFormChange(
+                                            selectedPack.id,
+                                            serviceKey,
+                                            Math.max(0, (packForms[selectedPack.id][serviceKey] || 0) - 1)
+                                          )
+                                        }
+                                      >-</button>
+                                      <input
+                                        type="number"
+                                        min="0"
+                                        value={packForms[selectedPack.id][serviceKey] || 0}
+                                        onChange={(e) => handlePackFormChange(selectedPack.id, serviceKey, e.target.value)}
+                                        className="flex-1 p-3 text-center rounded-xl border-2 border-gray-200 shadow-sm focus:border-blue-400 focus:ring-4 focus:ring-blue-100 transition-all bg-white/70 backdrop-blur-sm"
+                                      />
+                                      <button
+                                        type="button"
+                                        className="w-8 h-8 rounded-full bg-green-200 hover:bg-green-400 text-green-700 hover:text-white flex items-center justify-center text-xl font-bold transition"
+                                        onClick={() =>
+                                          handlePackFormChange(
+                                            selectedPack.id,
+                                            serviceKey,
+                                            (packForms[selectedPack.id][serviceKey] || 0) + 1
+                                          )
+                                        }
+                                      >+</button>
+                                      <div className="text-lg font-bold text-gray-700 min-w-0 flex-shrink-0 bg-gray-100 px-4 py-2 rounded-xl">
+                                        = {(packForms[selectedPack.id][serviceKey] || 0) * service.price} DH
+                                      </div>
+                                    </div>
+                                  </motion.div>
+                                );
+                              })}
+                          </div>
+                        ));
+                      })()
+                    ) : (
+                      <div className="space-y-6 mb-8">
+                        {selectedPack.services.map((service, serviceIndex) => {
+                          const serviceKey = service.name
+                            .toLowerCase()
+                            .replace(/[^a-z0-9]/g, "")
+                            .replace("photovideo", "")
+                            .replace("conceptioninfographique", "infographie")
+                            .replace("visuelsimp", "visuelSimple")
+                            .replace("reelvideocoure", "reel")
+                            .replace("shootingphotovideo", "shooting");
+                          return (
+                            <motion.div
+                              key={serviceIndex}
+                              className="bg-white/80 backdrop-blur-sm p-6 rounded-2xl shadow-lg border border-gray-200 mb-4"
+                              initial={{ opacity: 0, y: 10 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              transition={{ delay: serviceIndex * 0.1 }}
+                            >
+                              <div className="flex justify-between items-center mb-4">
+                                <div className="flex items-center">
+                                  <span className="text-2xl mr-3">{service.icon}</span>
+                                  <div>
+                                    <span className="font-semibold text-gray-800 text-lg">{service.name}</span>
+                                    {service.unit && <div className="text-xs text-gray-500">{service.unit}</div>}
+                                  </div>
+                                </div>
+                                <div className="text-right">
+                                  <span className="font-bold text-2xl bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent">
+                                    {service.price} DH
+                                  </span>
+                                </div>
                               </div>
-                            </div>
-                            <div className="text-right">
-                              <span className="font-bold text-2xl bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent">
-                                {service.price} DH
-                              </span>
-                            </div>
-                          </div>
-
-                          <div className="flex items-center gap-4">
-                            <label className="text-sm text-gray-600 font-medium min-w-0 flex-shrink-0">Quantité:</label>
-                            <input
-                              type="number"
-                              min="0"
-                              value={packForms[selectedPack.id][serviceKey] || 0}
-                              onChange={(e) => handlePackFormChange(selectedPack.id, serviceKey, e.target.value)}
-                              className="flex-1 p-3 text-center rounded-xl border-2 border-gray-200 shadow-sm focus:border-blue-400 focus:ring-4 focus:ring-blue-100 transition-all bg-white/70 backdrop-blur-sm"
-                            />
-                            <div className="text-lg font-bold text-gray-700 min-w-0 flex-shrink-0 bg-gray-100 px-4 py-2 rounded-xl">
-                              = {(packForms[selectedPack.id][serviceKey] || 0) * service.price} DH
-                            </div>
-                          </div>
-                        </motion.div>
-                      )
-                    })}
+                              <div className="flex items-center gap-4">
+                                <label className="text-sm text-gray-600 font-medium min-w-0 flex-shrink-0">Quantité:</label>
+                                <button
+                                  type="button"
+                                  className="w-8 h-8 rounded-full bg-red-200 hover:bg-red-400 text-red-700 hover:text-white flex items-center justify-center text-xl font-bold transition"
+                                  onClick={() =>
+                                    handlePackFormChange(
+                                      selectedPack.id,
+                                      serviceKey,
+                                      Math.max(0, (packForms[selectedPack.id][serviceKey] || 0) - 1)
+                                    )
+                                  }
+                                >-</button>
+                                <input
+                                  type="number"
+                                  min="0"
+                                  value={packForms[selectedPack.id][serviceKey] || 0}
+                                  onChange={(e) => handlePackFormChange(selectedPack.id, serviceKey, e.target.value)}
+                                  className="flex-1 p-3 text-center rounded-xl border-2 border-gray-200 shadow-sm focus:border-blue-400 focus:ring-4 focus:ring-blue-100 transition-all bg-white/70 backdrop-blur-sm"
+                                />
+                                <button
+                                  type="button"
+                                  className="w-8 h-8 rounded-full bg-green-200 hover:bg-green-400 text-green-700 hover:text-white flex items-center justify-center text-xl font-bold transition"
+                                  onClick={() =>
+                                    handlePackFormChange(
+                                      selectedPack.id,
+                                      serviceKey,
+                                      (packForms[selectedPack.id][serviceKey] || 0) + 1
+                                    )
+                                  }
+                                >+</button>
+                                <div className="text-lg font-bold text-gray-700 min-w-0 flex-shrink-0 bg-gray-100 px-4 py-2 rounded-xl">
+                                  = {(packForms[selectedPack.id][serviceKey] || 0) * service.price} DH
+                                </div>
+                              </div>
+                            </motion.div>
+                          );
+                        })}
+                      </div>
+                    )}
                   </div>
 
                   <div className="bg-white/90 backdrop-blur-sm p-6 rounded-2xl shadow-lg mb-6 border border-gray-200">
@@ -1210,24 +1279,6 @@ const Boutique = () => {
                 </motion.div>
               )}
             </div>
-
-            {!selectedPack && (
-              <div className="pt-8 border-t border-gray-200 mt-8">
-                <div className="flex justify-center">
-                  <motion.button
-                    onClick={() => {
-                      setShowPackModal(false)
-                      setShowDevisModal(true)
-                    }}
-                    className="bg-gradient-to-r from-gray-800 to-gray-700 text-white px-8 py-4 rounded-2xl font-semibold hover:from-gray-700 hover:to-gray-600 transition-all shadow-lg"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.98 }}
-                  >
-                    Ou créer un pack personnalisé
-                  </motion.button>
-                </div>
-              </div>
-            )}
           </motion.div>
         </motion.div>
       )}
