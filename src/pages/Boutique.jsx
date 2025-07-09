@@ -156,6 +156,7 @@ const Boutique = () => {
         { name: "Bannières", price: 600, unit: "", icon: "🚧" },
         { name: "Web page", price: 1100, unit: "", icon: "🖥️" },
         { name: "Produits (shopify)", price: 5200, unit: "", icon: "🛒" },
+        { name: "Campagne Google Ads (/campagne)", price: 1500, unit: "", icon: "🔎" },
       ],
     },
     {
@@ -205,6 +206,7 @@ const Boutique = () => {
         { name: "Reel Premium (Tournage avec ST)", price: 1000, unit: "", icon: "🎬" },
         { name: "Vidéo YouTube courte (>5 min)", price: 2700, unit: "", icon: "📹" },
         { name: "Vidéo YouTube longue (<5 min)", price: 5200, unit: "", icon: "📹" },
+        { name: "Campagne Meta Ads (campagne)", price: 1500, unit: "", icon: "📢" },
       ],
     },
     {
@@ -226,6 +228,7 @@ const Boutique = () => {
         { name: "Bannières", price: 600, unit: "", icon: "🚧" },
         { name: "Web page", price: 1100, unit: "", icon: "🖥️" },
         { name: "Produits (shopify)", price: 5200, unit: "", icon: "🛒" },
+        { name: "Campagne Google Ads (/campagne)", price: 1500, unit: "", icon: "🔎" },
       
         // Visual
         { name: "Shooting photo/vidéo", price: 2200, unit: "", icon: "🎬" },
@@ -246,6 +249,7 @@ const Boutique = () => {
         { name: "Reel Premium (Tournage avec ST)", price: 1000, unit: "", icon: "🎬" },
         { name: "Vidéo YouTube courte (>5 min)", price: 2700, unit: "", icon: "📹" },
         { name: "Vidéo YouTube longue (<5 min)", price: 5200, unit: "", icon: "📹" },
+        { name: "Campagne Meta Ads (campagne)", price: 1500, unit: "", icon: "📢" },
       ],
     },
   ]
@@ -411,26 +415,40 @@ const Boutique = () => {
               <div className="flex-1">
                 <h2 className="text-2xl font-bold text-green-700 mb-2">{savedPack.name || "Mon pack personnalisé"}</h2>
                 {savedPack.type && (
-                  <div className="flex flex-wrap gap-2 mb-2 max-w-2xl">
-                    {Object.entries(savedPack.services || {}).map(([serviceKey, quantity]) => (
-                      quantity > 0 && (
-                        <span
-                          key={serviceKey}
-                          className="bg-green-100 text-green-800 px-3 py-1 rounded-full font-semibold text-sm mr-2 mb-2 inline-block"
-                        >
-                          {formatServiceName(serviceKey)}
-                        </span>
-                      )
-                    ))}
-                    <span className="ml-2 text-gray-500 font-medium">
-                      x{Object.values(savedPack.services || {}).reduce((a, b) => a + (b > 0 ? b : 0), 0)}
-                    </span>
+                  <div className="flex flex-col gap-2 mb-2 max-w-2xl">
+                    {/* Sélecteur de quantité pour chaque service du pack sauvegardé */}
+                    {(() => {
+                      const pack = customPacks.find((p) => p.id === savedPack.type);
+                      if (!pack) return null;
+                      return (
+                        <>
+                          {pack.services.map((service, serviceIndex) => {
+                            const serviceKey = service.name
+                              .toLowerCase()
+                              .replace(/[^a-z0-9]/g, "")
+                              .replace("photovideo", "")
+                              .replace("conceptioninfographique", "infographie")
+                              .replace("visuelsimp", "visuelSimple")
+                              .replace("reelvideocoure", "reel")
+                              .replace("shootingphotovideo", "shooting");
+                            const quantity = packForms[pack.id]?.[serviceKey] || 0;
+                            if (quantity === 0) return null;
+                            return (
+                              <div key={serviceIndex} className="flex items-center justify-between bg-white rounded-xl px-6 py-4 mb-3 shadow">
+                                <span className="font-medium text-gray-800">{service.name}</span>
+                                <span className="font-bold text-gray-700 text-lg">{quantity}</span>
+                              </div>
+                            );
+                          })}
+                        </>
+                      );
+                    })()}
                   </div>
                 )}
                 <div className="bg-white/80 rounded-xl p-4 mt-2">
                   <div className="flex justify-between items-center">
                     <span className="text-lg font-medium text-gray-700">Total du pack</span>
-                    <span className="text-3xl font-extrabold text-green-600">{savedPack.total || savedPack.posts * 100 + savedPack.stories * 100 + savedPack.reels * 200} DH</span>
+                    <span className="text-3xl font-extrabold text-green-600">{calculatePackTotal(savedPack.type)} DH</span>
                   </div>
                   <div className="text-xs text-gray-400">Tous services inclus</div>
                 </div>
