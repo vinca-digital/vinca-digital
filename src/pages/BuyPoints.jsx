@@ -164,7 +164,7 @@ const BuyPoints = () => {
 
   return (
     <motion.div 
-      className="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900 to-violet-900 text-white overflow-hidden relative"
+      className="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900 to-violet-900 text-white overflow-hidden relative p-2 sm:p-4 md:p-8"
       variants={containerVariants}
       initial="hidden"
       animate="visible"
@@ -222,243 +222,162 @@ const BuyPoints = () => {
           }}
         />
       </div>
-      <div className="relative z-10 container mx-auto px-4 py-8">
-        <h5 className="text-4xl font-bold text-center mb-4">Page Avant</h5>
-        
-      </div>
-      <div className="flex justify-center">
-        <motion.div
-          className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 rounded-2xl mb-6 shadow-lg"
-          whileHover={{ scale: 1.1, rotate: 5 }}
-          transition={{ type: "spring", stiffness: 300 }}
-        >
-          <img src="/COIN 2.png" alt="Coin" className="w-12 h-12 object-contain" />
-        </motion.div>
-      </div>
-          
-      <div className="relative z-10 container mx-auto px-4 py-12">
-        {/* Header */}
-        <motion.div 
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: -30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-        >
-          <motion.h1
-            className="text-6xl font-extrabold mb-6 bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 bg-clip-text text-transparent text-glow"
-            initial={{ scale: 0.5, rotateX: -90 }}
-            animate={{ scale: 1, rotateX: 0 }}
-            transition={{ 
-              type: "spring",
-              stiffness: 100,
-              damping: 10,
-              delay: 0.2
-            }}
-           
-          >
-            Acheter des Points Vinca Circle
-          </motion.h1>
-          
-          <motion.p
-            className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.5, duration: 0.8 }}
-          >
-            Chaque point que vous achetez équivaut à 0.5 Dh. 
-            Obtenez plus de valeur avec nos offres spéciales !
-          </motion.p>
-
-          
-            
-
-          {/* Floating icons with sparkle effect */}
-          <div className="flex justify-center space-x-8 mt-8">
-            {[ 
-              '/COIN 1.png', '/COIN 2.png', '/COIN 3.png', '/COIN 4.png'
-            ].map((icon, index) => (
-              <motion.div
-                key={index}
-                className="relative flex items-center justify-center"
-                style={{ width: '60px', height: '60px' }}
-                animate={{
-                  y: [0, -20, 0],
-                  rotate: [0, 10, -10, 0]
-                }}
-                transition={{
-                  duration: 3,
-                  repeat: Infinity,
-                  delay: index * 0.5,
-                  ease: "easeInOut"
-                }}
-              >
-                <img src={icon} alt={`Coin Icon ${index + 1}`} className="w-full h-full object-contain" />
-                {/* Sparkle effect */}
-                <motion.div
-                  className="absolute -top-2 -right-2 text-yellow-400 text-xs"
-                  variants={sparkleVariants}
-                  animate="sparkle"
-                  style={{ animationDelay: `${index * 0.3}s` }}
-                >
-                  ✨
-                </motion.div>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
-
-        {/* Purchase Options */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
+      <div className="relative z-10 max-w-5xl mx-auto w-full">
+        <h1 className="text-2xl sm:text-3xl font-bold text-center mb-8">Acheter des Points</h1>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
           {purchaseOptions.map((option, index) => (
             <motion.div
               key={option.id}
-              className="relative perspective-1000"
+              className="flex"
               variants={cardVariants}
+              initial="hidden"
+              animate="visible"
               whileHover="hover"
             >
-              {/* Popular badge */}
-              {option.popular && (
+              <motion.div className="flex-1 bg-white/10 rounded-2xl shadow-lg p-6 flex flex-col justify-between h-full min-w-0">
+                {/* Popular badge */}
+                {option.popular && (
+                  <motion.div
+                    className="absolute -top-4 left-1/2 transform -translate-x-1/2 z-20"
+                    initial={{ scale: 0, rotate: -180 }}
+                    animate={{ scale: 1, rotate: 0 }}
+                    transition={{ delay: 0.8, type: "spring", stiffness: 200 }}
+                  >
+                    <div className="bg-gradient-to-r from-yellow-400 to-orange-500 text-black px-4 py-1 rounded-full text-sm font-bold shadow-lg glow-animation">
+                      ⭐ POPULAIRE
+                    </div>
+                  </motion.div>
+                )}
+
                 <motion.div
-                  className="absolute -top-4 left-1/2 transform -translate-x-1/2 z-20"
-                  initial={{ scale: 0, rotate: -180 }}
-                  animate={{ scale: 1, rotate: 0 }}
-                  transition={{ delay: 0.8, type: "spring", stiffness: 200 }}
+                  className={`bg-gradient-to-br ${option.color} p-8 rounded-2xl shadow-2xl border border-white/10 backdrop-blur-sm relative overflow-hidden hover-lift`}
+                  whileHover={{
+                    boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.5)",
+                  }}
+                  style={{
+                    transformStyle: "preserve-3d"
+                  }}
                 >
-                  <div className="bg-gradient-to-r from-yellow-400 to-orange-500 text-black px-4 py-1 rounded-full text-sm font-bold shadow-lg glow-animation">
-                    ⭐ POPULAIRE
+                  {/* Card background pattern */}
+                  <div className="absolute inset-0 bg-white/5 backdrop-blur-sm" />
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -translate-y-16 translate-x-16" />
+                  
+                  {/* Shimmer effect */}
+                  <div className="absolute inset-0 shimmer-animation opacity-30" />
+                  
+                  <div className="relative z-10">
+                    {/* Package title */}
+                    <motion.div
+                      className="text-center mb-2"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ delay: 0.2 + index * 0.1 }}
+                    >
+                      <span className="text-sm font-semibold opacity-75 uppercase tracking-wider">
+                        {option.title}
+                      </span>
+                    </motion.div>
+
+                    {/* Icon with pulse ring */}
+                    <motion.div
+                      className="text-6xl mb-4 text-center relative"
+                      whileHover={{
+                        scale: 1.2,
+                        rotate: [0, -10, 10, 0]
+                      }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      {option.popular && (
+                        <div className="absolute inset-0 rounded-full bg-white/20 pulse-ring-animation" />
+                      )}
+                      <img src={option.icon} alt={option.title} className="w-32 h-32 object-contain mx-auto" />
+                    </motion.div>
+
+                    {/* Points */}
+                    <motion.h2
+                      className="text-4xl font-bold text-center mb-2 text-shadow"
+                      variants={option.popular ? pulseVariants : {}}
+                      animate={option.popular ? "pulse" : ""}
+                    >
+                      {option.points.toLocaleString()} Points
+                    </motion.h2>
+
+                    {/* Price */}
+                    <p className="text-2xl text-center mb-4 opacity-90 font-semibold">
+                      {option.dh} Dh
+                    </p>
+
+                    {/* Bonus */}
+                    {option.bonus > 0 && (
+                      <motion.div
+                        className="bg-green-500/20 border border-green-400/30 rounded-lg p-3 mb-6 glass-effect"
+                        initial={{ scale: 0, rotateX: -90 }}
+                        animate={{ scale: 1, rotateX: 0 }}
+                        transition={{ delay: 0.3 + index * 0.1, type: "spring" }}
+                      >
+                        <p className="text-green-300 font-semibold text-center">
+                          🎁 +{option.bonus} Dh Bonus!
+                        </p>
+                      </motion.div>
+                    )}
+
+                    {/* Value calculation */}
+                    <div className="text-center mb-6 opacity-75">
+                      <p className="text-sm">
+                        Valeur: {(option.points * conversionRate).toLocaleString()} Dh
+                      </p>
+                      {option.bonus > 0 && (
+                        <p className="text-sm text-green-300 font-semibold">
+                          Total: {(option.points * conversionRate + option.bonus).toLocaleString()} Dh
+                        </p>
+                      )}
+                    </div>
+
+                    {/* Buy button */}
+                    <motion.button
+                      className={`w-full py-4 px-6 rounded-xl font-bold text-lg transition-all duration-300 relative overflow-hidden ${
+                        selectedPackage === option.id && isProcessing
+                          ? 'bg-gray-600 cursor-not-allowed'
+                          : 'bg-white/20 hover:bg-white/30 backdrop-blur-sm border border-white/30'
+                      }`}
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      onClick={() => handlePurchase(option.id)}
+                      disabled={isProcessing}
+                    >
+                      {/* Button shimmer effect */}
+                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full hover:translate-x-full transition-transform duration-700" />
+                      
+                      <AnimatePresence mode="wait">
+                        {selectedPackage === option.id && isProcessing ? (
+                          <motion.div
+                            key="processing"
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            className="flex items-center justify-center"
+                          >
+                            <div className="spinner mr-2" />
+                            Traitement...
+                          </motion.div>
+                        ) : (
+                          <motion.span
+                            key="buy"
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                          >
+                            Acheter Maintenant
+                          </motion.span>
+                        )}
+                      </AnimatePresence>
+                    </motion.button>
                   </div>
                 </motion.div>
-              )}
-
-              <motion.div
-                className={`bg-gradient-to-br ${option.color} p-8 rounded-2xl shadow-2xl border border-white/10 backdrop-blur-sm relative overflow-hidden hover-lift`}
-                whileHover={{
-                  boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.5)",
-                }}
-                style={{
-                  transformStyle: "preserve-3d"
-                }}
-              >
-                {/* Card background pattern */}
-                <div className="absolute inset-0 bg-white/5 backdrop-blur-sm" />
-                <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -translate-y-16 translate-x-16" />
-                
-                {/* Shimmer effect */}
-                <div className="absolute inset-0 shimmer-animation opacity-30" />
-                
-                <div className="relative z-10">
-                  {/* Package title */}
-                  <motion.div
-                    className="text-center mb-2"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.2 + index * 0.1 }}
-                  >
-                    <span className="text-sm font-semibold opacity-75 uppercase tracking-wider">
-                      {option.title}
-                    </span>
-                  </motion.div>
-
-                  {/* Icon with pulse ring */}
-                  <motion.div
-                    className="text-6xl mb-4 text-center relative"
-                    whileHover={{
-                      scale: 1.2,
-                      rotate: [0, -10, 10, 0]
-                    }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    {option.popular && (
-                      <div className="absolute inset-0 rounded-full bg-white/20 pulse-ring-animation" />
-                    )}
-                    <img src={option.icon} alt={option.title} className="w-32 h-32 object-contain mx-auto" />
-                  </motion.div>
-
-                  {/* Points */}
-                  <motion.h2
-                    className="text-4xl font-bold text-center mb-2 text-shadow"
-                    variants={option.popular ? pulseVariants : {}}
-                    animate={option.popular ? "pulse" : ""}
-                  >
-                    {option.points.toLocaleString()} Points
-                  </motion.h2>
-
-                  {/* Price */}
-                  <p className="text-2xl text-center mb-4 opacity-90 font-semibold">
-                    {option.dh} Dh
-                  </p>
-
-                  {/* Bonus */}
-                  {option.bonus > 0 && (
-                    <motion.div
-                      className="bg-green-500/20 border border-green-400/30 rounded-lg p-3 mb-6 glass-effect"
-                      initial={{ scale: 0, rotateX: -90 }}
-                      animate={{ scale: 1, rotateX: 0 }}
-                      transition={{ delay: 0.3 + index * 0.1, type: "spring" }}
-                    >
-                      <p className="text-green-300 font-semibold text-center">
-                        🎁 +{option.bonus} Dh Bonus!
-                      </p>
-                    </motion.div>
-                  )}
-
-                  {/* Value calculation */}
-                  <div className="text-center mb-6 opacity-75">
-                    <p className="text-sm">
-                      Valeur: {(option.points * conversionRate).toLocaleString()} Dh
-                    </p>
-                    {option.bonus > 0 && (
-                      <p className="text-sm text-green-300 font-semibold">
-                        Total: {(option.points * conversionRate + option.bonus).toLocaleString()} Dh
-                      </p>
-                    )}
-                  </div>
-
-                  {/* Buy button */}
-                  <motion.button
-                    className={`w-full py-4 px-6 rounded-xl font-bold text-lg transition-all duration-300 relative overflow-hidden ${
-                      selectedPackage === option.id && isProcessing
-                        ? 'bg-gray-600 cursor-not-allowed'
-                        : 'bg-white/20 hover:bg-white/30 backdrop-blur-sm border border-white/30'
-                    }`}
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    onClick={() => handlePurchase(option.id)}
-                    disabled={isProcessing}
-                  >
-                    {/* Button shimmer effect */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full hover:translate-x-full transition-transform duration-700" />
-                    
-                    <AnimatePresence mode="wait">
-                      {selectedPackage === option.id && isProcessing ? (
-                        <motion.div
-                          key="processing"
-                          initial={{ opacity: 0 }}
-                          animate={{ opacity: 1 }}
-                          exit={{ opacity: 0 }}
-                          className="flex items-center justify-center"
-                        >
-                          <div className="spinner mr-2" />
-                          Traitement...
-                        </motion.div>
-                      ) : (
-                        <motion.span
-                          key="buy"
-                          initial={{ opacity: 0 }}
-                          animate={{ opacity: 1 }}
-                          exit={{ opacity: 0 }}
-                        >
-                          Acheter Maintenant
-                        </motion.span>
-                      )}
-                    </AnimatePresence>
-                  </motion.button>
-                </div>
               </motion.div>
             </motion.div>
           ))}
         </div>
-
         {/* Additional info */}
         <motion.div
           className="mt-16 text-center"
@@ -466,7 +385,7 @@ const BuyPoints = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1, duration: 0.8 }}
         >
-          <div className="glass-effect rounded-2xl p-8 max-w-4xl mx-auto">
+          <div className="glass-effect rounded-2xl p-4 sm:p-8 max-w-4xl mx-auto">
             <h3 className="text-2xl font-bold mb-6 text-glow">Pourquoi choisir Vinca Circle ?</h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
               {[
@@ -502,7 +421,6 @@ const BuyPoints = () => {
               ))}
             </div>
           </div>
-
           <motion.div
             className="mt-8"
             whileHover={{ scale: 1.05 }}
@@ -526,7 +444,6 @@ const BuyPoints = () => {
           </motion.div>
         </motion.div>
       </div>
-
       {/* Floating Return Button */}
       <motion.button
         onClick={() => navigate(-1)}

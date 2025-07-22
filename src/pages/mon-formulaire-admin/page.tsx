@@ -187,12 +187,12 @@ function Recapitulatif({ formData }: { formData: FormData }) {
 
           {/* Visual Tab */}
           <TabsContent value="visual" className="space-y-8">
-            <div className="grid md:grid-cols-2 gap-8">
-              <div className="space-y-3">
+                <div className="grid md:grid-cols-2 gap-8">
+                    <div className="space-y-3">
                 <Label htmlFor="publicCible" className="text-amber-700 font-bold text-lg flex items-center gap-2">
-                  <Sparkles className="w-4 h-4" />
+                        <Sparkles className="w-4 h-4" />
                   Public cible *
-                </Label>
+                      </Label>
                 <Input
                   id="publicCible"
                   placeholder="Décrivez votre audience cible..."
@@ -220,11 +220,11 @@ function Recapitulatif({ formData }: { formData: FormData }) {
                 </Label>
                 <div className="grid md:grid-cols-2 gap-4">
                   {servicesDetails.visual.map((service: string) => (
-                    <div
+                          <div
                       key={service}
                       className="flex items-center space-x-3 p-4 rounded-xl bg-white/60 backdrop-blur-sm border border-amber-200/30 hover:bg-white/80 transition-all duration-200"
-                    >
-                      <Checkbox
+                          >
+                            <Checkbox
                         id={`visual-${service}`}
                         checked={formData.mustHave.visual?.services?.includes(service) || false}
                         onCheckedChange={(checked) => {
@@ -232,34 +232,34 @@ function Recapitulatif({ formData }: { formData: FormData }) {
                           const newServices = checked ? [...currentServices, service] : currentServices.filter((s: string) => s !== service)
                           // updateFormData("mustHave", "visual", "services", newServices) // This function is not defined here
                         }}
-                        className="border-amber-300 data-[state=checked]:bg-gradient-to-r data-[state=checked]:from-amber-500 data-[state=checked]:to-orange-500"
-                      />
-                      <Label
+                              className="border-amber-300 data-[state=checked]:bg-gradient-to-r data-[state=checked]:from-amber-500 data-[state=checked]:to-orange-500"
+                            />
+                            <Label
                         htmlFor={`visual-${service}`}
-                        className="text-sm font-medium text-gray-700 cursor-pointer"
-                      >
+                              className="text-sm font-medium text-gray-700 cursor-pointer"
+                            >
                         {service}
-                      </Label>
+                            </Label>
+                          </div>
+                        ))}
                     </div>
-                  ))}
-                </div>
-              </div>
+                  </div>
 
-              <div className="space-y-3">
+                    <div className="space-y-3">
                 <Label htmlFor="styleGraphique" className="text-amber-700 font-bold flex items-center gap-2">
                   <Sparkles className="w-4 h-4" />
                   Style graphique souhaité
-                </Label>
+                      </Label>
                 <Select onValueChange={(value) => {
                   // updateFormData("mustHave", "visual", "styleGraphique", value) // This function is not defined here
                 }}>
-                  <SelectTrigger className="border-amber-200/50 focus:border-amber-500 bg-white/60 backdrop-blur-sm rounded-xl h-12">
+                        <SelectTrigger className="border-amber-200/50 focus:border-amber-500 bg-white/60 backdrop-blur-sm rounded-xl h-12">
                     <SelectValue placeholder="Choisissez un style" />
-                  </SelectTrigger>
-                  <SelectContent className="rounded-xl border-amber-200/50">
+                        </SelectTrigger>
+                        <SelectContent className="rounded-xl border-amber-200/50">
                     <SelectItem value="moderne" className="rounded-lg">
                       Moderne
-                    </SelectItem>
+                            </SelectItem>
                     <SelectItem value="classique" className="rounded-lg">
                       Classique
                     </SelectItem>
@@ -272,79 +272,79 @@ function Recapitulatif({ formData }: { formData: FormData }) {
                     <SelectItem value="artistique" className="rounded-lg">
                       Artistique
                     </SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-              <div className="space-y-3">
+                        </SelectContent>
+                      </Select>
+                    </div>
+                    <div className="space-y-3">
                 <Label htmlFor="couleurs" className="text-amber-700 font-bold flex items-center gap-2">
-                  <ArrowRight className="w-4 h-4" />
+                        <ArrowRight className="w-4 h-4" />
                   Couleurs préférées
-                </Label>
-                <Input
+                      </Label>
+                      <Input
                   id="couleurs"
                   placeholder="Ex: Bleu, blanc, rouge..."
                   value={formData.mustHave.visual?.couleurs || ""}
                   className="border-amber-200/50 focus:border-amber-500 bg-white/60 backdrop-blur-sm rounded-xl h-12 text-base"
-                />
-              </div>
-            </div>
+                      />
+                    </div>
+                    </div>
           </TabsContent>
 
           {/* Social Tab */}
           <TabsContent value="social" className="space-y-8">
-            <div className="grid md:grid-cols-2 gap-8">
-              <div className="space-y-3">
+                <div className="grid md:grid-cols-2 gap-8">
+                    <div className="space-y-3">
                 <Label htmlFor="plateformes" className="text-rose-700 font-bold text-lg flex items-center gap-2">
-                  <Sparkles className="w-4 h-4" />
+                        <Sparkles className="w-4 h-4" />
                   Plateformes ciblées *
-                </Label>
+                      </Label>
                 <Input
                   id="plateformes"
                   placeholder="Facebook, Instagram, LinkedIn..."
                   value={formData.mustHave.social?.plateformes || ""}
                   className="border-rose-200/50 focus:border-rose-500 bg-white/60 backdrop-blur-sm rounded-xl h-12 text-base"
                 />
-              </div>
-              <div className="space-y-3">
+                          </div>
+                    <div className="space-y-3">
                 <Label htmlFor="frequence" className="text-rose-700 font-bold text-lg flex items-center gap-2">
-                  <Zap className="w-4 h-4" />
+                        <Zap className="w-4 h-4" />
                   Fréquence de publication *
-                </Label>
+                      </Label>
                 <Select onValueChange={(value) => {
                   // updateFormData("mustHave", "social", "frequence", value) // This function is not defined here
                 }}>
-                  <SelectTrigger className="border-rose-200/50 focus:border-rose-500 bg-white/60 backdrop-blur-sm rounded-xl h-12">
-                    <SelectValue placeholder="Choisissez la fréquence" />
-                  </SelectTrigger>
-                  <SelectContent className="rounded-xl border-rose-200/50">
+                      <SelectTrigger className="border-rose-200/50 focus:border-rose-500 bg-white/60 backdrop-blur-sm rounded-xl h-12">
+                        <SelectValue placeholder="Choisissez la fréquence" />
+                      </SelectTrigger>
+                      <SelectContent className="rounded-xl border-rose-200/50">
                     <SelectItem value="quotidien" className="rounded-lg">
                       Quotidien
-                    </SelectItem>
+                        </SelectItem>
                     <SelectItem value="3-fois-semaine" className="rounded-lg">
                       3 fois par semaine
-                    </SelectItem>
+                        </SelectItem>
                     <SelectItem value="hebdomadaire" className="rounded-lg">
                       Hebdomadaire
-                    </SelectItem>
+                        </SelectItem>
                     <SelectItem value="bi-hebdomadaire" className="rounded-lg">
                       Bi-hebdomadaire
-                    </SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
+                        </SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
 
               <div className="space-y-6 md:col-span-2">
                 <Label className="text-rose-700 font-bold text-xl flex items-center gap-2">
                   <ArrowRight className="w-5 h-5" />
                   Services SOCIAL requis *
-                </Label>
+                    </Label>
                 <div className="grid md:grid-cols-2 gap-4">
                   {servicesDetails.social.map((service: string) => (
-                    <div
+                        <div
                       key={service}
                       className="flex items-center space-x-3 p-4 rounded-xl bg-white/60 backdrop-blur-sm border border-rose-200/30 hover:bg-white/80 transition-all duration-200"
-                    >
-                      <Checkbox
+                        >
+                          <Checkbox
                         id={`social-${service}`}
                         checked={formData.mustHave.social?.services?.includes(service) || false}
                         onCheckedChange={(checked) => {
@@ -352,24 +352,24 @@ function Recapitulatif({ formData }: { formData: FormData }) {
                           const newServices = checked ? [...currentServices, service] : currentServices.filter((s: string) => s !== service)
                           // updateFormData("mustHave", "social", "services", newServices) // This function is not defined here
                         }}
-                        className="border-rose-300 data-[state=checked]:bg-gradient-to-r data-[state=checked]:from-rose-500 data-[state=checked]:to-pink-500"
-                      />
-                      <Label
+                            className="border-rose-300 data-[state=checked]:bg-gradient-to-r data-[state=checked]:from-rose-500 data-[state=checked]:to-pink-500"
+                          />
+                          <Label
                         htmlFor={`social-${service}`}
-                        className="text-sm font-medium text-gray-700 cursor-pointer"
-                      >
+                            className="text-sm font-medium text-gray-700 cursor-pointer"
+                          >
                         {service}
-                      </Label>
+                          </Label>
+                        </div>
+                      ))}
                     </div>
-                  ))}
-                </div>
-              </div>
+                  </div>
 
               <div className="space-y-3">
                 <Label htmlFor="typeContenu" className="text-rose-700 font-bold flex items-center gap-2">
                   <Sparkles className="w-4 h-4" />
                   Type de contenu souhaité
-                </Label>
+                    </Label>
                 <Textarea
                   id="typeContenu"
                   placeholder="Photos, vidéos, articles, stories..."
@@ -382,7 +382,7 @@ function Recapitulatif({ formData }: { formData: FormData }) {
                 <Label htmlFor="audience" className="text-rose-700 font-bold flex items-center gap-2">
                   <ArrowRight className="w-4 h-4" />
                   Taille d'audience visée
-                </Label>
+                          </Label>
                 <Select onValueChange={(value) => {
                   // updateFormData("mustHave", "social", "audience", value) // This function is not defined here
                 }}>
@@ -404,18 +404,18 @@ function Recapitulatif({ formData }: { formData: FormData }) {
                     </SelectItem>
                   </SelectContent>
                 </Select>
-              </div>
-            </div>
+                        </div>
+                    </div>
           </TabsContent>
 
           {/* Web Tab */}
           <TabsContent value="web" className="space-y-8">
-            <div className="grid md:grid-cols-2 gap-8">
-              <div className="space-y-3">
+                <div className="grid md:grid-cols-2 gap-8">
+                  <div className="space-y-3">
                 <Label htmlFor="typesite" className="text-blue-700 font-bold text-lg flex items-center gap-2">
-                  <Sparkles className="w-4 h-4" />
+                      <Sparkles className="w-4 h-4" />
                   Type de site web *
-                </Label>
+                    </Label>
                 <Select onValueChange={(value) => {
                   // updateFormData("mustHave", "web", "typesite", value) // This function is not defined here
                 }}>
@@ -440,36 +440,36 @@ function Recapitulatif({ formData }: { formData: FormData }) {
                     </SelectItem>
                   </SelectContent>
                 </Select>
-              </div>
-              <div className="space-y-3">
-                <Label
+                  </div>
+                    <div className="space-y-3">
+                            <Label
                   htmlFor="fonctionnalites"
                   className="text-blue-700 font-bold text-lg flex items-center gap-2"
                 >
                   <Zap className="w-4 h-4" />
                   Fonctionnalités requises *
-                </Label>
-                <Textarea
+                    </Label>
+                    <Textarea
                   id="fonctionnalites"
                   placeholder="Contact, réservation, paiement en ligne..."
                   value={formData.mustHave.web?.fonctionnalites || ""}
                   className="border-blue-200/50 focus:border-blue-500 bg-white/60 backdrop-blur-sm rounded-xl min-h-[100px] resize-none"
                   rows={3}
-                />
-              </div>
+                    />
+                  </div>
 
               <div className="space-y-6 md:col-span-2">
                 <Label className="text-blue-700 font-bold text-xl flex items-center gap-2">
                   <ArrowRight className="w-5 h-5" />
                   Services WEB requis *
-                </Label>
+                      </Label>
                 <div className="grid md:grid-cols-2 gap-4">
                   {servicesDetails.web.map((service: string) => (
-                    <div
+                          <div
                       key={service}
                       className="flex items-center space-x-3 p-4 rounded-xl bg-white/60 backdrop-blur-sm border border-blue-200/30 hover:bg-white/80 transition-all duration-200"
-                    >
-                      <Checkbox
+                          >
+                            <Checkbox
                         id={`web-${service}`}
                         checked={formData.mustHave.web?.services?.includes(service) || false}
                         onCheckedChange={(checked) => {
@@ -477,37 +477,37 @@ function Recapitulatif({ formData }: { formData: FormData }) {
                           const newServices = checked ? [...currentServices, service] : currentServices.filter((s: string) => s !== service)
                           // updateFormData("mustHave", "web", "services", newServices) // This function is not defined here
                         }}
-                        className="border-blue-300 data-[state=checked]:bg-gradient-to-r data-[state=checked]:from-blue-500 data-[state=checked]:to-cyan-500"
-                      />
-                      <Label
+                              className="border-blue-300 data-[state=checked]:bg-gradient-to-r data-[state=checked]:from-blue-500 data-[state=checked]:to-cyan-500"
+                            />
+                            <Label
                         htmlFor={`web-${service}`}
-                        className="text-sm font-medium text-gray-700 cursor-pointer"
-                      >
+                              className="text-sm font-medium text-gray-700 cursor-pointer"
+                            >
                         {service}
-                      </Label>
+                            </Label>
+                          </div>
+                        ))}
                     </div>
-                  ))}
-                </div>
-              </div>
+                  </div>
 
               <div className="space-y-3">
                 <Label htmlFor="contenu" className="text-blue-700 font-bold flex items-center gap-2">
                   <Sparkles className="w-4 h-4" />
                   Contenu du site
-                </Label>
-                <Textarea
+                    </Label>
+                    <Textarea
                   id="contenu"
                   placeholder="Décrivez le contenu à intégrer..."
                   value={formData.mustHave.web?.contenu || ""}
-                  className="border-blue-200/50 focus:border-blue-500 bg-white/60 backdrop-blur-sm rounded-xl min-h-[100px] resize-none"
+                      className="border-blue-200/50 focus:border-blue-500 bg-white/60 backdrop-blur-sm rounded-xl min-h-[100px] resize-none"
                   rows={3}
-                />
-              </div>
+                    />
+                  </div>
               <div className="space-y-3">
                 <Label htmlFor="hebergement" className="text-blue-700 font-bold flex items-center gap-2">
                   <ArrowRight className="w-4 h-4" />
                   Hébergement souhaité
-                </Label>
+                    </Label>
                 <Select onValueChange={(value) => {
                   // updateFormData("mustHave", "web", "hebergement", value) // This function is not defined here
                 }}>
@@ -529,8 +529,8 @@ function Recapitulatif({ formData }: { formData: FormData }) {
                     </SelectItem>
                   </SelectContent>
                 </Select>
-              </div>
-            </div>
+                  </div>
+                </div>
           </TabsContent>
         </Tabs>
 
@@ -546,7 +546,7 @@ function Recapitulatif({ formData }: { formData: FormData }) {
             >
               {isMustHaveCompleted() ? "✅ Complété" : "⏳ En cours"}
             </span>
-          </div>
+      </div>
           <div className="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
             <div
               className={`h-3 rounded-full transition-all duration-1000 ${
@@ -555,7 +555,7 @@ function Recapitulatif({ formData }: { formData: FormData }) {
                   : "bg-gradient-to-r from-amber-400 via-orange-500 to-red-500 w-1/2"
               }`}
             />
-          </div>
+    </div>
         </div>
 
         {/* Save Button Moderne */}
@@ -572,7 +572,7 @@ function Recapitulatif({ formData }: { formData: FormData }) {
             <ArrowRight className="w-5 h-5 ml-3 group-hover:translate-x-1 transition-transform duration-300 relative z-10" />
           </Button>
         </div>
-      </div>
+              </div>
     </div>
   )
 }
@@ -819,137 +819,137 @@ export default function ServicesPage() {
         <NavbarAdmin />
         <div className="flex-1 relative z-10 py-16 px-4 pl-64">
           <div className="max-w-[1200px] mx-auto print-area">
-            {/* Header moderne */}
-            <div className="text-center mb-20 relative">
-              <div className="absolute inset-0 bg-gradient-to-r from-violet-600/5 via-fuchsia-600/5 to-cyan-600/5 rounded-full blur-3xl -z-10" />
+          {/* Header moderne */}
+          <div className="text-center mb-20 relative">
+            <div className="absolute inset-0 bg-gradient-to-r from-violet-600/5 via-fuchsia-600/5 to-cyan-600/5 rounded-full blur-3xl -z-10" />
 
-              <div className="inline-flex items-center gap-2 bg-gradient-to-r from-violet-100 to-fuchsia-100 text-violet-700 px-6 py-2 rounded-full text-sm font-semibold mb-6 border border-violet-200/50">
-                <Sparkles className="w-4 h-4" />
-                Services Premium
-              </div>
-
-              <h1 className="text-6xl font-black bg-gradient-to-r from-slate-900 via-violet-900 to-slate-900 bg-clip-text text-transparent mb-6 tracking-tight">
-                SDC
-              </h1>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-                Découvrez nos trois univers créatifs pour transformer vos idées en réalité digitale
-              </p>
+            <div className="inline-flex items-center gap-2 bg-gradient-to-r from-violet-100 to-fuchsia-100 text-violet-700 px-6 py-2 rounded-full text-sm font-semibold mb-6 border border-violet-200/50">
+              <Sparkles className="w-4 h-4" />
+              Services Premium
             </div>
 
-            {/* Services Cards - Design Ultra Moderne */}
-            <div className="grid lg:grid-cols-3 gap-8 mb-24">
-              {services.map((service, index) => {
-                const IconComponent = service.icon
-                const gradients = {
-                  visual: "from-amber-400 via-orange-500 to-red-500",
-                  social: "from-rose-400 via-pink-500 to-fuchsia-500",
-                  web: "from-blue-400 via-cyan-500 to-teal-500",
-                }
-                const glowColors = {
-                  visual: "shadow-amber-500/20",
-                  social: "shadow-rose-500/20",
-                  web: "shadow-blue-500/20",
-                }
+            <h1 className="text-6xl font-black bg-gradient-to-r from-slate-900 via-violet-900 to-slate-900 bg-clip-text text-transparent mb-6 tracking-tight">
+                SDC
+            </h1>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+              Découvrez nos trois univers créatifs pour transformer vos idées en réalité digitale
+            </p>
+          </div>
 
-                return (
+          {/* Services Cards - Design Ultra Moderne */}
+          <div className="grid lg:grid-cols-3 gap-8 mb-24">
+            {services.map((service, index) => {
+              const IconComponent = service.icon
+              const gradients = {
+                visual: "from-amber-400 via-orange-500 to-red-500",
+                social: "from-rose-400 via-pink-500 to-fuchsia-500",
+                web: "from-blue-400 via-cyan-500 to-teal-500",
+              }
+              const glowColors = {
+                visual: "shadow-amber-500/20",
+                social: "shadow-rose-500/20",
+                web: "shadow-blue-500/20",
+              }
+
+              return (
+                <div
+                  key={service.id}
+                  className={`group relative overflow-hidden rounded-3xl bg-white/80 backdrop-blur-xl border border-white/20 shadow-2xl ${glowColors[service.id as keyof typeof glowColors]} hover:shadow-3xl transition-all duration-700 hover:-translate-y-6 hover:scale-105`}
+                  style={{
+                    animationDelay: `${index * 200}ms`,
+                    animation: "fadeInUp 0.8s ease-out forwards",
+                  }}
+                >
+                  {/* Background Effects */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                   <div
-                    key={service.id}
-                    className={`group relative overflow-hidden rounded-3xl bg-white/80 backdrop-blur-xl border border-white/20 shadow-2xl ${glowColors[service.id as keyof typeof glowColors]} hover:shadow-3xl transition-all duration-700 hover:-translate-y-6 hover:scale-105`}
-                    style={{
-                      animationDelay: `${index * 200}ms`,
-                      animation: "fadeInUp 0.8s ease-out forwards",
-                    }}
-                  >
-                    {/* Background Effects */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                    <div
-                      className={`absolute inset-0 bg-gradient-to-br ${gradients[service.id as keyof typeof gradients]} opacity-0 group-hover:opacity-5 transition-opacity duration-500`}
-                    />
-                    {/* Floating Elements */}
-                    <div className="absolute top-6 right-6 w-24 h-24 bg-gradient-to-br from-white/10 to-white/5 rounded-full blur-2xl group-hover:scale-150 transition-transform duration-700" />
-                    <div className="absolute bottom-6 left-6 w-20 h-20 bg-gradient-to-br from-white/5 to-white/10 rounded-full blur-xl group-hover:scale-125 transition-transform duration-500" />
-                    <div className="relative z-10 p-10">
-                      {/* Icon Section */}
-                      <div className="flex justify-center mb-8">
-                        <div
-                          className={`relative w-24 h-24 rounded-2xl bg-gradient-to-br ${gradients[service.id as keyof typeof gradients]} shadow-xl group-hover:shadow-2xl transition-all duration-500 group-hover:rotate-6 group-hover:scale-110`}
-                        >
-                          <div className="absolute inset-0 rounded-2xl bg-white/20 backdrop-blur-sm" />
-                          <div className="relative w-full h-full flex items-center justify-center">
-                            <IconComponent className="w-12 h-12 text-white drop-shadow-lg" />
-                          </div>
-                          <div
-                            className={`absolute -inset-3 bg-gradient-to-br ${gradients[service.id as keyof typeof gradients]} rounded-2xl blur-xl opacity-0 group-hover:opacity-40 transition-opacity duration-500 -z-10`}
-                          />
+                    className={`absolute inset-0 bg-gradient-to-br ${gradients[service.id as keyof typeof gradients]} opacity-0 group-hover:opacity-5 transition-opacity duration-500`}
+                  />
+                  {/* Floating Elements */}
+                  <div className="absolute top-6 right-6 w-24 h-24 bg-gradient-to-br from-white/10 to-white/5 rounded-full blur-2xl group-hover:scale-150 transition-transform duration-700" />
+                  <div className="absolute bottom-6 left-6 w-20 h-20 bg-gradient-to-br from-white/5 to-white/10 rounded-full blur-xl group-hover:scale-125 transition-transform duration-500" />
+                  <div className="relative z-10 p-10">
+                    {/* Icon Section */}
+                    <div className="flex justify-center mb-8">
+                      <div
+                        className={`relative w-24 h-24 rounded-2xl bg-gradient-to-br ${gradients[service.id as keyof typeof gradients]} shadow-xl group-hover:shadow-2xl transition-all duration-500 group-hover:rotate-6 group-hover:scale-110`}
+                      >
+                        <div className="absolute inset-0 rounded-2xl bg-white/20 backdrop-blur-sm" />
+                        <div className="relative w-full h-full flex items-center justify-center">
+                          <IconComponent className="w-12 h-12 text-white drop-shadow-lg" />
                         </div>
-                      </div>
-                      {/* Title */}
-                      <div className="text-center mb-6">
-                        <h3
-                          className={`text-4xl font-black bg-gradient-to-r ${gradients[service.id as keyof typeof gradients]} bg-clip-text text-transparent mb-2 group-hover:scale-105 transition-transform duration-300`}
-                        >
-                          {service.title}
-                        </h3>
-                        <p className="text-gray-500 font-semibold text-sm tracking-wide uppercase">{service.subtitle}</p>
                         <div
-                          className={`h-1 w-20 bg-gradient-to-r ${gradients[service.id as keyof typeof gradients]} rounded-full mx-auto mt-3 group-hover:w-32 transition-all duration-500`}
-                        />
-                      </div>
-                      {/* Description */}
-                      <p className="text-gray-600 font-medium text-center mb-8 group-hover:text-gray-700 transition-colors duration-300 leading-relaxed">
-                        {service.description}
-                      </p>
-                      {/* Features List */}
-                      <div className="space-y-4">
-                        {service.features.map((feature, featureIndex) => (
-                          <div
-                            key={featureIndex}
-                            className="flex items-start gap-4 group/item hover:translate-x-2 transition-transform duration-300"
-                            style={{
-                              animationDelay: `${index * 200 + featureIndex * 100}ms`,
-                            }}
-                          >
-                            <div
-                              className={`w-2 h-2 rounded-full bg-gradient-to-r ${gradients[service.id as keyof typeof gradients]} mt-2.5 flex-shrink-0 group-hover/item:scale-150 transition-transform duration-300`}
-                            />
-                            <span className="text-gray-700 text-sm leading-relaxed font-medium group-hover/item:text-gray-900 transition-colors duration-300">
-                              {feature}
-                            </span>
-                          </div>
-                        ))}
-                      </div>
-                      {/* Bottom Accent */}
-                      <div className="mt-10 pt-8 border-t border-gray-100">
-                        <div
-                          className={`h-2 bg-gradient-to-r ${gradients[service.id as keyof typeof gradients]} rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700 origin-left`}
+                          className={`absolute -inset-3 bg-gradient-to-br ${gradients[service.id as keyof typeof gradients]} rounded-2xl blur-xl opacity-0 group-hover:opacity-40 transition-opacity duration-500 -z-10`}
                         />
                       </div>
                     </div>
-                    {/* Hover Border Effect */}
-                    <div
-                      className={`absolute inset-0 rounded-3xl border-2 border-transparent bg-gradient-to-r ${gradients[service.id as keyof typeof gradients]} opacity-0 group-hover:opacity-100 transition-opacity duration-500`}
-                      style={{
-                        background: `linear-gradient(white, white) padding-box, linear-gradient(135deg, var(--tw-gradient-stops)) border-box`,
-                        backgroundClip: "padding-box, border-box",
-                      }}
-                    />
+                    {/* Title */}
+                    <div className="text-center mb-6">
+                      <h3
+                        className={`text-4xl font-black bg-gradient-to-r ${gradients[service.id as keyof typeof gradients]} bg-clip-text text-transparent mb-2 group-hover:scale-105 transition-transform duration-300`}
+                      >
+                        {service.title}
+                      </h3>
+                      <p className="text-gray-500 font-semibold text-sm tracking-wide uppercase">{service.subtitle}</p>
+                      <div
+                        className={`h-1 w-20 bg-gradient-to-r ${gradients[service.id as keyof typeof gradients]} rounded-full mx-auto mt-3 group-hover:w-32 transition-all duration-500`}
+                      />
+                    </div>
+                    {/* Description */}
+                    <p className="text-gray-600 font-medium text-center mb-8 group-hover:text-gray-700 transition-colors duration-300 leading-relaxed">
+                      {service.description}
+                    </p>
+                    {/* Features List */}
+                    <div className="space-y-4">
+                      {service.features.map((feature, featureIndex) => (
+                        <div
+                          key={featureIndex}
+                          className="flex items-start gap-4 group/item hover:translate-x-2 transition-transform duration-300"
+                          style={{
+                            animationDelay: `${index * 200 + featureIndex * 100}ms`,
+                          }}
+                        >
+                          <div
+                            className={`w-2 h-2 rounded-full bg-gradient-to-r ${gradients[service.id as keyof typeof gradients]} mt-2.5 flex-shrink-0 group-hover/item:scale-150 transition-transform duration-300`}
+                          />
+                          <span className="text-gray-700 text-sm leading-relaxed font-medium group-hover/item:text-gray-900 transition-colors duration-300">
+                            {feature}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                    {/* Bottom Accent */}
+                    <div className="mt-10 pt-8 border-t border-gray-100">
+                      <div
+                        className={`h-2 bg-gradient-to-r ${gradients[service.id as keyof typeof gradients]} rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700 origin-left`}
+                      />
+                    </div>
                   </div>
-                )
-              })}
-            </div>
+                  {/* Hover Border Effect */}
+                  <div
+                    className={`absolute inset-0 rounded-3xl border-2 border-transparent bg-gradient-to-r ${gradients[service.id as keyof typeof gradients]} opacity-0 group-hover:opacity-100 transition-opacity duration-500`}
+                    style={{
+                      background: `linear-gradient(white, white) padding-box, linear-gradient(135deg, var(--tw-gradient-stops)) border-box`,
+                      backgroundClip: "padding-box, border-box",
+                    }}
+                  />
+                </div>
+              )
+            })}
+          </div>
 
-            {/* MUST HAVE Form Section - Design Moderne */}
-            <div className="relative">
-              {/* Background Effects */}
-              <div className="absolute inset-0 bg-gradient-to-br from-gray-50/50 to-white/50 rounded-3xl -z-10" />
-              <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-violet-100/10 via-transparent to-transparent rounded-3xl -z-10" />
+          {/* MUST HAVE Form Section - Design Moderne */}
+          <div className="relative">
+            {/* Background Effects */}
+            <div className="absolute inset-0 bg-gradient-to-br from-gray-50/50 to-white/50 rounded-3xl -z-10" />
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-violet-100/10 via-transparent to-transparent rounded-3xl -z-10" />
 
-              <div className="backdrop-blur-xl bg-white/80 border border-white/20 rounded-3xl p-10 shadow-2xl shadow-gray-500/10">
-                <div className="text-center mb-12 relative">
-                  <div className="inline-flex items-center gap-2 bg-gradient-to-r from-gray-100 to-slate-100 text-gray-700 px-6 py-2 rounded-full text-sm font-semibold mb-6 border border-gray-200/50">
-                    <Zap className="w-4 h-4" />
-                    Étape 1
-                  </div>
+            <div className="backdrop-blur-xl bg-white/80 border border-white/20 rounded-3xl p-10 shadow-2xl shadow-gray-500/10">
+              <div className="text-center mb-12 relative">
+                <div className="inline-flex items-center gap-2 bg-gradient-to-r from-gray-100 to-slate-100 text-gray-700 px-6 py-2 rounded-full text-sm font-semibold mb-6 border border-gray-200/50">
+                  <Zap className="w-4 h-4" />
+                  Étape 1
+                </div>
 
                   <div className="flex items-center justify-center gap-4 mb-4">
                     <h2 className="text-4xl font-black text-gray-900 tracking-tight">MUST HAVE</h2>
@@ -968,420 +968,420 @@ export default function ServicesPage() {
                       ))}
                     </div>
                   </div>
-                  <p className="text-gray-600 text-lg leading-relaxed">Définissez les bases de votre projet créatif</p>
+                <p className="text-gray-600 text-lg leading-relaxed">Définissez les bases de votre projet créatif</p>
 
-                  {isSaved && (
-                    <div className="flex items-center justify-center gap-2 mt-6 text-emerald-600">
-                      <CheckCircle className="w-5 h-5" />
-                      <span className="text-sm font-medium">Sauvegardé automatiquement</span>
-                    </div>
-                  )}
-                </div>
-
-                <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-                  <TabsList className="grid w-full grid-cols-3 mb-12 bg-gray-100/50 backdrop-blur-sm p-2 rounded-2xl border border-gray-200/50">
-                    <TabsTrigger
-                      value="visual"
-                      className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-amber-500 data-[state=active]:to-orange-500 data-[state=active]:text-white data-[state=active]:shadow-lg data-[state=active]:shadow-amber-500/25 rounded-xl transition-all duration-300 font-semibold"
-                    >
-                      <Eye className="w-4 h-4 mr-2" />
-                      VISUAL
-                    </TabsTrigger>
-                    <TabsTrigger
-                      value="social"
-                      className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-rose-500 data-[state=active]:to-pink-500 data-[state=active]:text-white data-[state=active]:shadow-lg data-[state=active]:shadow-rose-500/25 rounded-xl transition-all duration-300 font-semibold"
-                    >
-                      <Users className="w-4 h-4 mr-2" />
-                      SOCIAL
-                    </TabsTrigger>
-                    <TabsTrigger
-                      value="web"
-                      className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-500 data-[state=active]:to-cyan-500 data-[state=active]:text-white data-[state=active]:shadow-lg data-[state=active]:shadow-blue-500/25 rounded-xl transition-all duration-300 font-semibold"
-                    >
-                      <Globe className="w-4 h-4 mr-2" />
-                      WEB
-                    </TabsTrigger>
-                  </TabsList>
-
-                  {/* Visual Tab */}
-                  <TabsContent value="visual" className="space-y-8">
-                    <div className="grid md:grid-cols-2 gap-8">
-                      <div className="space-y-3">
-                        <Label htmlFor="publicCible" className="text-amber-700 font-bold text-lg flex items-center gap-2">
-                          <Sparkles className="w-4 h-4" />
-                          Public cible *
-                        </Label>
-                        <Input
-                          id="publicCible"
-                          placeholder="Décrivez votre audience cible..."
-                          value={formData.mustHave.visual?.publicCible || ""}
-                          onChange={(e) => updateFormData("mustHave", "visual", "publicCible", e.target.value)}
-                          className="border-amber-200/50 focus:border-amber-500 bg-white/60 backdrop-blur-sm rounded-xl h-12 text-base"
-                        />
-                      </div>
-                      <div className="space-y-3">
-                        <Label htmlFor="objectifs" className="text-amber-700 font-bold text-lg flex items-center gap-2">
-                          <Zap className="w-4 h-4" />
-                          Objectifs du projet *
-                        </Label>
-                        <Input
-                          id="objectifs"
-                          placeholder="Quels sont vos objectifs ?"
-                          value={formData.mustHave.visual?.objectifs || ""}
-                          onChange={(e) => updateFormData("mustHave", "visual", "objectifs", e.target.value)}
-                          className="border-amber-200/50 focus:border-amber-500 bg-white/60 backdrop-blur-sm rounded-xl h-12 text-base"
-                        />
-                      </div>
-
-                      <div className="space-y-6 md:col-span-2">
-                        <Label className="text-amber-700 font-bold text-xl flex items-center gap-2">
-                          <ArrowRight className="w-5 h-5" />
-                          Services VISUAL requis *
-                        </Label>
-                        <div className="grid md:grid-cols-2 gap-4">
-                          {servicesDetails.visual.map((service: string) => (
-                            <div
-                              key={service}
-                              className="flex items-center space-x-3 p-4 rounded-xl bg-white/60 backdrop-blur-sm border border-amber-200/30 hover:bg-white/80 transition-all duration-200"
-                            >
-                              <Checkbox
-                                id={`visual-${service}`}
-                                checked={formData.mustHave.visual?.services?.includes(service) || false}
-                                onCheckedChange={(checked) => handleServiceToggle("visual", service, checked as boolean)}
-                                className="border-amber-300 data-[state=checked]:bg-gradient-to-r data-[state=checked]:from-amber-500 data-[state=checked]:to-orange-500"
-                              />
-                              <Label
-                                htmlFor={`visual-${service}`}
-                                className="text-sm font-medium text-gray-700 cursor-pointer"
-                              >
-                                {service}
-                              </Label>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-
-                      <div className="space-y-3">
-                        <Label htmlFor="styleGraphique" className="text-amber-700 font-bold flex items-center gap-2">
-                          <Sparkles className="w-4 h-4" />
-                          Style graphique souhaité
-                        </Label>
-                        <Select onValueChange={(value) => updateFormData("mustHave", "visual", "styleGraphique", value)}>
-                          <SelectTrigger className="border-amber-200/50 focus:border-amber-500 bg-white/60 backdrop-blur-sm rounded-xl h-12">
-                            <SelectValue placeholder="Choisissez un style" />
-                          </SelectTrigger>
-                          <SelectContent className="rounded-xl border-amber-200/50">
-                            <SelectItem value="moderne" className="rounded-lg">
-                              Moderne
-                            </SelectItem>
-                            <SelectItem value="classique" className="rounded-lg">
-                              Classique
-                            </SelectItem>
-                            <SelectItem value="minimaliste" className="rounded-lg">
-                              Minimaliste
-                            </SelectItem>
-                            <SelectItem value="vintage" className="rounded-lg">
-                              Vintage
-                            </SelectItem>
-                            <SelectItem value="artistique" className="rounded-lg">
-                              Artistique
-                            </SelectItem>
-                          </SelectContent>
-                        </Select>
-                      </div>
-                      <div className="space-y-3">
-                        <Label htmlFor="couleurs" className="text-amber-700 font-bold flex items-center gap-2">
-                          <ArrowRight className="w-4 h-4" />
-                          Couleurs préférées
-                        </Label>
-                        <Input
-                          id="couleurs"
-                          placeholder="Ex: Bleu, blanc, rouge..."
-                          value={formData.mustHave.visual?.couleurs || ""}
-                          onChange={(e) => updateFormData("mustHave", "visual", "couleurs", e.target.value)}
-                          className="border-amber-200/50 focus:border-amber-500 bg-white/60 backdrop-blur-sm rounded-xl h-12 text-base"
-                        />
-                      </div>
-                    </div>
-                  </TabsContent>
-
-                  {/* Social Tab */}
-                  <TabsContent value="social" className="space-y-8">
-                    <div className="grid md:grid-cols-2 gap-8">
-                      <div className="space-y-3">
-                        <Label htmlFor="plateformes" className="text-rose-700 font-bold text-lg flex items-center gap-2">
-                          <Sparkles className="w-4 h-4" />
-                          Plateformes ciblées *
-                        </Label>
-                        <Input
-                          id="plateformes"
-                          placeholder="Facebook, Instagram, LinkedIn..."
-                          value={formData.mustHave.social?.plateformes || ""}
-                          onChange={(e) => updateFormData("mustHave", "social", "plateformes", e.target.value)}
-                          className="border-rose-200/50 focus:border-rose-500 bg-white/60 backdrop-blur-sm rounded-xl h-12 text-base"
-                        />
-                      </div>
-                      <div className="space-y-3">
-                        <Label htmlFor="frequence" className="text-rose-700 font-bold text-lg flex items-center gap-2">
-                          <Zap className="w-4 h-4" />
-                          Fréquence de publication *
-                        </Label>
-                        <Select onValueChange={(value) => updateFormData("mustHave", "social", "frequence", value)}>
-                          <SelectTrigger className="border-rose-200/50 focus:border-rose-500 bg-white/60 backdrop-blur-sm rounded-xl h-12">
-                            <SelectValue placeholder="Choisissez la fréquence" />
-                          </SelectTrigger>
-                          <SelectContent className="rounded-xl border-rose-200/50">
-                            <SelectItem value="quotidien" className="rounded-lg">
-                              Quotidien
-                            </SelectItem>
-                            <SelectItem value="3-fois-semaine" className="rounded-lg">
-                              3 fois par semaine
-                            </SelectItem>
-                            <SelectItem value="hebdomadaire" className="rounded-lg">
-                              Hebdomadaire
-                            </SelectItem>
-                            <SelectItem value="bi-hebdomadaire" className="rounded-lg">
-                              Bi-hebdomadaire
-                            </SelectItem>
-                          </SelectContent>
-                        </Select>
-                      </div>
-
-                      <div className="space-y-6 md:col-span-2">
-                        <Label className="text-rose-700 font-bold text-xl flex items-center gap-2">
-                          <ArrowRight className="w-5 h-5" />
-                          Services SOCIAL requis *
-                        </Label>
-                        <div className="grid md:grid-cols-2 gap-4">
-                          {servicesDetails.social.map((service: string) => (
-                            <div
-                              key={service}
-                              className="flex items-center space-x-3 p-4 rounded-xl bg-white/60 backdrop-blur-sm border border-rose-200/30 hover:bg-white/80 transition-all duration-200"
-                            >
-                              <Checkbox
-                                id={`social-${service}`}
-                                checked={formData.mustHave.social?.services?.includes(service) || false}
-                                onCheckedChange={(checked) => handleServiceToggle("social", service, checked as boolean)}
-                                className="border-rose-300 data-[state=checked]:bg-gradient-to-r data-[state=checked]:from-rose-500 data-[state=checked]:to-pink-500"
-                              />
-                              <Label
-                                htmlFor={`social-${service}`}
-                                className="text-sm font-medium text-gray-700 cursor-pointer"
-                              >
-                                {service}
-                              </Label>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-
-                      <div className="space-y-3">
-                        <Label htmlFor="typeContenu" className="text-rose-700 font-bold flex items-center gap-2">
-                          <Sparkles className="w-4 h-4" />
-                          Type de contenu souhaité
-                        </Label>
-                        <Textarea
-                          id="typeContenu"
-                          placeholder="Photos, vidéos, articles, stories..."
-                          value={formData.mustHave.social?.typeContenu || ""}
-                          onChange={(e) => updateFormData("mustHave", "social", "typeContenu", e.target.value)}
-                          className="border-rose-200/50 focus:border-rose-500 bg-white/60 backdrop-blur-sm rounded-xl min-h-[100px] resize-none"
-                          rows={3}
-                        />
-                      </div>
-                      <div className="space-y-3">
-                        <Label htmlFor="audience" className="text-rose-700 font-bold flex items-center gap-2">
-                          <ArrowRight className="w-4 h-4" />
-                          Taille d'audience visée
-                        </Label>
-                        <Select onValueChange={(value) => updateFormData("mustHave", "social", "audience", value)}>
-                          <SelectTrigger className="border-rose-200/50 focus:border-rose-500 bg-white/60 backdrop-blur-sm rounded-xl h-12">
-                            <SelectValue placeholder="Objectif d'audience" />
-                          </SelectTrigger>
-                          <SelectContent className="rounded-xl border-rose-200/50">
-                            <SelectItem value="1000" className="rounded-lg">
-                              1 000 followers
-                            </SelectItem>
-                            <SelectItem value="5000" className="rounded-lg">
-                              5 000 followers
-                            </SelectItem>
-                            <SelectItem value="10000" className="rounded-lg">
-                              10 000 followers
-                            </SelectItem>
-                            <SelectItem value="50000+" className="rounded-lg">
-                              50 000+ followers
-                            </SelectItem>
-                          </SelectContent>
-                        </Select>
-                      </div>
-                    </div>
-                  </TabsContent>
-
-                  {/* Web Tab */}
-                  <TabsContent value="web" className="space-y-8">
-                    <div className="grid md:grid-cols-2 gap-8">
-                      <div className="space-y-3">
-                        <Label htmlFor="typesite" className="text-blue-700 font-bold text-lg flex items-center gap-2">
-                          <Sparkles className="w-4 h-4" />
-                          Type de site web *
-                        </Label>
-                        <Select onValueChange={(value) => updateFormData("mustHave", "web", "typesite", value)}>
-                          <SelectTrigger className="border-blue-200/50 focus:border-blue-500 bg-white/60 backdrop-blur-sm rounded-xl h-12">
-                            <SelectValue placeholder="Choisissez le type de site" />
-                          </SelectTrigger>
-                          <SelectContent className="rounded-xl border-blue-200/50">
-                            <SelectItem value="vitrine" className="rounded-lg">
-                              Site vitrine
-                            </SelectItem>
-                            <SelectItem value="ecommerce" className="rounded-lg">
-                              E-commerce
-                            </SelectItem>
-                            <SelectItem value="blog" className="rounded-lg">
-                              Blog
-                            </SelectItem>
-                            <SelectItem value="portfolio" className="rounded-lg">
-                              Portfolio
-                            </SelectItem>
-                            <SelectItem value="application" className="rounded-lg">
-                              Application web
-                            </SelectItem>
-                          </SelectContent>
-                        </Select>
-                      </div>
-                      <div className="space-y-3">
-                        <Label
-                          htmlFor="fonctionnalites"
-                          className="text-blue-700 font-bold text-lg flex items-center gap-2"
-                        >
-                          <Zap className="w-4 h-4" />
-                          Fonctionnalités requises *
-                        </Label>
-                        <Textarea
-                          id="fonctionnalites"
-                          placeholder="Contact, réservation, paiement en ligne..."
-                          value={formData.mustHave.web?.fonctionnalites || ""}
-                          onChange={(e) => updateFormData("mustHave", "web", "fonctionnalites", e.target.value)}
-                          className="border-blue-200/50 focus:border-blue-500 bg-white/60 backdrop-blur-sm rounded-xl min-h-[100px] resize-none"
-                          rows={3}
-                        />
-                      </div>
-
-                      <div className="space-y-6 md:col-span-2">
-                        <Label className="text-blue-700 font-bold text-xl flex items-center gap-2">
-                          <ArrowRight className="w-5 h-5" />
-                          Services WEB requis *
-                        </Label>
-                        <div className="grid md:grid-cols-2 gap-4">
-                          {servicesDetails.web.map((service: string) => (
-                            <div
-                              key={service}
-                              className="flex items-center space-x-3 p-4 rounded-xl bg-white/60 backdrop-blur-sm border border-blue-200/30 hover:bg-white/80 transition-all duration-200"
-                            >
-                              <Checkbox
-                                id={`web-${service}`}
-                                checked={formData.mustHave.web?.services?.includes(service) || false}
-                                onCheckedChange={(checked) => handleServiceToggle("web", service, checked as boolean)}
-                                className="border-blue-300 data-[state=checked]:bg-gradient-to-r data-[state=checked]:from-blue-500 data-[state=checked]:to-cyan-500"
-                              />
-                              <Label
-                                htmlFor={`web-${service}`}
-                                className="text-sm font-medium text-gray-700 cursor-pointer"
-                              >
-                                {service}
-                              </Label>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-
-                      <div className="space-y-3">
-                        <Label htmlFor="contenu" className="text-blue-700 font-bold flex items-center gap-2">
-                          <Sparkles className="w-4 h-4" />
-                          Contenu du site
-                        </Label>
-                        <Textarea
-                          id="contenu"
-                          placeholder="Décrivez le contenu à intégrer..."
-                          value={formData.mustHave.web?.contenu || ""}
-                          onChange={(e) => updateFormData("mustHave", "web", "contenu", e.target.value)}
-                          className="border-blue-200/50 focus:border-blue-500 bg-white/60 backdrop-blur-sm rounded-xl min-h-[100px] resize-none"
-                          rows={3}
-                        />
-                      </div>
-                      <div className="space-y-3">
-                        <Label htmlFor="hebergement" className="text-blue-700 font-bold flex items-center gap-2">
-                          <ArrowRight className="w-4 h-4" />
-                          Hébergement souhaité
-                        </Label>
-                        <Select onValueChange={(value) => updateFormData("mustHave", "web", "hebergement", value)}>
-                          <SelectTrigger className="border-blue-200/50 focus:border-blue-500 bg-white/60 backdrop-blur-sm rounded-xl h-12">
-                            <SelectValue placeholder="Type d'hébergement" />
-                          </SelectTrigger>
-                          <SelectContent className="rounded-xl border-blue-200/50">
-                            <SelectItem value="shared" className="rounded-lg">
-                              Hébergement partagé
-                            </SelectItem>
-                            <SelectItem value="vps" className="rounded-lg">
-                              Serveur VPS
-                            </SelectItem>
-                            <SelectItem value="dedicated" className="rounded-lg">
-                              Serveur dédié
-                            </SelectItem>
-                            <SelectItem value="cloud" className="rounded-lg">
-                              Cloud (AWS, Vercel...)
-                            </SelectItem>
-                          </SelectContent>
-                        </Select>
-                      </div>
-                    </div>
-                  </TabsContent>
-                </Tabs>
-
-                {/* Progress Indicator Moderne */}
-                <div className="mt-12 p-6 bg-gradient-to-r from-gray-50/50 to-slate-50/50 backdrop-blur-sm rounded-2xl border border-gray-200/30">
-                  <div className="flex items-center justify-between mb-4">
-                    <span className="text-lg font-bold text-gray-700 flex items-center gap-2">
-                      <Zap className="w-5 h-5" />
-                      Progression MUST HAVE
-                    </span>
-                    <span
-                      className={`text-sm font-semibold px-3 py-1 rounded-full ${isMustHaveCompleted() ? "bg-emerald-100 text-emerald-700" : "bg-amber-100 text-amber-700"}`}
-                    >
-                      {isMustHaveCompleted() ? "✅ Complété" : "⏳ En cours"}
-                    </span>
+                {isSaved && (
+                  <div className="flex items-center justify-center gap-2 mt-6 text-emerald-600">
+                    <CheckCircle className="w-5 h-5" />
+                    <span className="text-sm font-medium">Sauvegardé automatiquement</span>
                   </div>
-                  <div className="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
-                    <div
-                      className={`h-3 rounded-full transition-all duration-1000 ${
-                        isMustHaveCompleted()
-                          ? "bg-gradient-to-r from-emerald-400 via-emerald-500 to-emerald-600 w-full"
-                          : "bg-gradient-to-r from-amber-400 via-orange-500 to-red-500 w-1/2"
-                      }`}
-                    />
-                  </div>
-                </div>
+                )}
+              </div>
 
-                {/* Save Button Moderne */}
-                <div className="flex justify-center mt-12">
-                  <Button
-                    onClick={handleSave}
-                    className="bg-gradient-to-r from-violet-600 via-fuchsia-600 to-cyan-600 hover:from-violet-700 hover:via-fuchsia-700 hover:to-cyan-700 text-white px-12 py-4 text-lg font-bold shadow-2xl shadow-violet-500/25 hover:shadow-3xl hover:shadow-violet-500/30 transition-all duration-300 rounded-2xl group relative overflow-hidden"
+              <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
+                <TabsList className="grid w-full grid-cols-3 mb-12 bg-gray-100/50 backdrop-blur-sm p-2 rounded-2xl border border-gray-200/50">
+                  <TabsTrigger
+                    value="visual"
+                    className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-amber-500 data-[state=active]:to-orange-500 data-[state=active]:text-white data-[state=active]:shadow-lg data-[state=active]:shadow-amber-500/25 rounded-xl transition-all duration-300 font-semibold"
                   >
-                    <div className="absolute inset-0 bg-gradient-to-r from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                    <Save className="w-6 h-6 mr-3 relative z-10" />
-                    <span className="relative z-10">
-                      {showDetailedForm ? "Sauvegarder le projet" : "Sauvegarder et débloquer Section 2"}
-                    </span>
-                    <ArrowRight className="w-5 h-5 ml-3 group-hover:translate-x-1 transition-transform duration-300 relative z-10" />
-                  </Button>
+                    <Eye className="w-4 h-4 mr-2" />
+                    VISUAL
+                  </TabsTrigger>
+                  <TabsTrigger
+                    value="social"
+                    className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-rose-500 data-[state=active]:to-pink-500 data-[state=active]:text-white data-[state=active]:shadow-lg data-[state=active]:shadow-rose-500/25 rounded-xl transition-all duration-300 font-semibold"
+                  >
+                    <Users className="w-4 h-4 mr-2" />
+                    SOCIAL
+                  </TabsTrigger>
+                  <TabsTrigger
+                    value="web"
+                    className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-500 data-[state=active]:to-cyan-500 data-[state=active]:text-white data-[state=active]:shadow-lg data-[state=active]:shadow-blue-500/25 rounded-xl transition-all duration-300 font-semibold"
+                  >
+                    <Globe className="w-4 h-4 mr-2" />
+                    WEB
+                  </TabsTrigger>
+                </TabsList>
+
+                {/* Visual Tab */}
+                <TabsContent value="visual" className="space-y-8">
+                  <div className="grid md:grid-cols-2 gap-8">
+                    <div className="space-y-3">
+                      <Label htmlFor="publicCible" className="text-amber-700 font-bold text-lg flex items-center gap-2">
+                        <Sparkles className="w-4 h-4" />
+                        Public cible *
+                      </Label>
+                      <Input
+                        id="publicCible"
+                        placeholder="Décrivez votre audience cible..."
+                        value={formData.mustHave.visual?.publicCible || ""}
+                        onChange={(e) => updateFormData("mustHave", "visual", "publicCible", e.target.value)}
+                        className="border-amber-200/50 focus:border-amber-500 bg-white/60 backdrop-blur-sm rounded-xl h-12 text-base"
+                      />
+                    </div>
+                    <div className="space-y-3">
+                      <Label htmlFor="objectifs" className="text-amber-700 font-bold text-lg flex items-center gap-2">
+                        <Zap className="w-4 h-4" />
+                        Objectifs du projet *
+                      </Label>
+                      <Input
+                        id="objectifs"
+                        placeholder="Quels sont vos objectifs ?"
+                        value={formData.mustHave.visual?.objectifs || ""}
+                        onChange={(e) => updateFormData("mustHave", "visual", "objectifs", e.target.value)}
+                        className="border-amber-200/50 focus:border-amber-500 bg-white/60 backdrop-blur-sm rounded-xl h-12 text-base"
+                      />
+                    </div>
+
+                    <div className="space-y-6 md:col-span-2">
+                      <Label className="text-amber-700 font-bold text-xl flex items-center gap-2">
+                        <ArrowRight className="w-5 h-5" />
+                        Services VISUAL requis *
+                      </Label>
+                      <div className="grid md:grid-cols-2 gap-4">
+                          {servicesDetails.visual.map((service: string) => (
+                          <div
+                            key={service}
+                            className="flex items-center space-x-3 p-4 rounded-xl bg-white/60 backdrop-blur-sm border border-amber-200/30 hover:bg-white/80 transition-all duration-200"
+                          >
+                            <Checkbox
+                              id={`visual-${service}`}
+                              checked={formData.mustHave.visual?.services?.includes(service) || false}
+                              onCheckedChange={(checked) => handleServiceToggle("visual", service, checked as boolean)}
+                              className="border-amber-300 data-[state=checked]:bg-gradient-to-r data-[state=checked]:from-amber-500 data-[state=checked]:to-orange-500"
+                            />
+                            <Label
+                              htmlFor={`visual-${service}`}
+                              className="text-sm font-medium text-gray-700 cursor-pointer"
+                            >
+                              {service}
+                            </Label>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div className="space-y-3">
+                      <Label htmlFor="styleGraphique" className="text-amber-700 font-bold flex items-center gap-2">
+                        <Sparkles className="w-4 h-4" />
+                        Style graphique souhaité
+                      </Label>
+                      <Select onValueChange={(value) => updateFormData("mustHave", "visual", "styleGraphique", value)}>
+                        <SelectTrigger className="border-amber-200/50 focus:border-amber-500 bg-white/60 backdrop-blur-sm rounded-xl h-12">
+                          <SelectValue placeholder="Choisissez un style" />
+                        </SelectTrigger>
+                        <SelectContent className="rounded-xl border-amber-200/50">
+                          <SelectItem value="moderne" className="rounded-lg">
+                            Moderne
+                          </SelectItem>
+                          <SelectItem value="classique" className="rounded-lg">
+                            Classique
+                          </SelectItem>
+                          <SelectItem value="minimaliste" className="rounded-lg">
+                            Minimaliste
+                          </SelectItem>
+                          <SelectItem value="vintage" className="rounded-lg">
+                            Vintage
+                          </SelectItem>
+                          <SelectItem value="artistique" className="rounded-lg">
+                            Artistique
+                          </SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                    <div className="space-y-3">
+                      <Label htmlFor="couleurs" className="text-amber-700 font-bold flex items-center gap-2">
+                        <ArrowRight className="w-4 h-4" />
+                        Couleurs préférées
+                      </Label>
+                      <Input
+                        id="couleurs"
+                        placeholder="Ex: Bleu, blanc, rouge..."
+                        value={formData.mustHave.visual?.couleurs || ""}
+                        onChange={(e) => updateFormData("mustHave", "visual", "couleurs", e.target.value)}
+                        className="border-amber-200/50 focus:border-amber-500 bg-white/60 backdrop-blur-sm rounded-xl h-12 text-base"
+                      />
+                    </div>
+                  </div>
+                </TabsContent>
+
+                {/* Social Tab */}
+                <TabsContent value="social" className="space-y-8">
+                  <div className="grid md:grid-cols-2 gap-8">
+                    <div className="space-y-3">
+                      <Label htmlFor="plateformes" className="text-rose-700 font-bold text-lg flex items-center gap-2">
+                        <Sparkles className="w-4 h-4" />
+                        Plateformes ciblées *
+                      </Label>
+                      <Input
+                        id="plateformes"
+                        placeholder="Facebook, Instagram, LinkedIn..."
+                        value={formData.mustHave.social?.plateformes || ""}
+                        onChange={(e) => updateFormData("mustHave", "social", "plateformes", e.target.value)}
+                        className="border-rose-200/50 focus:border-rose-500 bg-white/60 backdrop-blur-sm rounded-xl h-12 text-base"
+                      />
+                    </div>
+                    <div className="space-y-3">
+                      <Label htmlFor="frequence" className="text-rose-700 font-bold text-lg flex items-center gap-2">
+                        <Zap className="w-4 h-4" />
+                        Fréquence de publication *
+                      </Label>
+                      <Select onValueChange={(value) => updateFormData("mustHave", "social", "frequence", value)}>
+                        <SelectTrigger className="border-rose-200/50 focus:border-rose-500 bg-white/60 backdrop-blur-sm rounded-xl h-12">
+                          <SelectValue placeholder="Choisissez la fréquence" />
+                        </SelectTrigger>
+                        <SelectContent className="rounded-xl border-rose-200/50">
+                          <SelectItem value="quotidien" className="rounded-lg">
+                            Quotidien
+                          </SelectItem>
+                          <SelectItem value="3-fois-semaine" className="rounded-lg">
+                            3 fois par semaine
+                          </SelectItem>
+                          <SelectItem value="hebdomadaire" className="rounded-lg">
+                            Hebdomadaire
+                          </SelectItem>
+                          <SelectItem value="bi-hebdomadaire" className="rounded-lg">
+                            Bi-hebdomadaire
+                          </SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+
+                    <div className="space-y-6 md:col-span-2">
+                      <Label className="text-rose-700 font-bold text-xl flex items-center gap-2">
+                        <ArrowRight className="w-5 h-5" />
+                        Services SOCIAL requis *
+                      </Label>
+                      <div className="grid md:grid-cols-2 gap-4">
+                          {servicesDetails.social.map((service: string) => (
+                          <div
+                            key={service}
+                            className="flex items-center space-x-3 p-4 rounded-xl bg-white/60 backdrop-blur-sm border border-rose-200/30 hover:bg-white/80 transition-all duration-200"
+                          >
+                            <Checkbox
+                              id={`social-${service}`}
+                              checked={formData.mustHave.social?.services?.includes(service) || false}
+                              onCheckedChange={(checked) => handleServiceToggle("social", service, checked as boolean)}
+                              className="border-rose-300 data-[state=checked]:bg-gradient-to-r data-[state=checked]:from-rose-500 data-[state=checked]:to-pink-500"
+                            />
+                            <Label
+                              htmlFor={`social-${service}`}
+                              className="text-sm font-medium text-gray-700 cursor-pointer"
+                            >
+                              {service}
+                            </Label>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div className="space-y-3">
+                      <Label htmlFor="typeContenu" className="text-rose-700 font-bold flex items-center gap-2">
+                        <Sparkles className="w-4 h-4" />
+                        Type de contenu souhaité
+                      </Label>
+                      <Textarea
+                        id="typeContenu"
+                        placeholder="Photos, vidéos, articles, stories..."
+                        value={formData.mustHave.social?.typeContenu || ""}
+                        onChange={(e) => updateFormData("mustHave", "social", "typeContenu", e.target.value)}
+                        className="border-rose-200/50 focus:border-rose-500 bg-white/60 backdrop-blur-sm rounded-xl min-h-[100px] resize-none"
+                        rows={3}
+                      />
+                    </div>
+                    <div className="space-y-3">
+                      <Label htmlFor="audience" className="text-rose-700 font-bold flex items-center gap-2">
+                        <ArrowRight className="w-4 h-4" />
+                        Taille d'audience visée
+                      </Label>
+                      <Select onValueChange={(value) => updateFormData("mustHave", "social", "audience", value)}>
+                        <SelectTrigger className="border-rose-200/50 focus:border-rose-500 bg-white/60 backdrop-blur-sm rounded-xl h-12">
+                          <SelectValue placeholder="Objectif d'audience" />
+                        </SelectTrigger>
+                        <SelectContent className="rounded-xl border-rose-200/50">
+                          <SelectItem value="1000" className="rounded-lg">
+                            1 000 followers
+                          </SelectItem>
+                          <SelectItem value="5000" className="rounded-lg">
+                            5 000 followers
+                          </SelectItem>
+                          <SelectItem value="10000" className="rounded-lg">
+                            10 000 followers
+                          </SelectItem>
+                          <SelectItem value="50000+" className="rounded-lg">
+                            50 000+ followers
+                          </SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                  </div>
+                </TabsContent>
+
+                {/* Web Tab */}
+                <TabsContent value="web" className="space-y-8">
+                  <div className="grid md:grid-cols-2 gap-8">
+                    <div className="space-y-3">
+                      <Label htmlFor="typesite" className="text-blue-700 font-bold text-lg flex items-center gap-2">
+                        <Sparkles className="w-4 h-4" />
+                        Type de site web *
+                      </Label>
+                      <Select onValueChange={(value) => updateFormData("mustHave", "web", "typesite", value)}>
+                        <SelectTrigger className="border-blue-200/50 focus:border-blue-500 bg-white/60 backdrop-blur-sm rounded-xl h-12">
+                          <SelectValue placeholder="Choisissez le type de site" />
+                        </SelectTrigger>
+                        <SelectContent className="rounded-xl border-blue-200/50">
+                          <SelectItem value="vitrine" className="rounded-lg">
+                            Site vitrine
+                          </SelectItem>
+                          <SelectItem value="ecommerce" className="rounded-lg">
+                            E-commerce
+                          </SelectItem>
+                          <SelectItem value="blog" className="rounded-lg">
+                            Blog
+                          </SelectItem>
+                          <SelectItem value="portfolio" className="rounded-lg">
+                            Portfolio
+                          </SelectItem>
+                          <SelectItem value="application" className="rounded-lg">
+                            Application web
+                          </SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                    <div className="space-y-3">
+                      <Label
+                        htmlFor="fonctionnalites"
+                        className="text-blue-700 font-bold text-lg flex items-center gap-2"
+                      >
+                        <Zap className="w-4 h-4" />
+                        Fonctionnalités requises *
+                      </Label>
+                      <Textarea
+                        id="fonctionnalites"
+                        placeholder="Contact, réservation, paiement en ligne..."
+                        value={formData.mustHave.web?.fonctionnalites || ""}
+                        onChange={(e) => updateFormData("mustHave", "web", "fonctionnalites", e.target.value)}
+                        className="border-blue-200/50 focus:border-blue-500 bg-white/60 backdrop-blur-sm rounded-xl min-h-[100px] resize-none"
+                        rows={3}
+                      />
+                    </div>
+
+                    <div className="space-y-6 md:col-span-2">
+                      <Label className="text-blue-700 font-bold text-xl flex items-center gap-2">
+                        <ArrowRight className="w-5 h-5" />
+                        Services WEB requis *
+                      </Label>
+                      <div className="grid md:grid-cols-2 gap-4">
+                          {servicesDetails.web.map((service: string) => (
+                          <div
+                            key={service}
+                            className="flex items-center space-x-3 p-4 rounded-xl bg-white/60 backdrop-blur-sm border border-blue-200/30 hover:bg-white/80 transition-all duration-200"
+                          >
+                            <Checkbox
+                              id={`web-${service}`}
+                              checked={formData.mustHave.web?.services?.includes(service) || false}
+                              onCheckedChange={(checked) => handleServiceToggle("web", service, checked as boolean)}
+                              className="border-blue-300 data-[state=checked]:bg-gradient-to-r data-[state=checked]:from-blue-500 data-[state=checked]:to-cyan-500"
+                            />
+                            <Label
+                              htmlFor={`web-${service}`}
+                              className="text-sm font-medium text-gray-700 cursor-pointer"
+                            >
+                              {service}
+                            </Label>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div className="space-y-3">
+                      <Label htmlFor="contenu" className="text-blue-700 font-bold flex items-center gap-2">
+                        <Sparkles className="w-4 h-4" />
+                        Contenu du site
+                      </Label>
+                      <Textarea
+                        id="contenu"
+                        placeholder="Décrivez le contenu à intégrer..."
+                        value={formData.mustHave.web?.contenu || ""}
+                        onChange={(e) => updateFormData("mustHave", "web", "contenu", e.target.value)}
+                        className="border-blue-200/50 focus:border-blue-500 bg-white/60 backdrop-blur-sm rounded-xl min-h-[100px] resize-none"
+                        rows={3}
+                      />
+                    </div>
+                    <div className="space-y-3">
+                      <Label htmlFor="hebergement" className="text-blue-700 font-bold flex items-center gap-2">
+                        <ArrowRight className="w-4 h-4" />
+                        Hébergement souhaité
+                      </Label>
+                      <Select onValueChange={(value) => updateFormData("mustHave", "web", "hebergement", value)}>
+                        <SelectTrigger className="border-blue-200/50 focus:border-blue-500 bg-white/60 backdrop-blur-sm rounded-xl h-12">
+                          <SelectValue placeholder="Type d'hébergement" />
+                        </SelectTrigger>
+                        <SelectContent className="rounded-xl border-blue-200/50">
+                          <SelectItem value="shared" className="rounded-lg">
+                            Hébergement partagé
+                          </SelectItem>
+                          <SelectItem value="vps" className="rounded-lg">
+                            Serveur VPS
+                          </SelectItem>
+                          <SelectItem value="dedicated" className="rounded-lg">
+                            Serveur dédié
+                          </SelectItem>
+                          <SelectItem value="cloud" className="rounded-lg">
+                            Cloud (AWS, Vercel...)
+                          </SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                  </div>
+                </TabsContent>
+              </Tabs>
+
+              {/* Progress Indicator Moderne */}
+              <div className="mt-12 p-6 bg-gradient-to-r from-gray-50/50 to-slate-50/50 backdrop-blur-sm rounded-2xl border border-gray-200/30">
+                <div className="flex items-center justify-between mb-4">
+                  <span className="text-lg font-bold text-gray-700 flex items-center gap-2">
+                    <Zap className="w-5 h-5" />
+                    Progression MUST HAVE
+                  </span>
+                  <span
+                    className={`text-sm font-semibold px-3 py-1 rounded-full ${isMustHaveCompleted() ? "bg-emerald-100 text-emerald-700" : "bg-amber-100 text-amber-700"}`}
+                  >
+                    {isMustHaveCompleted() ? "✅ Complété" : "⏳ En cours"}
+                  </span>
+                </div>
+                <div className="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
+                  <div
+                    className={`h-3 rounded-full transition-all duration-1000 ${
+                      isMustHaveCompleted()
+                        ? "bg-gradient-to-r from-emerald-400 via-emerald-500 to-emerald-600 w-full"
+                        : "bg-gradient-to-r from-amber-400 via-orange-500 to-red-500 w-1/2"
+                    }`}
+                  />
                 </div>
               </div>
-            </div>
 
-            {/* Section 2 - Detailed Form */}
-            {showDetailedForm && (
+              {/* Save Button Moderne */}
+              <div className="flex justify-center mt-12">
+                <Button
+                  onClick={handleSave}
+                  className="bg-gradient-to-r from-violet-600 via-fuchsia-600 to-cyan-600 hover:from-violet-700 hover:via-fuchsia-700 hover:to-cyan-700 text-white px-12 py-4 text-lg font-bold shadow-2xl shadow-violet-500/25 hover:shadow-3xl hover:shadow-violet-500/30 transition-all duration-300 rounded-2xl group relative overflow-hidden"
+                >
+                  <div className="absolute inset-0 bg-gradient-to-r from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <Save className="w-6 h-6 mr-3 relative z-10" />
+                  <span className="relative z-10">
+                    {showDetailedForm ? "Sauvegarder le projet" : "Sauvegarder et débloquer Section 2"}
+                  </span>
+                  <ArrowRight className="w-5 h-5 ml-3 group-hover:translate-x-1 transition-transform duration-300 relative z-10" />
+                </Button>
+              </div>
+            </div>
+          </div>
+
+          {/* Section 2 - Detailed Form */}
+          {showDetailedForm && (
               <DetailedForm formData={formData} updateFormData={updateFormData as any} detailedFormFields={detailedFormFields} />
-            )}
+          )}
           </div>
         </div>
       </div>

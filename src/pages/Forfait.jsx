@@ -54,21 +54,18 @@ const Forfait = () => {
   return (
     <div className="min-h-screen bg-gray-100">
       <Navbar />
-      
-      <div className="flex">
+      <div className="flex flex-col md:flex-row">
         <Sidebar />
-        
-        <div className="flex-1 ml-64 p-8">
-          <div className="flex justify-between items-center mb-6">
+        <div className="flex-1 p-4 md:p-8 md:ml-64 mt-20 md:mt-0">
+          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-6 gap-2">
             <h1 className="text-2xl font-bold text-gray-800">Mon forfait</h1>
-            <div className="flex items-center">
+            <div className="flex items-center justify-start sm:justify-end">
               <RankBadge rank="Gold" />
             </div>
           </div>
-          
           <div className="bg-white rounded-xl shadow-md overflow-hidden mb-8">
-            <div className="bg-gradient-to-r from-vinca-primary to-vinca-secondary p-6 text-white">
-              <div className="flex justify-between items-center">
+            <div className="bg-gradient-to-r from-vinca-primary to-vinca-secondary p-4 sm:p-6 text-white">
+              <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2">
                 <div>
                   <h2 className="text-xl font-bold">{forfaitDetails.name}</h2>
                   <p className="opacity-90">Prochain renouvellement: {forfaitDetails.nextRenewal}</p>
@@ -76,9 +73,8 @@ const Forfait = () => {
                 <div className="text-2xl font-bold">{forfaitDetails.price}/mois</div>
               </div>
             </div>
-            
             <div className="border-b border-gray-200">
-              <nav className="flex -mb-px">
+              <nav className="flex flex-col sm:flex-row -mb-px">
                 <button
                   onClick={() => setCurrentTab('details')}
                   className={`py-4 px-6 text-center border-b-2 font-medium text-sm ${
@@ -111,8 +107,7 @@ const Forfait = () => {
                 </button>
               </nav>
             </div>
-            
-            <div className="p-6">
+            <div className="p-4 sm:p-6">
               {currentTab === 'details' && (
                 <div>
                   <h3 className="text-lg font-medium text-gray-800 mb-4">Inclus dans votre forfait</h3>
@@ -236,26 +231,17 @@ const Forfait = () => {
               
               {currentTab === 'history' && (
                 <div>
-                  <h3 className="text-lg font-medium text-gray-800 mb-4">Historique des transactions</h3>
+                  <h3 className="text-lg font-medium text-gray-800 mb-4">Historique</h3>
                   <div className="overflow-x-auto">
-                    <table className="min-w-full divide-y divide-gray-200">
-                      <thead className="bg-gray-50">
+                    <table className="min-w-[500px] w-full text-sm text-left text-gray-500">
+                      <thead className="text-xs text-gray-700 uppercase bg-gray-50">
                         <tr>
-                          <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            Date
-                          </th>
-                          <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            Action
-                          </th>
-                          <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            Montant
-                          </th>
-                          <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            Facture
-                          </th>
+                          <th className="px-6 py-3">Date</th>
+                          <th className="px-6 py-3">Action</th>
+                          <th className="px-6 py-3">Montant</th>
                         </tr>
                       </thead>
-                      <tbody className="bg-white divide-y divide-gray-200">
+                      <tbody>
                         {historique.map((item, index) => (
                           <tr key={index}>
                             <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">

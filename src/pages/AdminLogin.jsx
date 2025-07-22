@@ -25,7 +25,7 @@ const AdminLogin = ({ onLogin }) => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen flex items-center justify-center bg-gray-50 py-8 px-2 sm:px-4 lg:px-8">
       <motion.div 
         className="max-w-md w-full space-y-8"
         initial={{ opacity: 0, y: 20 }}
@@ -34,15 +34,15 @@ const AdminLogin = ({ onLogin }) => {
       >
         <div>
           <img
-            className="mx-auto h-24 w-auto mb-8"
+            className="mx-auto h-16 w-auto mb-6 sm:h-24"
             src="/logo192.png"
             alt="Logo"
           />
-          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
+          <h2 className="mt-4 sm:mt-6 text-center text-2xl sm:text-3xl font-extrabold text-gray-900">
             Connexion Administrateur
           </h2>
         </div>
-        <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
+        <form className="mt-6 sm:mt-8 space-y-6" onSubmit={handleSubmit}>
           {error && (
             <motion.div 
               className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative"
@@ -63,7 +63,7 @@ const AdminLogin = ({ onLogin }) => {
                 type="email"
                 autoComplete="email"
                 required
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-vinca-primary focus:border-vinca-primary focus:z-10 sm:text-sm"
+                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-vinca-primary focus:border-vinca-primary focus:z-10 text-sm sm:text-base"
                 placeholder="Adresse email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -79,15 +79,14 @@ const AdminLogin = ({ onLogin }) => {
                 type="password"
                 autoComplete="current-password"
                 required
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-vinca-primary focus:border-vinca-primary focus:z-10 sm:text-sm"
+                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-vinca-primary focus:border-vinca-primary focus:z-10 text-sm sm:text-base"
                 placeholder="Mot de passe"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
             </div>
           </div>
-
-          <div className="flex items-center justify-between">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-2 sm:gap-0">
             <div className="flex items-center">
               <input
                 id="remember-me"
@@ -101,14 +100,12 @@ const AdminLogin = ({ onLogin }) => {
                 Se souvenir de moi
               </label>
             </div>
-
             <div className="text-sm">
               <Link to="/forgot-password" className="font-medium text-vinca-primary hover:text-vinca-secondary">
                 Mot de passe oublié ?
               </Link>
             </div>
           </div>
-
           <div>
             <motion.button
               type="submit"

@@ -89,20 +89,17 @@ const Factures = () => {
   return (
     <div className="min-h-screen bg-gray-100">
       <Navbar />
-      
-      <div className="flex">
+      <div className="flex flex-col md:flex-row">
         <Sidebar />
-        
-        <div className="flex-1 ml-64 p-8">
-          <div className="flex justify-between items-center mb-6">
+        <div className="flex-1 p-4 md:p-8 md:ml-64 mt-20 md:mt-0">
+          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-6 gap-2">
             <h1 className="text-2xl font-bold text-gray-800">Mes factures</h1>
-            <div className="flex items-center">
+            <div className="flex items-center justify-start sm:justify-end">
               <RankBadge rank="Gold" />
             </div>
           </div>
-          
           <div className="bg-white rounded-xl shadow-md overflow-hidden mb-8">
-            <div className="p-6 border-b border-gray-200">
+            <div className="p-4 sm:p-6 border-b border-gray-200">
               <div className="flex flex-col sm:flex-row justify-between items-center">
                 <h2 className="text-lg font-medium text-gray-800 mb-4 sm:mb-0">Historique des factures</h2>
                 <div className="flex space-x-2">
@@ -139,9 +136,8 @@ const Factures = () => {
                 </div>
               </div>
             </div>
-            
             <div className="overflow-x-auto">
-              <table className="min-w-full divide-y divide-gray-200">
+              <table className="min-w-[700px] w-full divide-y divide-gray-200">
                 <thead className="bg-gray-50">
                   <tr>
                     <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">

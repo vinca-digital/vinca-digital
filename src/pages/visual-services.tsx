@@ -101,34 +101,32 @@ export default function VisualServices() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <div className="container mx-auto px-4 py-12">
+      <div className="container mx-auto px-2 sm:px-4 py-8 sm:py-12">
         {/* Header */}
-        <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-2 bg-[rgb(120,164,86)] text-white px-4 py-2 rounded-full text-sm font-medium mb-4">
+        <div className="text-center mb-8 sm:mb-12">
+          <div className="inline-flex items-center gap-2 bg-[rgb(120,164,86)] text-white px-4 py-2 rounded-full text-xs sm:text-sm font-medium mb-4">
             <Sparkles className="h-4 w-4" />
             Nos Services VISUAL
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Services Créatifs</h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Découvrez notre gamme de services créatifs conçus pour renforcer votre image de marque et sublimer vos
-            contenus visuels.
+          <h1 className="text-2xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4">Services Créatifs</h1>
+          <p className="text-base sm:text-xl text-gray-600 max-w-3xl mx-auto">
+            Découvrez notre gamme de services créatifs conçus pour renforcer votre image de marque et sublimer vos contenus visuels.
           </p>
         </div>
-
         {/* Featured Package */}
-        <Card className="mb-12 bg-gradient-to-r from-[rgb(120,164,86)] to-emerald-600 text-white border-0">
-          <CardContent className="p-8">
-            <div className="flex flex-col lg:flex-row items-center gap-8">
+        <Card className="mb-8 sm:mb-12 bg-gradient-to-r from-[rgb(120,164,86)] to-emerald-600 text-white border-0">
+          <CardContent className="p-4 sm:p-8">
+            <div className="flex flex-col lg:flex-row items-center gap-6 sm:gap-8">
               <div className="flex-1">
                 <Badge className="bg-white/20 text-white mb-4" variant="default">
                   <Star className="h-3 w-3 mr-1" />
                   Pack Complet
                 </Badge>
-                <h2 className="text-3xl font-bold mb-4">Pack Identité Visuelle Premium</h2>
-                <p className="text-white/90 mb-6 text-lg">
+                <h2 className="text-xl sm:text-3xl font-bold mb-4">Pack Identité Visuelle Premium</h2>
+                <p className="text-white/90 mb-4 sm:mb-6 text-base sm:text-lg">
                   Tout ce dont vous avez besoin pour créer une identité visuelle forte et cohérente pour votre marque.
                 </p>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-2 sm:gap-4 mb-4 sm:mb-6">
                   {[
                     "Logo professionnel sur mesure",
                     "Charte graphique complète",
@@ -143,11 +141,11 @@ export default function VisualServices() {
                     </div>
                   ))}
                 </div>
-                <div className="flex flex-col sm:flex-row items-center gap-4">
+                <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4">
                   <div className="text-center sm:text-left">
-                    <span className="text-white/70 line-through text-lg">35 000 MAD HT</span>
-                    <div className="text-3xl font-bold">29 000 MAD HT</div>
-                    <span className="text-green-300 text-sm font-medium">Économisez 6 000 MAD</span>
+                    <span className="text-white/70 line-through text-base sm:text-lg">35 000 MAD HT</span>
+                    <div className="text-xl sm:text-3xl font-bold">29 000 MAD HT</div>
+                    <span className="text-green-300 text-xs sm:text-sm font-medium">Économisez 6 000 MAD</span>
                   </div>
                   <Button
                     size="lg"
@@ -166,15 +164,14 @@ export default function VisualServices() {
                   </Button>
                 </div>
               </div>
-              <div className="text-8xl">🎨</div>
+              <div className="text-6xl sm:text-8xl">🎨</div>
             </div>
           </CardContent>
         </Card>
-
         {/* Services Tabs */}
         <Tabs defaultValue="all" className="w-full">
-          <div className="flex justify-center mb-8">
-            <TabsList className="grid w-full max-w-md grid-cols-3">
+          <div className="flex justify-center mb-6 sm:mb-8">
+            <TabsList className="grid w-full max-w-xs sm:max-w-md grid-cols-3">
               <TabsTrigger
                 value="all"
                 className="data-[state=active]:bg-[rgb(120,164,86)] data-[state=active]:text-white"

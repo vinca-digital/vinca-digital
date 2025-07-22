@@ -93,15 +93,15 @@ const AdminDashboard = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       <NavbarAdmin />
-      <div className="flex pt-16">
+      <div className="flex flex-col md:flex-row pt-16">
         <SidebarAdmin />
-        <div className="flex-1 p-4 sm:p-6 lg:p-8">
+        <div className="flex-1 p-4 sm:p-6 lg:p-8 md:ml-64 mt-20 md:mt-0">
           <div className="mb-8">
             <h1 className="text-3xl font-bold text-gray-800">Tableau de bord Administrateur</h1>
             <p className="text-gray-500 mt-1">Vue d'ensemble du système et des activités.</p>
           </div>
-          {/* Cartes statistiques en ligne (horizontal) */}
-          <div className="flex flex-row gap-6 mb-8 overflow-x-auto">
+          {/* Cartes statistiques en ligne (horizontal sur desktop, vertical sur mobile) */}
+          <div className="flex flex-col sm:flex-row gap-6 mb-8 overflow-x-auto">
             {adminStatsCards.map((card, index) => (
               <DashboardCard
                 key={index}
@@ -114,12 +114,11 @@ const AdminDashboard = () => {
               />
             ))}
           </div>
-          
           {/* Section Projets récents */}
-          <div className="bg-white rounded-xl shadow-md p-6 mb-8">
+          <div className="bg-white rounded-xl shadow-md p-4 sm:p-6 mb-8">
             <h2 className="text-lg font-medium text-gray-800 mb-4">Projets récents</h2>
             <div className="overflow-x-auto">
-              <table className="w-full text-sm text-left text-gray-500">
+              <table className="w-full min-w-[600px] text-sm text-left text-gray-500">
                 <thead className="text-xs text-gray-700 uppercase bg-gray-50">
                   <tr>
                     <th className="px-6 py-3">Projet</th>
@@ -154,10 +153,9 @@ const AdminDashboard = () => {
               </table>
             </div>
           </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            <div className="lg:col-span-2 bg-white rounded-xl shadow-md p-6">
-              <div className="flex justify-between items-center mb-4">
+          <div className="grid grid-cols-1 xl:grid-cols-3 gap-6">
+            <div className="xl:col-span-2 bg-white rounded-xl shadow-md p-4 sm:p-6">
+              <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-4 gap-2">
                 <h2 className="text-lg font-medium text-gray-800">Utilisateurs Récents</h2>
                 <button
                   type="button"
@@ -169,7 +167,7 @@ const AdminDashboard = () => {
                 </button>
               </div>
               <div className="overflow-x-auto">
-                <table className="w-full text-sm text-left text-gray-500">
+                <table className="w-full min-w-[500px] text-sm text-left text-gray-500">
                   <thead className="text-xs text-gray-700 uppercase bg-gray-50">
                     <tr>
                       <th scope="col" className="px-6 py-3">Utilisateur</th>
@@ -207,15 +205,14 @@ const AdminDashboard = () => {
                 </table>
               </div>
             </div>
-            
-            <div className="bg-white rounded-xl shadow-md p-6">
+            <div className="bg-white rounded-xl shadow-md p-4 sm:p-6">
               <h2 className="text-lg font-medium text-gray-800 mb-4">Accès rapide</h2>
               <div className="grid grid-cols-2 gap-4">
                 {quickLinks.map((link, index) => (
                   <a 
                     key={index}
                     href={link.link}
-                    className={`${link.color} p-4 rounded-lg flex flex-col items-center justify-center transition-transform hover:scale-105 text-center`}
+                    className={`${link.color} p-4 rounded-lg flex flex-col items-center justify-center transition-transform hover:scale-105`}
                   >
                     <span className="text-2xl mb-1">{link.icon}</span>
                     <span className="text-sm font-medium">{link.name}</span>

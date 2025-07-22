@@ -17,6 +17,9 @@ import VincaCircleDashboard from './pages/tilmepoint.tsx';
 import AdminDashboard from './pages/AdminDashboard';
 import Home from './pages/home';
 import BuyPointsPage from './pages/page';
+import AdminUsers from './pages/AdminUsers';
+import FormulaireAvance from './pages/mon-formulaire-admin/page';
+import BoutiqueAdmin from './pages/BoutiqueAdmin';
 import './App.css';
 
 function MainApp() {
@@ -44,6 +47,7 @@ function MainApp() {
         <Route path="/" element={<Home />} />
         
         {isAdminAuthenticated ? (
+          <>
           <Route path="/admin-dashboard" element={
             <div className="flex h-screen bg-gray-100">
               {/* <AdminSidebar onLogout={handleLogout} /> */}
@@ -54,6 +58,10 @@ function MainApp() {
               </div>
             </div>
           } />
+            <Route path="/admin/users" element={<AdminUsers />} />
+            <Route path="/admin/formulaire-avance" element={<FormulaireAvance />} />
+            <Route path="/boutiqueadmin" element={<BoutiqueAdmin />} />
+          </>
         ) : null}
         
         {isAuthenticated ? (

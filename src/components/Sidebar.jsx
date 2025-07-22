@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 
 const Sidebar = () => {
   const [activeMenu, setActiveMenu] = useState('/dashboard');
+  const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
   
   const menuItems = [
     {
@@ -25,6 +26,7 @@ const Sidebar = () => {
         </svg>
       )
     },
+    
 
     {
       path: '/service-unique',
@@ -130,86 +132,140 @@ const Sidebar = () => {
   };
 
   return (
-    <motion.div 
-      className="bg-vinca-dark text-white h-full w-64 fixed left-0 top-16 shadow-lg overflow-hidden"
-      variants={sidebarVariants}
-      initial="hidden"
-      animate="visible"
-    >
-      <div className="p-4">
-        <div className="space-y-1">
-          {menuItems.map((item, index) => (
-            <motion.div
-              key={item.path}
-              variants={itemVariants}
-              whileHover={{ 
-                scale: 1.05, 
-                x: 5,
-                transition: { type: "spring", stiffness: 400 }
-              }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <Link 
-                to={item.path} 
-                className={`flex items-center space-x-3 px-4 py-3 rounded-lg ${
-                  activeMenu === item.path ? 'bg-gray-700' : 'hover:bg-gray-700'
-                }`}
-                onClick={() => setActiveMenu(item.path)}
-              >
-                <motion.div
-                  whileHover={{ rotate: 15 }}
-                  transition={{ type: "spring", stiffness: 300 }}
-                >
-                  {item.icon}
-                </motion.div>
-                <span>{item.name}</span>
-                
-                {activeMenu === item.path && (
-                  <motion.div
-                    className="w-1 h-full bg-vinca-primary absolute right-0"
-                    layoutId="activeIndicator"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 0.3 }}
-                  />
-                )}
-              </Link>
-            </motion.div>
-          ))}
-        </div>
-      </div>
-      
-      <motion.div 
-        className="absolute bottom-0 w-full p-4"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 1, duration: 0.5 }}
+    <>
+      {/* Bouton d'ouverture de la sidebar sur mobile */}
+      <button
+        className="fixed top-20 left-2 z-50 p-2 rounded-md bg-vinca-primary text-white shadow-lg md:hidden"
+        onClick={() => setMobileSidebarOpen(true)}
       >
-        <motion.div 
-          className="bg-gray-700 rounded-lg p-3"
-          whileHover={{ 
-            scale: 1.03,
-            boxShadow: "0 10px 15px -3px rgba(0, 0, 0, 0.1)"
-          }}
-        >
-          <div className="flex items-center space-x-3">
-            <motion.div 
-              className="bg-vinca-primary p-2 rounded-full"
-              whileHover={{ rotate: 360 }}
-              transition={{ duration: 0.6 }}
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-white" viewBox="0 0 20 20" fill="currentColor">
-                <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 10-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 102 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z" clipRule="evenodd" />
-              </svg>
-            </motion.div>
-            <div>
-              <p className="text-sm font-medium">Besoin d'aide ?</p>
-              <p className="text-xs text-gray-400">Contactez notre support</p>
-            </div>
+        <svg className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+      {/* Sidebar desktop */}
+      <motion.div 
+        className="bg-vinca-dark text-white h-full w-64 fixed left-0 top-16 shadow-lg overflow-hidden hidden md:block"
+        variants={sidebarVariants}
+        initial="hidden"
+        animate="visible"
+      >
+        <div className="p-4">
+          <div className="space-y-1">
+            {menuItems.map((item, index) => (
+              <motion.div
+                key={item.path}
+                variants={itemVariants}
+                whileHover={{ 
+                  scale: 1.05, 
+                  x: 5,
+                  transition: { type: "spring", stiffness: 400 }
+                }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Link 
+                  to={item.path} 
+                  className={`flex items-center space-x-3 px-4 py-3 rounded-lg ${
+                    activeMenu === item.path ? 'bg-gray-700' : 'hover:bg-gray-700'
+                  }`}
+                  onClick={() => setActiveMenu(item.path)}
+                >
+                  <motion.div
+                    whileHover={{ rotate: 15 }}
+                    transition={{ type: "spring", stiffness: 300 }}
+                  >
+                    {item.icon}
+                  </motion.div>
+                  <span>{item.name}</span>
+                  {activeMenu === item.path && (
+                    <motion.div
+                      className="w-1 h-full bg-vinca-primary absolute right-0"
+                      layoutId="activeIndicator"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ duration: 0.3 }}
+                    />
+                  )}
+                </Link>
+              </motion.div>
+            ))}
           </div>
+        </div>
+        <motion.div 
+          className="absolute bottom-0 w-full p-4"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1, duration: 0.5 }}
+        >
+          <motion.div 
+            className="bg-gray-700 rounded-lg p-3"
+            whileHover={{ 
+              scale: 1.03,
+            }}
+          >
+            <div className="flex items-center space-x-3">
+              <motion.div 
+                className="bg-vinca-primary p-2 rounded-full"
+                whileHover={{ rotate: 360 }}
+                transition={{ duration: 0.6 }}
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-white" viewBox="0 0 20 20" fill="currentColor">
+                  <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 10-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 102 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z" clipRule="evenodd" />
+                </svg>
+              </motion.div>
+              <div>
+                <p className="text-sm font-medium">Besoin d'aide ?</p>
+                <p className="text-xs text-gray-400">Contactez notre support</p>
+              </div>
+            </div>
+          </motion.div>
         </motion.div>
       </motion.div>
-    </motion.div>
+      {/* Sidebar mobile (drawer) */}
+      {mobileSidebarOpen && (
+        <div className="fixed inset-0 z-50 flex md:hidden">
+          {/* Overlay */}
+          <div className="fixed inset-0 bg-black bg-opacity-40" onClick={() => setMobileSidebarOpen(false)}></div>
+          {/* Drawer */}
+          <motion.div
+            initial={{ x: -300 }}
+            animate={{ x: 0 }}
+            exit={{ x: -300 }}
+            transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+            className="relative bg-vinca-dark text-white h-full w-64 shadow-lg z-50"
+          >
+            <button
+              className="absolute top-4 right-4 text-white"
+              onClick={() => setMobileSidebarOpen(false)}
+            >
+              <svg className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+            <div className="p-4">
+              <div className="space-y-1">
+                {menuItems.map((item, index) => (
+                  <div key={item.path}>
+                    <Link 
+                      to={item.path} 
+                      className={`flex items-center space-x-3 px-4 py-3 rounded-lg ${
+                        activeMenu === item.path ? 'bg-gray-700' : 'hover:bg-gray-700'
+                      }`}
+                      onClick={() => {
+                        setActiveMenu(item.path);
+                        setMobileSidebarOpen(false);
+                      }}
+                    >
+                      <div>{item.icon}</div>
+                      <span>{item.name}</span>
+                    </Link>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      )}
+    </>
   );
 };
 

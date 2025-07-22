@@ -103,28 +103,18 @@ const Dashboard = () => {
 
   return (
     <div className="min-h-screen bg-gray-100">
-      
-      <br>
-        
-              </br>
       <Navbar />
-      
-      <div className="flex">
+      <div className="flex flex-col md:flex-row">
         <Sidebar />
-
-        
-        
-        <div className="flex-1 ml-64 p-8">
+        <div className="flex-1 p-4 md:p-8 md:ml-64 mt-20 md:mt-0">
           <div className="mb-8">
-            <div className="flex justify-between items-center mb-6">
-              
+            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-6 gap-2">
               <h1 className="text-2xl font-bold text-gray-800">Tableau de bord</h1>
-              <div className="flex items-center">
+              <div className="flex items-center justify-start sm:justify-end">
                 <RankBadge rank="Gold" />
               </div>
             </div>
-            
-            <div className="flex flex-row space-x-4 overflow-x-auto pb-4">
+            <div className="flex flex-col sm:flex-row sm:space-x-4 space-y-4 sm:space-y-0 overflow-x-auto pb-4">
               {statsCards.map((card, index) => (
                 <DashboardCard
                   key={index}
@@ -138,9 +128,8 @@ const Dashboard = () => {
               ))}
             </div>
           </div>
-          
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
-            <div className="lg:col-span-2 bg-white rounded-xl shadow-md p-6">
+          <div className="grid grid-cols-1 xl:grid-cols-3 gap-6 mb-8">
+            <div className="xl:col-span-2 bg-white rounded-xl shadow-md p-4 sm:p-6">
               <h2 className="text-lg font-medium text-gray-800 mb-4">Progression du contrat</h2>
               <div className="space-y-4">
                 {progressStats.map((stat, index) => (
@@ -153,22 +142,20 @@ const Dashboard = () => {
                   />
                 ))}
               </div>
-              
               <div className="mt-6 pt-6 border-t border-gray-200">
                 <h3 className="text-sm font-medium text-gray-500 mb-2">Mois en cours</h3>
-                <div className="flex items-center">
-                  <div className="flex-1">
+                <div className="flex flex-col sm:flex-row items-center gap-2">
+                  <div className="flex-1 w-full">
                     <div className="w-full bg-gray-200 rounded-full h-2.5">
                       <div className="bg-vinca-primary h-2.5 rounded-full" style={{ width: '75%' }}></div>
                     </div>
                   </div>
-                  <span className="ml-4 text-sm font-medium text-gray-700">75%</span>
+                  <span className="sm:ml-4 text-sm font-medium text-gray-700">75%</span>
                 </div>
                 <p className="mt-2 text-xs text-gray-500">Période: 1 juin - 30 juin 2025</p>
               </div>
             </div>
-            
-            <div className="bg-white rounded-xl shadow-md p-6">
+            <div className="bg-white rounded-xl shadow-md p-4 sm:p-6">
               <h2 className="text-lg font-medium text-gray-800 mb-4">Accès rapide</h2>
               <div className="grid grid-cols-2 gap-4">
                 {quickLinks.map((link, index) => (
@@ -182,12 +169,11 @@ const Dashboard = () => {
                   </a>
                 ))}
               </div>
-              
               <div className="mt-6 pt-4 border-t border-gray-200">
                 <h3 className="text-sm font-medium text-gray-700 mb-3">Services supplémentaires</h3>
                 <div className="bg-gradient-to-r from-vinca-primary to-vinca-secondary text-white p-4 rounded-lg">
-                  <div className="flex items-center">
-                    <div className="mr-4">
+                  <div className="flex flex-col sm:flex-row items-center">
+                    <div className="mr-0 sm:mr-4 mb-2 sm:mb-0">
                       <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                       </svg>
@@ -198,38 +184,10 @@ const Dashboard = () => {
                     </div>
                   </div>
                   <button className="mt-3 w-full bg-white text-vinca-primary font-medium py-2 px-4 rounded-md text-sm hover:bg-opacity-90 transition-colors">
-                    Explorer
+                    Découvrir
                   </button>
                 </div>
               </div>
-            </div>
-          </div>
-          
-          <div className="bg-white rounded-xl shadow-md p-6">
-            <div className="flex justify-between items-center mb-4">
-              <h2 className="text-lg font-medium text-gray-800">Activité récente</h2>
-              <button className="text-sm text-vinca-primary hover:text-vinca-secondary">Voir tout</button>
-            </div>
-            
-            <div className="space-y-4">
-              {[1, 2, 3].map((item) => (
-                <div key={item} className="flex items-start pb-4 border-b border-gray-100">
-                  <div className="bg-blue-100 p-2 rounded-full mr-4">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-blue-600" viewBox="0 0 20 20" fill="currentColor">
-                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clipRule="evenodd" />
-                    </svg>
-                  </div>
-                  <div className="flex-1">
-                    <p className="text-sm font-medium text-gray-800">Post Instagram publié</p>
-                    <p className="text-xs text-gray-500 mt-1">Il y a {item} jour{item > 1 ? 's' : ''}</p>
-                  </div>
-                  <div className="ml-4">
-                    <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
-                      Succès
-                    </span>
-                  </div>
-                </div>
-              ))}
             </div>
           </div>
         </div>

@@ -5,6 +5,7 @@ import NotificationPanel from './NotificationPanel';
 
 const Navbar = ({ onLogout }) => {
   const [showNotifications, setShowNotifications] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   
   // Animation variants
   const navbarVariants = {
@@ -60,6 +61,7 @@ const Navbar = ({ onLogout }) => {
       animate="visible"
     >
       <div className="container mx-auto flex items-center justify-between">
+        {/* Logo */}
         <motion.div 
           className="flex items-center"
           variants={itemVariants}
@@ -72,7 +74,7 @@ const Navbar = ({ onLogout }) => {
             <motion.img 
               src={process.env.PUBLIC_URL + "public/VINCA CIRCLE.png"}
               alt="Logo"
-              className="h-16 w-auto absolute -top-2"
+              className="h-12 w-auto md:h-16 absolute -top-2"
               style={{ transformOrigin: 'center' }}
               onError={(e) => {
                 console.error("Erreur de chargement du logo");
@@ -81,8 +83,23 @@ const Navbar = ({ onLogout }) => {
             />
           </motion.div>
         </motion.div>
-        
-        <div className="flex-1 flex items-center justify-center px-4">
+        {/* Burger menu for mobile */}
+        <div className="flex md:hidden">
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-vinca-primary focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+            aria-controls="mobile-menu"
+            aria-expanded={mobileMenuOpen}
+          >
+            <span className="sr-only">Ouvrir le menu principal</span>
+            {/* Icon burger */}
+            <svg className="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+        </div>
+        {/* Desktop center content */}
+        <div className="flex-1 items-center justify-center px-4 hidden md:flex">
           <div className="flex items-center space-x-4 w-full max-w-4xl">
             <motion.div 
               className="bg-gradient-to-r from-vinca-primary to-vinca-secondary p-[1px] rounded-lg"
@@ -125,9 +142,9 @@ const Navbar = ({ onLogout }) => {
             </div>
           </div>
         </div>
-        
+        {/* Desktop right content */}
         <motion.div 
-          className="flex items-center space-x-4"
+          className="items-center space-x-4 hidden md:flex"
           variants={itemVariants}
         >
           <motion.div 
@@ -197,6 +214,31 @@ const Navbar = ({ onLogout }) => {
           </motion.button>
         </motion.div>
       </div>
+      {/* Mobile menu */}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div 
+            id="mobile-menu"
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: 'auto', opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            className="md:hidden bg-vinca-dark px-2 pt-2 pb-3 space-y-1"
+          >
+            {/* Liens de navigation */}
+            <Link to="/dashboard" className="block px-3 py-2 rounded-md text-base font-medium hover:bg-vinca-primary">Dashboard</Link>
+            <Link to="/boutique" className="block px-3 py-2 rounded-md text-base font-medium hover:bg-vinca-primary">Boutique</Link>
+            <Link to="/forfait" className="block px-3 py-2 rounded-md text-base font-medium hover:bg-vinca-primary">Forfait</Link>
+            <Link to="/reportings" className="block px-3 py-2 rounded-md text-base font-medium hover:bg-vinca-primary">Reportings</Link>
+            <Link to="/factures" className="block px-3 py-2 rounded-md text-base font-medium hover:bg-vinca-primary">Factures</Link>
+            <button
+              onClick={onLogout}
+              className="w-full mt-2 px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600 transition-colors"
+            >
+              Déconnexion
+            </button>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.nav>
   );
 };

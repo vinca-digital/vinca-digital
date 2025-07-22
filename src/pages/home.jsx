@@ -95,16 +95,14 @@ function Home() {
       />
 
       {/* Header avec navigation */}
-      <header
-        className="relative z-10 p-6"
-      >
-        <nav className="max-w-7xl mx-auto flex items-center justify-between">
+      <header className="relative z-10 p-4 sm:p-6">
+        <nav className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
           <FloatingElement delay={0.2}>
             <div className="flex items-center gap-3">
               <img
                 src={vincaCircle}
                 alt="Logo Vinca Cercle"
-                style={{ height: 200, width: 'auto' }}
+                className="h-20 w-auto sm:h-32 md:h-[200px]"
               />
               
             </div>
@@ -134,12 +132,10 @@ function Home() {
       </header>
 
       {/* Section Hero */}
-      <section
-        className="relative z-10 text-center py-20 px-6"
-      >
+      <section className="relative z-10 text-center py-12 sm:py-20 px-4 sm:px-6">
         <FloatingElement amplitude={30} delay={0.5}>
           <h2
-            className="text-6xl md:text-8xl font-extrabold mb-6"
+            className="text-4xl sm:text-6xl md:text-8xl font-extrabold mb-6"
             style={{
               background: "linear-gradient(45deg, #3b82f6, #8b5cf6, #06b6d4, #3b82f6)",
               backgroundSize: "300% 300%",
@@ -152,21 +148,17 @@ function Home() {
           </h2>
         </FloatingElement>
 
-        <p
-          className="text-xl text-gray-300 max-w-3xl mx-auto mb-12 leading-relaxed"
-        >
+        <p className="text-base sm:text-xl text-gray-300 max-w-3xl mx-auto mb-8 sm:mb-12 leading-relaxed">
           Bienvenue sur Vinca Circle, la plateforme pour gérer ton compte, publier des posts, des reels, des stories et développer ta communauté digitale. 
           Gagne ou achète des points Vinca Family & Vinca Circle pour accéder à des options exclusives et booster ta présence en ligne !
         </p>
 
-        <div
-          className="flex flex-wrap justify-center gap-4"
-        >
+        <div className="flex flex-wrap justify-center gap-2 sm:gap-4">
           {sections.map((section, index) => (
             <button
               key={section}
               onClick={() => setCurrentSection(index)}
-              className={`px-6 py-3 rounded-full border transition-all duration-300 ${
+              className={`px-4 py-2 sm:px-6 sm:py-3 rounded-full border transition-all duration-300 text-sm sm:text-base ${
                 currentSection === index
                   ? 'bg-blue-500 border-blue-500 text-white shadow-lg shadow-blue-500/25'
                   : 'bg-white/10 border-white/20 text-gray-300 hover:bg-white/20'
@@ -179,19 +171,15 @@ function Home() {
       </section>
 
       {/* Section des fonctionnalités */}
-      <section
-        className="relative z-10 py-20 px-6"
-      >
+      <section className="relative z-10 py-12 sm:py-20 px-4 sm:px-6">
         <div className="max-w-7xl mx-auto">
-          <h3
-            className="text-4xl font-bold text-center mb-16 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent"
-          >
+          <h3 className="text-2xl sm:text-4xl font-bold text-center mb-10 sm:mb-16 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
             Fonctionnalités Vinca circle
           </h3>
 
-          <div className="flex flex-wrap justify-center gap-8">
+          <div className="flex flex-wrap justify-center gap-6 sm:gap-8">
             {features.map((feature, index) => (
-              <div key={feature.title} className="w-80">
+              <div key={feature.title} className="w-full sm:w-80 max-w-xs">
                 <FeatureCard
                   {...feature}
                   delay={1.6 + index * 0.1}

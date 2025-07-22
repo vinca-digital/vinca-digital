@@ -1111,74 +1111,74 @@ const Boutique = () => {
                             {selectedPack.services
                               .filter(service => group.services.includes(service.name))
                               .map((service, serviceIndex) => {
-                                const serviceKey = service.name
-                                  .toLowerCase()
-                                  .replace(/[^a-z0-9]/g, "")
-                                  .replace("photovideo", "")
-                                  .replace("conceptioninfographique", "infographie")
-                                  .replace("visuelsimp", "visuelSimple")
-                                  .replace("reelvideocoure", "reel")
+                      const serviceKey = service.name
+                        .toLowerCase()
+                        .replace(/[^a-z0-9]/g, "")
+                        .replace("photovideo", "")
+                        .replace("conceptioninfographique", "infographie")
+                        .replace("visuelsimp", "visuelSimple")
+                        .replace("reelvideocoure", "reel")
                                   .replace("shootingphotovideo", "shooting");
-                                return (
-                                  <motion.div
-                                    key={serviceIndex}
+                      return (
+                        <motion.div
+                          key={serviceIndex}
                                     className="bg-white/80 backdrop-blur-sm p-6 rounded-2xl shadow-lg border border-gray-200 mb-4"
-                                    initial={{ opacity: 0, y: 10 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    transition={{ delay: serviceIndex * 0.1 }}
-                                  >
-                                    <div className="flex justify-between items-center mb-4">
-                                      <div className="flex items-center">
-                                        <span className="text-2xl mr-3">{service.icon}</span>
-                                        <div>
-                                          <span className="font-semibold text-gray-800 text-lg">{service.name}</span>
-                                          {service.unit && <div className="text-xs text-gray-500">{service.unit}</div>}
-                                        </div>
-                                      </div>
-                                      <div className="text-right">
-                                        <span className="font-bold text-2xl bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent">
-                                          {service.price} DH
-                                        </span>
-                                      </div>
-                                    </div>
-                                    <div className="flex items-center gap-4">
-                                      <label className="text-sm text-gray-600 font-medium min-w-0 flex-shrink-0">Quantité:</label>
-                                      <button
-                                        type="button"
-                                        className="w-8 h-8 rounded-full bg-red-200 hover:bg-red-400 text-red-700 hover:text-white flex items-center justify-center text-xl font-bold transition"
-                                        onClick={() =>
-                                          handlePackFormChange(
-                                            selectedPack.id,
-                                            serviceKey,
-                                            Math.max(0, (packForms[selectedPack.id][serviceKey] || 0) - 1)
-                                          )
-                                        }
-                                      >-</button>
-                                      <input
-                                        type="number"
-                                        min="0"
-                                        value={packForms[selectedPack.id][serviceKey] || 0}
-                                        onChange={(e) => handlePackFormChange(selectedPack.id, serviceKey, e.target.value)}
-                                        className="flex-1 p-3 text-center rounded-xl border-2 border-gray-200 shadow-sm focus:border-blue-400 focus:ring-4 focus:ring-blue-100 transition-all bg-white/70 backdrop-blur-sm"
-                                      />
-                                      <button
-                                        type="button"
-                                        className="w-8 h-8 rounded-full bg-green-200 hover:bg-green-400 text-green-700 hover:text-white flex items-center justify-center text-xl font-bold transition"
-                                        onClick={() =>
-                                          handlePackFormChange(
-                                            selectedPack.id,
-                                            serviceKey,
-                                            (packForms[selectedPack.id][serviceKey] || 0) + 1
-                                          )
-                                        }
-                                      >+</button>
-                                      <div className="text-lg font-bold text-gray-700 min-w-0 flex-shrink-0 bg-gray-100 px-4 py-2 rounded-xl">
-                                        = {(packForms[selectedPack.id][serviceKey] || 0) * service.price} DH
-                                      </div>
-                                    </div>
-                                  </motion.div>
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ delay: serviceIndex * 0.1 }}
+                        >
+                          <div className="flex justify-between items-center mb-4">
+                            <div className="flex items-center">
+                              <span className="text-2xl mr-3">{service.icon}</span>
+                              <div>
+                                <span className="font-semibold text-gray-800 text-lg">{service.name}</span>
+                                {service.unit && <div className="text-xs text-gray-500">{service.unit}</div>}
+                              </div>
+                            </div>
+                            <div className="text-right">
+                              <span className="font-bold text-2xl bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent">
+                                {service.price} DH
+                              </span>
+                            </div>
+                          </div>
+                          <div className="flex items-center gap-4">
+                            <label className="text-sm text-gray-600 font-medium min-w-0 flex-shrink-0">Quantité:</label>
+                            <button
+                              type="button"
+                              className="w-8 h-8 rounded-full bg-red-200 hover:bg-red-400 text-red-700 hover:text-white flex items-center justify-center text-xl font-bold transition"
+                              onClick={() =>
+                                handlePackFormChange(
+                                  selectedPack.id,
+                                  serviceKey,
+                                  Math.max(0, (packForms[selectedPack.id][serviceKey] || 0) - 1)
+                                )
+                              }
+                            >-</button>
+                            <input
+                              type="number"
+                              min="0"
+                              value={packForms[selectedPack.id][serviceKey] || 0}
+                              onChange={(e) => handlePackFormChange(selectedPack.id, serviceKey, e.target.value)}
+                              className="flex-1 p-3 text-center rounded-xl border-2 border-gray-200 shadow-sm focus:border-blue-400 focus:ring-4 focus:ring-blue-100 transition-all bg-white/70 backdrop-blur-sm"
+                            />
+                            <button
+                              type="button"
+                              className="w-8 h-8 rounded-full bg-green-200 hover:bg-green-400 text-green-700 hover:text-white flex items-center justify-center text-xl font-bold transition"
+                              onClick={() =>
+                                handlePackFormChange(
+                                  selectedPack.id,
+                                  serviceKey,
+                                  (packForms[selectedPack.id][serviceKey] || 0) + 1
+                                )
+                              }
+                            >+</button>
+                            <div className="text-lg font-bold text-gray-700 min-w-0 flex-shrink-0 bg-gray-100 px-4 py-2 rounded-xl">
+                              = {(packForms[selectedPack.id][serviceKey] || 0) * service.price} DH
+                            </div>
+                          </div>
+                        </motion.div>
                                 );
-                              })}
+                    })}
                           </div>
                         ));
                       })()

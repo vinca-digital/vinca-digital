@@ -266,174 +266,174 @@ export default function ServicesUniquePage() {
   // Main view - Category cards
   if (!selectedCategory) {
     return (
-      <div className="min-h-screen bg-white relative overflow-hidden flex">
+      <div className="min-h-screen bg-white relative flex">
+        {/* Sidebar au premier plan */}
         <Sidebar />
-        <div className="flex-1 relative">
-        <FloatingParticles />
-        <Toaster position="top-right" />
+        {/* Contenu principal avec un margin-left pour ne pas passer sous le sidebar */}
+        <div className="flex-1 ml-0 md:ml-64 relative z-0">
+          <FloatingParticles />
+          <Toaster position="top-right" />
           <p className="invisible">.</p>
-        <p className="invisible">.</p>
-        <p className="invisible">.</p>
+          <p className="invisible">.</p>
+          <p className="invisible">.</p>
 
-        {/* Animated background elements */}
-        <motion.div
-          style={{ y: y1 }}
-          className="absolute top-20 left-10 w-72 h-72 bg-yellow-400/10 rounded-full blur-3xl"
-        />
-        <motion.div
-          style={{ y: y2 }}
-          className="absolute bottom-20 right-10 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl"
-        />
-
-        <div className="relative z-10 max-w-7xl mx-auto px-6 py-12">
+          {/* Animated background elements */}
           <motion.div
-            initial={{ opacity: 0, y: -50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-16"
-          >
+            style={{ y: y1 }}
+            className="absolute top-20 left-10 w-72 h-72 bg-yellow-400/10 rounded-full blur-3xl"
+          />
+          <motion.div
+            style={{ y: y2 }}
+            className="absolute bottom-20 right-10 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl"
+          />
+
+          <div className="relative z-10 max-w-7xl mx-auto px-6 py-12">
             <motion.div
-              animate={{ rotate: 360 }}
-              transition={{ duration: 20, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
-              className="inline-block mb-6"
+              initial={{ opacity: 0, y: -50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              className="text-center mb-16"
             >
-              <Sparkles className="w-16 h-16 text-yellow-500" />
-            </motion.div>
-
-            <h1 className="text-6xl md:text-7xl font-bold bg-gradient-to-r from-gray-800 via-purple-600 to-yellow-500 bg-clip-text text-transparent mb-6">
-              Nos Services Uniques
-            </h1>
-            <p className="text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              Découvrez nos deux univers créatifs pour transformer votre vision en réalité
-            </p>
-          </motion.div>
-
-            <div className="flex flex-row gap-8 justify-center items-stretch w-full">
-            {serviceCategories.map((category, index) => (
-              <div
-                key={category.id}
-                  className="group cursor-pointer max-w-md w-full"
-                onClick={() => setSelectedCategory(category.id)}
+              <motion.div
+                animate={{ rotate: 360 }}
+                transition={{ duration: 20, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
+                className="inline-block mb-6"
               >
+                <Sparkles className="w-16 h-16 text-yellow-500" />
+              </motion.div>
+
+              <h1 className="text-6xl md:text-7xl font-bold bg-gradient-to-r from-gray-800 via-purple-600 to-yellow-500 bg-clip-text text-transparent mb-6">
+                Nos Services Uniques
+              </h1>
+              <p className="text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                Découvrez nos deux univers créatifs pour transformer votre vision en réalité
+              </p>
+            </motion.div>
+            <div className="flex flex-row gap-8 justify-center items-stretch w-full">
+              {serviceCategories.map((category, index) => (
                 <div
-                  className={
-                    (category.id === "visual"
-                      ? "bg-gradient-to-br from-yellow-400 via-yellow-500 to-orange-500 text-yellow-900"
-                      : "bg-gradient-to-br from-purple-600 via-purple-700 to-pink-600 text-purple-100")
-                    + " rounded-3xl shadow-xl overflow-hidden relative transition-all duration-300 hover:shadow-2xl hover:scale-105"
-                  }
-                  style={{ transformStyle: "preserve-3d" }}
+                  key={category.id}
+                  className="group cursor-pointer max-w-md w-full"
+                  onClick={() => setSelectedCategory(category.id)}
                 >
-                  {/* Glassmorphism overlay */}
-                  <div className="absolute inset-0 bg-white/10 backdrop-blur-sm" />
-                  {/* Content */}
-                  <div className="relative z-10 p-12">
-                    {/* Reference Badge */}
-                    <div className="mb-6">
-                      <span
-                        className={`inline-block px-4 py-2 rounded-full text-sm font-bold ${
-                          category.id === "visual" ? "bg-yellow-600 text-yellow-100" : "bg-purple-800 text-purple-200"
-                        } transition-colors`}
+                  <div
+                    className={
+                      (category.id === "visual"
+                        ? "bg-gradient-to-br from-yellow-400 via-yellow-500 to-orange-500 text-yellow-900"
+                        : "bg-gradient-to-br from-purple-600 via-purple-700 to-pink-600 text-purple-100")
+                      + " rounded-3xl shadow-xl overflow-hidden relative transition-all duration-300 hover:shadow-2xl hover:scale-105"
+                    }
+                    style={{ transformStyle: "preserve-3d" }}
+                  >
+                    {/* Glassmorphism overlay */}
+                    <div className="absolute inset-0 bg-white/10 backdrop-blur-sm" />
+                    {/* Content */}
+                    <div className="relative z-10 p-12">
+                      {/* Reference Badge */}
+                      <div className="mb-6">
+                        <span
+                          className={`inline-block px-4 py-2 rounded-full text-sm font-bold ${
+                            category.id === "visual" ? "bg-yellow-600 text-yellow-100" : "bg-purple-800 text-purple-200"
+                          } transition-colors`}
+                        >
+                          {category.mainReference}
+                        </span>
+                      </div>
+                      <div
+                        className={`mb-8 flex justify-center transition-colors ${
+                          category.id === "visual" ? "text-yellow-800" : "text-purple-100"
+                        }`}
                       >
-                        {category.mainReference}
-                      </span>
-                    </div>
-                    <div
-                      className={`mb-8 flex justify-center transition-colors ${
-                        category.id === "visual" ? "text-yellow-800" : "text-purple-100"
-                      }`}
-                    >
-                      {category.icon}
-                    </div>
-                    <h2
-                      className={`text-3xl md:text-4xl font-bold mb-4 transition-colors ${
-                        category.id === "visual" ? "text-yellow-900" : "text-purple-100"
-                      }`}
-                    >
-                      {category.title}
-                    </h2>
-                    <p
-                      className={`text-xl mb-4 transition-colors ${
-                        category.id === "visual" ? "text-yellow-800" : "text-purple-200"
-                      }`}
-                    >
-                      {category.subtitle}
-                    </p>
-                    {/* Details */}
-                    <div
-                      className={`mb-6 p-4 rounded-xl transition-colors ${
-                        category.id === "visual"
-                          ? "bg-yellow-500/20 backdrop-blur-sm"
-                          : "bg-purple-800/30 backdrop-blur-sm"
-                      }`}
-                    >
-                      <h3
-                        className={`font-semibold mb-2 transition-colors ${
+                        {category.icon}
+                      </div>
+                      <h2
+                        className={`text-3xl md:text-4xl font-bold mb-4 transition-colors ${
                           category.id === "visual" ? "text-yellow-900" : "text-purple-100"
                         }`}
                       >
-                        Détails :
-                      </h3>
+                        {category.title}
+                      </h2>
                       <p
-                        className={`transition-colors ${
+                        className={`text-xl mb-4 transition-colors ${
                           category.id === "visual" ? "text-yellow-800" : "text-purple-200"
                         }`}
                       >
-                        {category.mainDetails}
+                        {category.subtitle}
                       </p>
+                      {/* Details */}
+                      <div
+                        className={`mb-6 p-4 rounded-xl transition-colors ${
+                          category.id === "visual"
+                            ? "bg-yellow-500/20 backdrop-blur-sm"
+                            : "bg-purple-800/30 backdrop-blur-sm"
+                        }`}
+                      >
+                        <h3
+                          className={`font-semibold mb-2 transition-colors ${
+                            category.id === "visual" ? "text-yellow-900" : "text-purple-100"
+                          }`}
+                        >
+                          Détails :
+                        </h3>
+                        <p
+                          className={`transition-colors ${
+                            category.id === "visual" ? "text-yellow-800" : "text-purple-200"
+                          }`}
+                        >
+                          {category.mainDetails}
+                        </p>
+                      </div>
+                      <p
+                        className={`text-lg mb-8 transition-colors ${
+                          category.id === "visual" ? "text-yellow-800" : "text-purple-200"
+                        }`}
+                      >
+                        {category.description}
+                      </p>
+                      <div
+                        className={`inline-flex items-center font-semibold transition-colors ${
+                          category.id === "visual" ? "text-yellow-900" : "text-purple-100"
+                        }`}
+                      >
+                        Découvrir nos services
+                        <ArrowRight className="w-5 h-5 ml-2" />
+                      </div>
                     </div>
-                    <p
-                      className={`text-lg mb-8 transition-colors ${
-                        category.id === "visual" ? "text-yellow-800" : "text-purple-200"
-                      }`}
-                    >
-                      {category.description}
-                    </p>
+                    {/* Animated border supprimé */}
                     <div
-                      className={`inline-flex items-center font-semibold transition-colors ${
-                        category.id === "visual" ? "text-yellow-900" : "text-purple-100"
+                      className={`absolute inset-0 rounded-3xl border-2 transition-colors ${
+                        category.id === "visual"
+                          ? "border-yellow-600/30 hover:border-yellow-300"
+                          : "border-purple-400/30 hover:border-purple-300"
                       }`}
-                    >
-                      Découvrir nos services
-                      <ArrowRight className="w-5 h-5 ml-2" />
-                    </div>
+                    />
                   </div>
-                  {/* Animated border supprimé */}
-                  <div
-                    className={`absolute inset-0 rounded-3xl border-2 transition-colors ${
-                      category.id === "visual"
-                        ? "border-yellow-600/30 hover:border-yellow-300"
-                        : "border-purple-400/30 hover:border-purple-300"
-                    }`}
-                  />
                 </div>
-              </div>
-            ))}
-          </div>
-
-          {/* Control button */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1 }}
-            className="fixed bottom-8 right-8 z-20"
-          >
-            <Button
-              onClick={() => setIsPlaying(!isPlaying)}
-              className="rounded-full w-14 h-14 bg-white shadow-lg hover:bg-yellow-50 border border-gray-200 text-gray-700 hover:text-yellow-600"
+              ))}
+            </div>
+            {/* Control button */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1 }}
+              className="fixed bottom-8 right-8 z-20"
             >
-              {isPlaying ? <Pause className="w-6 h-6" /> : <Play className="w-6 h-6" />}
-            </Button>
-          </motion.div>
+              <Button
+                onClick={() => setIsPlaying(!isPlaying)}
+                className="rounded-full w-14 h-14 bg-white shadow-lg hover:bg-yellow-50 border border-gray-200 text-gray-700 hover:text-yellow-600"
+              >
+                {isPlaying ? <Pause className="w-6 h-6" /> : <Play className="w-6 h-6" />}
+              </Button>
+            </motion.div>
           </div>
         </div>
       </div>
-    )
+    );
   }
 
-  const currentCategory = serviceCategories.find((cat) => cat.id === selectedCategory)!
+  const currentCategory = serviceCategories.find((cat) => cat.id === selectedCategory)!;
 
-  // Services list view
+  // Service detail view
   if (selectedCategory && !selectedService) {
     return (
       <div className="min-h-screen bg-white relative">
@@ -578,18 +578,18 @@ export default function ServicesUniquePage() {
                     {formatPrice(service.priceMin, service.priceMax)}
                   </div>
                   <div className="mt-auto w-full">
-                    <div
-                      className={`px-6 py-3 rounded-xl font-semibold text-center transition-all duration-300 ${
-                        currentCategory.id === "visual"
-                          ? "bg-yellow-600 text-yellow-100 group-hover:bg-yellow-700 group-hover:text-yellow-50"
-                          : currentCategory.id === "prod"
-                            ? "bg-purple-800 text-purple-100 group-hover:bg-purple-700 group-hover:text-white"
-                            : "bg-gradient-to-r from-gray-700 to-gray-800 group-hover:from-yellow-500 group-hover:to-yellow-600 text-white"
-                      }`}
-                    >
-                      Voir les détails
-                    </div>
+                  <div
+                    className={`px-6 py-3 rounded-xl font-semibold text-center transition-all duration-300 ${
+                      currentCategory.id === "visual"
+                        ? "bg-yellow-600 text-yellow-100 group-hover:bg-yellow-700 group-hover:text-yellow-50"
+                        : currentCategory.id === "prod"
+                          ? "bg-purple-800 text-purple-100 group-hover:bg-purple-700 group-hover:text-white"
+                          : "bg-gradient-to-r from-gray-700 to-gray-800 group-hover:from-yellow-500 group-hover:to-yellow-600 text-white"
+                    }`}
+                  >
+                    Voir les détails
                   </div>
+                </div>
                 </div>
               </div>
             ))}
@@ -599,7 +599,6 @@ export default function ServicesUniquePage() {
     )
   }
 
-  // Service detail view
   if (selectedService && !showPaymentForm) {
     return (
       <div className="min-h-screen bg-white relative">
@@ -614,12 +613,11 @@ export default function ServicesUniquePage() {
             <Button
               onClick={goBackToCategory}
               className={
-                (currentCategory.id === "visual"
-                  ? "bg-yellow-500 hover:bg-yellow-600 focus:bg-yellow-700 text-white"
-                  : currentCategory.id === "prod"
-                    ? "bg-purple-600 hover:bg-pink-600 focus:bg-pink-700 text-white"
-                    : "bg-gray-700 hover:bg-gray-900 focus:bg-black text-white")
-                + " mr-6 font-bold px-6 py-3 rounded-xl shadow-lg border-2 border-transparent hover:shadow-2xl transition-all duration-200 flex items-center gap-2 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-400"
+                currentCategory.id === "prod"
+                  ? "bg-purple-600 hover:bg-pink-600 focus:bg-pink-700 text-white mr-6 font-bold px-6 py-3 rounded-xl shadow-lg border-2 border-transparent hover:shadow-2xl transition-all duration-200 flex items-center gap-2 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-400"
+                  : (currentCategory.id === "visual"
+                      ? "bg-yellow-500 hover:bg-yellow-600 focus:bg-yellow-700 text-white mr-6 font-bold px-6 py-3 rounded-xl shadow-lg border-2 border-transparent hover:shadow-2xl transition-all duration-200 flex items-center gap-2 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-400"
+                      : "bg-gray-700 hover:bg-gray-900 focus:bg-black text-white mr-6 font-bold px-6 py-3 rounded-xl shadow-lg border-2 border-transparent hover:shadow-2xl transition-all duration-200 flex items-center gap-2 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400")
               }
             >
               <ArrowLeft className="w-4 h-4 mr-2" />
@@ -710,7 +708,11 @@ export default function ServicesUniquePage() {
               <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.9 }}>
                 <Button
                   onClick={handleBuyService}
-                  className="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white px-12 py-4 text-xl rounded-2xl shadow-2xl transform hover:scale-105 transition-all duration-300"
+                  className={
+                    currentCategory.id === "prod"
+                      ? "bg-purple-600 hover:bg-pink-600 focus:bg-pink-700 text-white px-12 py-4 text-xl rounded-2xl shadow-2xl transform hover:scale-105 transition-all duration-300"
+                      : "bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white px-12 py-4 text-xl rounded-2xl shadow-2xl transform hover:scale-105 transition-all duration-300"
+                  }
                 >
                   <ShoppingCart className="w-6 h-6 mr-3" />
                   Acheter ce service
@@ -723,7 +725,6 @@ export default function ServicesUniquePage() {
     )
   }
 
-  // Payment form
   if (showPaymentForm) {
     return (
       <div className="min-h-screen bg-gray-50 relative">
@@ -840,5 +841,5 @@ export default function ServicesUniquePage() {
     )
   }
 
-  return null
+  return null;
 }
