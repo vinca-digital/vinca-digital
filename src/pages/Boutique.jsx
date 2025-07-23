@@ -173,7 +173,7 @@ const Boutique = () => {
       description: "Pour des visuels impactants et du contenu photo/vidéo de qualité",
       icon: "📸",
       services: [
-        { name: "Shooting photo/vidéo", price: 2200, unit: "", icon: "🎬" },
+        
         { name: "Conception infographique", price: 600, unit: "", icon: "🎨" },
         { name: "Shooting (demi-journée)", price: 2700, unit: "", icon: "📷" },
         { name: "Shooting (journée)", price: 4200, unit: "", icon: "📷" },
@@ -233,7 +233,6 @@ const Boutique = () => {
         { name: "Campagne Google Ads (/campagne)", price: 1500, unit: "", icon: "🔎" },
       
         // Visual
-        { name: "Shooting photo/vidéo", price: 2200, unit: "", icon: "🎬" },
         { name: "Conception infographique", price: 600, unit: "", icon: "🎨" },
         { name: "Shooting (demi-journée)", price: 2700, unit: "", icon: "📷" },
         { name: "Shooting (journée)", price: 4200, unit: "", icon: "📷" },
