@@ -1108,6 +1108,7 @@ const Boutique = () => {
                               "Visuel simple", "Carrousel", "Stories", "Reel Standard (BI simple)",
                               "Reel Medium (Dynamique/Tournage sans ST)", "Reel Premium (Tournage avec ST)",
                               "Vidéo YouTube courte (>5 min)", "Vidéo YouTube longue (<5 min)",
+                              "Campagne Meta Ads (campagne)",
                               "Gestion et publication de contenu sur les RS", // <-- AJOUTE ICI
                               "Conseil et stratégie de présence sur les RS"    // <-- AJOUTE ICI
                             ]
