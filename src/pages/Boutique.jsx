@@ -1107,7 +1107,9 @@ const Boutique = () => {
                             services: [
                               "Visuel simple", "Carrousel", "Stories", "Reel Standard (BI simple)",
                               "Reel Medium (Dynamique/Tournage sans ST)", "Reel Premium (Tournage avec ST)",
-                              "Vidéo YouTube courte (>5 min)", "Vidéo YouTube longue (<5 min)"
+                              "Vidéo YouTube courte (>5 min)", "Vidéo YouTube longue (<5 min)",
+                              "Gestion et publication de contenu sur les RS", // <-- AJOUTE ICI
+                              "Conseil et stratégie de présence sur les RS"    // <-- AJOUTE ICI
                             ]
                           }
                         ];
@@ -1124,7 +1126,8 @@ const Boutique = () => {
                         .replace("conceptioninfographique", "infographie")
                         .replace("visuelsimp", "visuelSimple")
                         .replace("reelvideocoure", "reel")
-                                  .replace("shootingphotovideo", "shooting");
+                        .replace("shootingphotovideo", "shooting")
+
                       return (
                         <motion.div
                           key={serviceIndex}
