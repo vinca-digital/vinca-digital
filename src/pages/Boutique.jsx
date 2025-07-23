@@ -242,6 +242,8 @@ const Boutique = () => {
         { name: "Création de logo (3 propositions)", price: 4200, unit: "", icon: "🎨" },
         { name: "Creation de charte graphique (Simple)", price: 6200, unit: "", icon: "📑" },
         { name: "Creation de charte graphique (Medium)", price: 9200, unit: "", icon: "📑" },
+        { name: "Gestion et publication de contenu sur les RS", price: 3000, unit: "", icon: "🗂️"},
+        { name: "Conseil et stratégie de présence sur les RS", price: 3000, unit: "", icon: "💡"},
         // Social
         { name: "Visuel simple", price: 600, unit: "", icon: "🖼️" },
         { name: "Carrousel", price: 700, unit: "", icon: "🎠" },
