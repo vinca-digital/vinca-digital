@@ -207,8 +207,8 @@ const Boutique = () => {
         { name: "Vidéo YouTube courte (>5 min)", price: 2700, unit: "", icon: "📹" },
         { name: "Vidéo YouTube longue (<5 min)", price: 5200, unit: "", icon: "📹" },
         { name: "Campagne Meta Ads (campagne)", price: 1500, unit: "", icon: "📢" },
-        { name: "Gestion et publication de contenu sur les RS", price: 3000, unit: "", icon: "🗂️" },
-        { name: "Conseil et stratégie de présence sur les RS", price: 3000, unit: "", icon: "💡" },
+        { name: "Gestion et publication de contenu sur les RS", price: 3000, unit: "", icon: "🗂️"},
+        { name: "Conseil et stratégie de présence sur les RS", price: 3000, unit: "", icon: "💡"},
       ],
     },
     {
@@ -252,8 +252,8 @@ const Boutique = () => {
         { name: "Vidéo YouTube courte (>5 min)", price: 2700, unit: "", icon: "📹" },
         { name: "Vidéo YouTube longue (<5 min)", price: 5200, unit: "", icon: "📹" },
         { name: "Campagne Meta Ads (campagne)", price: 1500, unit: "", icon: "📢" },
-        { name: "Gestion et publication de contenu sur les RS", price: 3000, unit: "", icon: "🗂️" },
-        { name: "Conseil et stratégie de présence sur les RS", price: 3000, unit: "", icon: "💡" },
+        { name: "Gestion et publication de contenu sur les RS", price: 3000, unit: "", icon: "🗂️"},
+        { name: "Conseil et stratégie de présence sur les RS", price: 3000, unit: "", icon: "💡"},
       ],
     },
   ]
