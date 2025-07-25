@@ -155,7 +155,7 @@ const Boutique = () => {
         { name: "Articles", price: 600, unit: "par unité", icon: "📝" },
         { name: "Bannières", price: 600, unit: "", icon: "🚧" },
         { name: "Web page", price: 1100, unit: "", icon: "🖥️" },
-        { name: "50 Produits (shopify)", price: 5200, unit: "", icon: "🛒" },
+        { name: "50 produits (shopify)", price: 5200, unit: "", icon: "🛒" },
         { name: "Campagne Google Ads (/campagne)", price: 1500, unit: "", icon: "🔎" },
       ],
     },
@@ -173,7 +173,7 @@ const Boutique = () => {
       description: "Pour des visuels impactants et du contenu photo/vidéo de qualité",
       icon: "📸",
       services: [
-        
+        { name: "Shooting photo/vidéo", price: 2200, unit: "", icon: "🎬" },
         { name: "Conception infographique", price: 600, unit: "", icon: "🎨" },
         { name: "Shooting (demi-journée)", price: 2700, unit: "", icon: "📷" },
         { name: "Shooting (journée)", price: 4200, unit: "", icon: "📷" },
@@ -182,6 +182,8 @@ const Boutique = () => {
         { name: "Création de logo (3 propositions)", price: 4200, unit: "", icon: "🎨" },
         { name: "Creation de charte graphique (Simple)", price: 6200, unit: "", icon: "📑" },
         { name: "Creation de charte graphique (Medium)", price: 9200, unit: "", icon: "📑" },
+        { name: "Conception Packaging (/face)", price: 500, unit: "", icon: "📦" },
+        { name: "Conception Etiquettes packaging (/face)", price: 500, unit: "", icon: "🏷️" },
       ],
     },
     {
@@ -204,6 +206,8 @@ const Boutique = () => {
         { name: "Reel Standard (BI simple)", price: 600, unit: "", icon: "🎬" },
         { name: "Reel Medium (Dynamique/Tournage sans ST)", price:800, unit: "", icon: "🎬" },
         { name: "Reel Premium (Tournage avec ST)", price: 1000, unit: "", icon: "🎬" },
+        { name: "Reel CGI", price: 1500, unit: "", icon: "🎭" },
+        { name: "Reel 3D", price: 2000, unit: "", icon: "🎲" },
         { name: "Vidéo YouTube courte (>5 min)", price: 2700, unit: "", icon: "📹" },
         { name: "Vidéo YouTube longue (<5 min)", price: 5200, unit: "", icon: "📹" },
         { name: "Campagne Meta Ads (campagne)", price: 1500, unit: "", icon: "📢" },
@@ -229,10 +233,11 @@ const Boutique = () => {
         { name: "Articles", price: 600, unit: "par unité", icon: "📝" },
         { name: "Bannières", price: 600, unit: "", icon: "🚧" },
         { name: "Web page", price: 1100, unit: "", icon: "🖥️" },
-        { name: "Produits (shopify)", price: 5200, unit: "", icon: "🛒" },
+        { name: "50 produits (shopify)", price: 5200, unit: "", icon: "🛒" },
         { name: "Campagne Google Ads (/campagne)", price: 1500, unit: "", icon: "🔎" },
       
         // Visual
+        { name: "Shooting photo/vidéo", price: 2200, unit: "", icon: "🎬" },
         { name: "Conception infographique", price: 600, unit: "", icon: "🎨" },
         { name: "Shooting (demi-journée)", price: 2700, unit: "", icon: "📷" },
         { name: "Shooting (journée)", price: 4200, unit: "", icon: "📷" },
@@ -241,8 +246,8 @@ const Boutique = () => {
         { name: "Création de logo (3 propositions)", price: 4200, unit: "", icon: "🎨" },
         { name: "Creation de charte graphique (Simple)", price: 6200, unit: "", icon: "📑" },
         { name: "Creation de charte graphique (Medium)", price: 9200, unit: "", icon: "📑" },
-        { name: "Gestion et publication de contenu sur les RS", price: 3000, unit: "", icon: "🗂️"},
-        { name: "Conseil et stratégie de présence sur les RS", price: 3000, unit: "", icon: "💡"},
+        { name: "Conception Packaging (/face)", price: 500, unit: "", icon: "📦" },
+        { name: "Conception Etiquettes packaging (/face)", price: 500, unit: "", icon: "🏷️" },
         // Social
         { name: "Visuel simple", price: 600, unit: "", icon: "🖼️" },
         { name: "Carrousel", price: 700, unit: "", icon: "🎠" },
@@ -250,6 +255,8 @@ const Boutique = () => {
         { name: "Reel Standard (BI simple)", price: 600, unit: "", icon: "🎬" },
         { name: "Reel Medium (Dynamique/Tournage sans ST)", price:800, unit: "", icon: "🎬" },
         { name: "Reel Premium (Tournage avec ST)", price: 1000, unit: "", icon: "🎬" },
+        { name: "Reel CGI", price: 1500, unit: "", icon: "🎭" },
+        { name: "Reel 3D", price: 2000, unit: "", icon: "🎲" },
         { name: "Vidéo YouTube courte (>5 min)", price: 2700, unit: "", icon: "📹" },
         { name: "Vidéo YouTube longue (<5 min)", price: 5200, unit: "", icon: "📹" },
         { name: "Campagne Meta Ads (campagne)", price: 1500, unit: "", icon: "📢" },
@@ -1090,7 +1097,7 @@ const Boutique = () => {
                           {
                             title: "Web",
                             services: [
-                              "Articles", "Bannières", "Web page", "Produits (shopify)"
+                              "Articles", "Bannières", "Web page", "50 produits (shopify)", "Campagne Google Ads (/campagne)"
                             ]
                           },
                           {
@@ -1098,7 +1105,8 @@ const Boutique = () => {
                             services: [
                               "Shooting photo/vidéo", "Conception infographique", "Shooting (demi-journée)", "Shooting (journée)",
                               "Conception page", "Option Drone", "Création de logo (3 propositions)",
-                              "Creation de charte graphique (Simple)", "Creation de charte graphique (Medium)"
+                              "Creation de charte graphique (Simple)", "Creation de charte graphique (Medium)",
+                              "Conception Packaging (/face)", "Conception Etiquettes packaging (/face)"
                             ]
                           },
                           {
@@ -1106,6 +1114,7 @@ const Boutique = () => {
                             services: [
                               "Visuel simple", "Carrousel", "Stories", "Reel Standard (BI simple)",
                               "Reel Medium (Dynamique/Tournage sans ST)", "Reel Premium (Tournage avec ST)",
+                              "Reel CGI", "Reel 3D",
                               "Vidéo YouTube courte (>5 min)", "Vidéo YouTube longue (<5 min)",
                               "Campagne Meta Ads (campagne)",
                               "Gestion et publication de contenu sur les RS", // <-- AJOUTE ICI
