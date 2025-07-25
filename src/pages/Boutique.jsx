@@ -155,7 +155,7 @@ const Boutique = () => {
         { name: "Articles", price: 600, unit: "par unité", icon: "📝" },
         { name: "Bannières", price: 600, unit: "", icon: "🚧" },
         { name: "Web page", price: 1100, unit: "", icon: "🖥️" },
-        { name: "Produits (shopify)", price: 5200, unit: "", icon: "🛒" },
+        { name: "50 Produits (shopify)", price: 5200, unit: "", icon: "🛒" },
         { name: "Campagne Google Ads (/campagne)", price: 1500, unit: "", icon: "🔎" },
       ],
     },
