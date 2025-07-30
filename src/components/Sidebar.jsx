@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
 
 const Sidebar = () => {
   const [activeMenu, setActiveMenu] = useState('/dashboard');
@@ -34,6 +33,16 @@ const Sidebar = () => {
       icon: (
         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
           <path d="M11 17a1 1 0 001.447.894l4-2A1 1 0 0017 15V9.236a1 1 0 00-1.447-.894l-4 2a1 1 0 00-.553.894V17zM15.211 6.276a1 1 0 000-1.788l-4.764-2.382a1 1 0 00-.894 0L4.789 4.488a1 1 0 000 1.788l4.764 2.382a1 1 0 00.894 0l4.764-2.382zM4.447 8.342A1 1 0 003 9.236V15a1 1 0 00.553.894l4 2A1 1 0 009 17v-5.764a1 1 0 00-.553-.894l-4-2z" />
+        </svg>
+      )
+    },
+
+    {
+      path: '/mes-services',
+      name: 'Mes services',
+      icon: (
+        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+          <path fillRule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clipRule="evenodd" />
         </svg>
       )
     },
@@ -80,56 +89,7 @@ const Sidebar = () => {
     
   ];
 
-  // Animation variants
-  const sidebarVariants = {
-    hidden: { opacity: 0, x: -50 },
-    visible: { 
-      opacity: 1, 
-      x: 0,
-      transition: { 
-        duration: 0.5,
-        when: "beforeChildren",
-        staggerChildren: 0.1
-      }
-    }
-  };
 
-  const itemVariants = {
-    hidden: { opacity: 0, x: -20 },
-    visible: { 
-      opacity: 1, 
-      x: 0,
-      transition: { type: "spring", stiffness: 300, damping: 24 }
-    }
-  };
-
-  const rankBadgeVariants = {
-    initial: { scale: 0, rotate: -180 },
-    animate: { 
-      scale: 1, 
-      rotate: 0,
-      transition: { 
-        type: "spring", 
-        stiffness: 260, 
-        damping: 20,
-        delay: 0.8
-      }
-    },
-    hover: { 
-      scale: 1.1,
-      rotate: 5,
-      transition: { type: "spring", stiffness: 400, damping: 10 }
-    }
-  };
-
-  const floatingEffect = {
-    y: [0, -10, 0],
-    transition: {
-      duration: 4,
-      repeat: Infinity,
-      ease: "easeInOut"
-    }
-  };
 
   return (
     <>
@@ -143,25 +103,11 @@ const Sidebar = () => {
         </svg>
       </button>
       {/* Sidebar desktop */}
-      <motion.div 
-        className="bg-vinca-dark text-white h-full w-64 fixed left-0 top-16 shadow-lg overflow-hidden hidden md:block"
-        variants={sidebarVariants}
-        initial="hidden"
-        animate="visible"
-      >
+      <div className="bg-vinca-dark text-white h-full w-64 fixed left-0 top-16 shadow-lg overflow-hidden hidden md:block">
         <div className="p-4">
           <div className="space-y-1">
             {menuItems.map((item, index) => (
-              <motion.div
-                key={item.path}
-                variants={itemVariants}
-                whileHover={{ 
-                  scale: 1.05, 
-                  x: 5,
-                  transition: { type: "spring", stiffness: 400 }
-                }}
-                whileTap={{ scale: 0.95 }}
-              >
+              <div key={item.path}>
                 <Link 
                   to={item.path} 
                   className={`flex items-center space-x-3 px-4 py-3 rounded-lg ${
@@ -169,70 +115,41 @@ const Sidebar = () => {
                   }`}
                   onClick={() => setActiveMenu(item.path)}
                 >
-                  <motion.div
-                    whileHover={{ rotate: 15 }}
-                    transition={{ type: "spring", stiffness: 300 }}
-                  >
+                  <div>
                     {item.icon}
-                  </motion.div>
+                  </div>
                   <span>{item.name}</span>
                   {activeMenu === item.path && (
-                    <motion.div
-                      className="w-1 h-full bg-vinca-primary absolute right-0"
-                      layoutId="activeIndicator"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      transition={{ duration: 0.3 }}
-                    />
+                    <div className="w-1 h-full bg-vinca-primary absolute right-0" />
                   )}
                 </Link>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
-        <motion.div 
-          className="absolute bottom-0 w-full p-4"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1, duration: 0.5 }}
-        >
-          <motion.div 
-            className="bg-gray-700 rounded-lg p-3"
-            whileHover={{ 
-              scale: 1.03,
-            }}
-          >
+        <div className="absolute bottom-0 w-full p-4">
+          <div className="bg-gray-700 rounded-lg p-3">
             <div className="flex items-center space-x-3">
-              <motion.div 
-                className="bg-vinca-primary p-2 rounded-full"
-                whileHover={{ rotate: 360 }}
-                transition={{ duration: 0.6 }}
-              >
+              <div className="bg-vinca-primary p-2 rounded-full">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-white" viewBox="0 0 20 20" fill="currentColor">
                   <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 10-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 102 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z" clipRule="evenodd" />
                 </svg>
-              </motion.div>
+              </div>
               <div>
                 <p className="text-sm font-medium">Besoin d'aide ?</p>
                 <p className="text-xs text-gray-400">Contactez notre support</p>
               </div>
             </div>
-          </motion.div>
-        </motion.div>
-      </motion.div>
+          </div>
+        </div>
+      </div>
       {/* Sidebar mobile (drawer) */}
       {mobileSidebarOpen && (
         <div className="fixed inset-0 z-50 flex md:hidden">
           {/* Overlay */}
           <div className="fixed inset-0 bg-black bg-opacity-40" onClick={() => setMobileSidebarOpen(false)}></div>
           {/* Drawer */}
-          <motion.div
-            initial={{ x: -300 }}
-            animate={{ x: 0 }}
-            exit={{ x: -300 }}
-            transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-            className="relative bg-vinca-dark text-white h-full w-64 shadow-lg z-50"
-          >
+          <div className="relative bg-vinca-dark text-white h-full w-64 shadow-lg z-50">
             <button
               className="absolute top-4 right-4 text-white"
               onClick={() => setMobileSidebarOpen(false)}
@@ -262,7 +179,7 @@ const Sidebar = () => {
                 ))}
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       )}
     </>

@@ -204,15 +204,15 @@ const Boutique = () => {
         { name: "Carrousel", price: 700, unit: "", icon: "🎠" },
         { name: "Stories", price: 500, unit: "", icon: "📖" },
         { name: "Reel Standard (BI simple)", price: 600, unit: "", icon: "🎬" },
-        { name: "Reel Medium (Dynamique/Tournage sans ST)", price:800, unit: "", icon: "🎬" },
+        { name: "Reel Medium (Dynamique/Tournage sans ST)", price: 800, unit: "", icon: "🎬" },
         { name: "Reel Premium (Tournage avec ST)", price: 1000, unit: "", icon: "🎬" },
         { name: "Reel CGI", price: 1500, unit: "", icon: "🎭" },
         { name: "Reel 3D", price: 2000, unit: "", icon: "🎲" },
         { name: "Vidéo YouTube courte (>5 min)", price: 2700, unit: "", icon: "📹" },
         { name: "Vidéo YouTube longue (<5 min)", price: 5200, unit: "", icon: "📹" },
         { name: "Campagne Meta Ads (campagne)", price: 1500, unit: "", icon: "📢" },
-        { name: "Gestion et publication de contenu sur les RS", price: 3000, unit: "", icon: "🗂️"},
-        { name: "Conseil et stratégie de présence sur les RS", price: 3000, unit: "", icon: "💡"},
+        { name: "Gestion et publication de contenu sur les RS", price: 3000, unit: "", icon: "🗂️" },
+        { name: "Conseil et stratégie de présence sur les RS", price: 3000, unit: "", icon: "💡" },
       ],
     },
     {
@@ -235,7 +235,7 @@ const Boutique = () => {
         { name: "Web page", price: 1100, unit: "", icon: "🖥️" },
         { name: "50 produits (shopify)", price: 5200, unit: "", icon: "🛒" },
         { name: "Campagne Google Ads (/campagne)", price: 1500, unit: "", icon: "🔎" },
-      
+
         // Visual
         { name: "Shooting photo/vidéo", price: 2200, unit: "", icon: "🎬" },
         { name: "Conception infographique", price: 600, unit: "", icon: "🎨" },
@@ -253,15 +253,15 @@ const Boutique = () => {
         { name: "Carrousel", price: 700, unit: "", icon: "🎠" },
         { name: "Stories", price: 500, unit: "", icon: "📖" },
         { name: "Reel Standard (BI simple)", price: 600, unit: "", icon: "🎬" },
-        { name: "Reel Medium (Dynamique/Tournage sans ST)", price:800, unit: "", icon: "🎬" },
+        { name: "Reel Medium (Dynamique/Tournage sans ST)", price: 800, unit: "", icon: "🎬" },
         { name: "Reel Premium (Tournage avec ST)", price: 1000, unit: "", icon: "🎬" },
         { name: "Reel CGI", price: 1500, unit: "", icon: "🎭" },
         { name: "Reel 3D", price: 2000, unit: "", icon: "🎲" },
         { name: "Vidéo YouTube courte (>5 min)", price: 2700, unit: "", icon: "📹" },
         { name: "Vidéo YouTube longue (<5 min)", price: 5200, unit: "", icon: "📹" },
         { name: "Campagne Meta Ads (campagne)", price: 1500, unit: "", icon: "📢" },
-        { name: "Gestion et publication de contenu sur les RS", price: 3000, unit: "", icon: "🗂️"},
-        { name: "Conseil et stratégie de présence sur les RS", price: 3000, unit: "", icon: "💡"},
+        { name: "Gestion et publication de contenu sur les RS", price: 3000, unit: "", icon: "🗂️" },
+        { name: "Conseil et stratégie de présence sur les RS", price: 3000, unit: "", icon: "💡" },
       ],
     },
   ]
@@ -397,10 +397,10 @@ const Boutique = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-        > 
-        <p className="invisible">.</p>
-        <p className="invisible">.</p>
-        <p className="invisible">.</p>
+        >
+          <p className="invisible">.</p>
+          <p className="invisible">.</p>
+          <p className="invisible">.</p>
           <div className="flex justify-between items-center mb-10">
             <div>
               {/* Bloc titre et description supprimé */}
@@ -514,11 +514,10 @@ const Boutique = () => {
                 <button
                   key={category.id}
                   onClick={() => setSelectedCategory(category.id)}
-                  className={`px-6 py-3 rounded-xl text-sm font-semibold transition-all duration-300 ${
-                    selectedCategory === category.id
+                  className={`px-6 py-3 rounded-xl text-sm font-semibold transition-all duration-300 ${selectedCategory === category.id
                       ? "bg-gradient-to-r from-gray-800 to-gray-700 text-white shadow-lg"
                       : "text-gray-600 hover:bg-gray-100"
-                  }`}
+                    }`}
                 >
                   {category.name}
                 </button>
@@ -535,9 +534,8 @@ const Boutique = () => {
               .map((product, index) => (
                 <motion.div
                   key={product.id}
-                  className={`bg-white/80 backdrop-blur-sm rounded-xl shadow-md overflow-hidden flex flex-col transform hover:-translate-y-2 transition-all duration-300 border ${
-                    product.popular ? "border-yellow-400 ring-2 ring-yellow-400/20" : "border-gray-200"
-                  } w-[350px] min-w-[350px]`}
+                  className={`bg-white/80 backdrop-blur-sm rounded-xl shadow-md overflow-hidden flex flex-col transform hover:-translate-y-2 transition-all duration-300 border ${product.popular ? "border-yellow-400 ring-2 ring-yellow-400/20" : "border-gray-200"
+                    } w-[350px] min-w-[350px]`}
                   initial={{ opacity: 0, y: 50 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
@@ -1128,75 +1126,75 @@ const Boutique = () => {
                             {selectedPack.services
                               .filter(service => group.services.includes(service.name))
                               .map((service, serviceIndex) => {
-                      const serviceKey = service.name
-                        .toLowerCase()
-                        .replace(/[^a-z0-9]/g, "")
-                        .replace("photovideo", "")
-                        .replace("conceptioninfographique", "infographie")
-                        .replace("visuelsimp", "visuelSimple")
-                        .replace("reelvideocoure", "reel")
-                        .replace("shootingphotovideo", "shooting")
+                                const serviceKey = service.name
+                                  .toLowerCase()
+                                  .replace(/[^a-z0-9]/g, "")
+                                  .replace("photovideo", "")
+                                  .replace("conceptioninfographique", "infographie")
+                                  .replace("visuelsimp", "visuelSimple")
+                                  .replace("reelvideocoure", "reel")
+                                  .replace("shootingphotovideo", "shooting")
 
-                      return (
-                        <motion.div
-                          key={serviceIndex}
+                                return (
+                                  <motion.div
+                                    key={serviceIndex}
                                     className="bg-white/80 backdrop-blur-sm p-6 rounded-2xl shadow-lg border border-gray-200 mb-4"
-                          initial={{ opacity: 0, y: 10 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ delay: serviceIndex * 0.1 }}
-                        >
-                          <div className="flex justify-between items-center mb-4">
-                            <div className="flex items-center">
-                              <span className="text-2xl mr-3">{service.icon}</span>
-                              <div>
-                                <span className="font-semibold text-gray-800 text-lg">{service.name}</span>
-                                {service.unit && <div className="text-xs text-gray-500">{service.unit}</div>}
-                              </div>
-                            </div>
-                            <div className="text-right">
-                              <span className="font-bold text-2xl bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent">
-                                {service.price} DH
-                              </span>
-                            </div>
-                          </div>
-                          <div className="flex items-center gap-4">
-                            <label className="text-sm text-gray-600 font-medium min-w-0 flex-shrink-0">Quantité:</label>
-                            <button
-                              type="button"
-                              className="w-8 h-8 rounded-full bg-red-200 hover:bg-red-400 text-red-700 hover:text-white flex items-center justify-center text-xl font-bold transition"
-                              onClick={() =>
-                                handlePackFormChange(
-                                  selectedPack.id,
-                                  serviceKey,
-                                  Math.max(0, (packForms[selectedPack.id][serviceKey] || 0) - 1)
-                                )
-                              }
-                            >-</button>
-                            <input
-                              type="number"
-                              min="0"
-                              value={packForms[selectedPack.id][serviceKey] || 0}
-                              onChange={(e) => handlePackFormChange(selectedPack.id, serviceKey, e.target.value)}
-                              className="flex-1 p-3 text-center rounded-xl border-2 border-gray-200 shadow-sm focus:border-blue-400 focus:ring-4 focus:ring-blue-100 transition-all bg-white/70 backdrop-blur-sm"
-                            />
-                            <button
-                              type="button"
-                              className="w-8 h-8 rounded-full bg-green-200 hover:bg-green-400 text-green-700 hover:text-white flex items-center justify-center text-xl font-bold transition"
-                              onClick={() =>
-                                handlePackFormChange(
-                                  selectedPack.id,
-                                  serviceKey,
-                                  (packForms[selectedPack.id][serviceKey] || 0) + 1
-                                )
-                              }
-                            >+</button>
-                            <div className="text-lg font-bold text-gray-700 min-w-0 flex-shrink-0 bg-gray-100 px-4 py-2 rounded-xl">
-                              = {(packForms[selectedPack.id][serviceKey] || 0) * service.price} DH
-                            </div>
-                          </div>
-                        </motion.div>
+                                    initial={{ opacity: 0, y: 10 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ delay: serviceIndex * 0.1 }}
+                                  >
+                                    <div className="flex justify-between items-center mb-4">
+                                      <div className="flex items-center">
+                                        <span className="text-2xl mr-3">{service.icon}</span>
+                                        <div>
+                                          <span className="font-semibold text-gray-800 text-lg">{service.name}</span>
+                                          {service.unit && <div className="text-xs text-gray-500">{service.unit}</div>}
+                                        </div>
+                                      </div>
+                                      <div className="text-right">
+                                        <span className="font-bold text-2xl bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent">
+                                          {service.price} DH
+                                        </span>
+                                      </div>
+                                    </div>
+                                    <div className="flex items-center gap-4">
+                                      <label className="text-sm text-gray-600 font-medium min-w-0 flex-shrink-0">Quantité:</label>
+                                      <button
+                                        type="button"
+                                        className="w-8 h-8 rounded-full bg-red-200 hover:bg-red-400 text-red-700 hover:text-white flex items-center justify-center text-xl font-bold transition"
+                                        onClick={() =>
+                                          handlePackFormChange(
+                                            selectedPack.id,
+                                            serviceKey,
+                                            Math.max(0, (packForms[selectedPack.id][serviceKey] || 0) - 1)
+                                          )
+                                        }
+                                      >-</button>
+                                      <input
+                                        type="number"
+                                        min="0"
+                                        value={packForms[selectedPack.id][serviceKey] || 0}
+                                        onChange={(e) => handlePackFormChange(selectedPack.id, serviceKey, e.target.value)}
+                                        className="flex-1 p-3 text-center rounded-xl border-2 border-gray-200 shadow-sm focus:border-blue-400 focus:ring-4 focus:ring-blue-100 transition-all bg-white/70 backdrop-blur-sm"
+                                      />
+                                      <button
+                                        type="button"
+                                        className="w-8 h-8 rounded-full bg-green-200 hover:bg-green-400 text-green-700 hover:text-white flex items-center justify-center text-xl font-bold transition"
+                                        onClick={() =>
+                                          handlePackFormChange(
+                                            selectedPack.id,
+                                            serviceKey,
+                                            (packForms[selectedPack.id][serviceKey] || 0) + 1
+                                          )
+                                        }
+                                      >+</button>
+                                      <div className="text-lg font-bold text-gray-700 min-w-0 flex-shrink-0 bg-gray-100 px-4 py-2 rounded-xl">
+                                        = {(packForms[selectedPack.id][serviceKey] || 0) * service.price} DH
+                                      </div>
+                                    </div>
+                                  </motion.div>
                                 );
-                    })}
+                              })}
                           </div>
                         ));
                       })()

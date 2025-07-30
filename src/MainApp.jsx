@@ -9,6 +9,7 @@ import Boutique from './pages/Boutique';
 import Factures from './pages/Factures';
 import Forfait from './pages/Forfait';
 import ServicesUniquePage from "./pages/service-unique/ServiceUniquePage";
+import MesServices from './pages/MesServices';
 import Login from './pages/Login';
 import AdminLogin from './pages/AdminLogin';
 import Register from './pages/Register';
@@ -45,25 +46,25 @@ function MainApp() {
     <div className="App">
       <Routes>
         <Route path="/" element={<Home />} />
-        
+
         {isAdminAuthenticated ? (
           <>
-          <Route path="/admin-dashboard" element={
-            <div className="flex h-screen bg-gray-100">
-              {/* <AdminSidebar onLogout={handleLogout} /> */}
-              <div className="flex-1 flex flex-col overflow-hidden ml-64">
-                <main className="flex-1 overflow-x-hidden overflow-y-auto bg-gray-100">
-                  <AdminDashboard />
-                </main>
+            <Route path="/admin-dashboard" element={
+              <div className="flex h-screen bg-gray-100">
+                {/* <AdminSidebar onLogout={handleLogout} /> */}
+                <div className="flex-1 flex flex-col overflow-hidden ml-64">
+                  <main className="flex-1 overflow-x-hidden overflow-y-auto bg-gray-100">
+                    <AdminDashboard />
+                  </main>
+                </div>
               </div>
-            </div>
-          } />
+            } />
             <Route path="/admin/users" element={<AdminUsers />} />
             <Route path="/admin/formulaire-avance" element={<FormulaireAvance />} />
             <Route path="/boutiqueadmin" element={<BoutiqueAdmin />} />
           </>
         ) : null}
-        
+
         {isAuthenticated ? (
           <>
             <Route path="/dashboard" element={
@@ -106,6 +107,17 @@ function MainApp() {
                   <Navbar onLogout={handleLogout} />
                   <main className="flex-1 overflow-x-hidden overflow-y-auto bg-gray-100">
                     <Factures />
+                  </main>
+                </div>
+              </div>
+            } />
+            <Route path="/mes-services" element={
+              <div className="flex h-screen bg-gray-100">
+                <Sidebar onLogout={handleLogout} />
+                <div className="flex-1 flex flex-col overflow-hidden">
+                  <Navbar onLogout={handleLogout} />
+                  <main className="flex-1 overflow-x-hidden overflow-y-auto bg-gray-100">
+                    <MesServices />
                   </main>
                 </div>
               </div>

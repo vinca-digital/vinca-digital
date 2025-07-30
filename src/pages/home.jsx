@@ -1,397 +1,374 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { 
-  Code, 
-  Sparkles, 
-  Layers, 
-  Zap, 
-  Play, 
-  Pause, 
-  RotateCcw,
-  ChevronRight,
+  BarChart3, 
+  ShoppingBag, 
+  FileText, 
+  Settings, 
+  TrendingUp,
+  Users,
   Eye,
-  Palette,
-  MousePointer,
-  Cpu
+  Zap,
+  Shield,
+  Award,
+  ChevronRight,
+  Play,
+  ArrowRight
 } from 'lucide-react';
-import { Button } from '../components/button';
-import AnimatedBackground from '../components/AnimatedBackground';
-import { CodeSection, CodeBlock, FeatureCard, FloatingElement } from '../components/InteractiveComponents';
-import '../App.css';
-import { motion } from 'framer-motion';
 
-import bgImage from '../assets/3d-concept-design.png';
-import vincaCircle from '../assets/VINCA CIRCLE.png';
-
-function Home() {
-  const [isPlaying, setIsPlaying] = useState(true);
-  const [currentSection, setCurrentSection] = useState(0);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+const Home = () => {
+  const [currentFeature, setCurrentFeature] = useState(0);
+  const [isVisible, setIsVisible] = useState({});
 
   useEffect(() => {
-    const handleMouseMove = (e) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
-    };
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          setIsVisible(prev => ({
+            ...prev,
+            [entry.target.id]: entry.isIntersecting
+          }));
+        });
+      },
+      { threshold: 0.1 }
+    );
 
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
+    document.querySelectorAll('[id]').forEach((el) => {
+      observer.observe(el);
+    });
+
+    return () => observer.disconnect();
   }, []);
-
-  const sections = [
-    "Gérer mon compte",
-    "Publier un post",
-    "Créer un reel",
-    "Partager une story",
-    "Points Vinca Family & Cercle"
-  ];
 
   const features = [
     {
-      icon: Code,
-      title: "Gérer mon compte",
-      description: "Gère ton compte et développe ta communauté digitale.",
+      icon: BarChart3,
+      title: "Tableau de Bord Intelligent",
+      description: "Visualisez vos performances en temps réel avec des statistiques avancées et des graphiques interactifs.",
       color: "from-blue-500 to-cyan-500"
     },
     {
-      icon: Sparkles,
-      title: "Créer et publier du contenu",
-      description: "Publie des posts et crée des reels pour partager tes idées, booster ta visibilité et rester actif.",
-      color: "from-purple-500 to-emerald-500"
+      icon: ShoppingBag,
+      title: "Boutique & Points Vinca",
+      description: "Achetez des services supplémentaires et gérez vos points Vinca Family pour débloquer des avantages exclusifs.",
+      color: "from-purple-500 to-pink-500"
     },
     {
-      icon: Layers,
-      title: "Partager une story",
-      description: "Partage des stories et engage ta communauté.",
+      icon: TrendingUp,
+      title: "Reportings Détaillés",
+      description: "Analysez vos campagnes avec des visualisations 3D et des métriques de performance approfondies.",
+      color: "from-green-500 to-emerald-500"
+    },
+    {
+      icon: FileText,
+      title: "Gestion Complète",
+      description: "Suivez vos commandes, forfaits et factures depuis une interface unifiée et intuitive.",
       color: "from-orange-500 to-red-500"
+    }
+  ];
+
+  const stats = [
+    { number: "500+", label: "Clients Satisfaits" },
+    { number: "98%", label: "Taux de Satisfaction" },
+    { number: "24/7", label: "Support Disponible" },
+    { number: "100%", label: "Transparence" }
+  ];
+
+  const benefits = [
+    {
+      icon: Eye,
+      title: "Transparence Totale",
+      description: "Accédez à toutes vos données en temps réel avec un dashboard client complet"
     },
     {
-      icon: Cpu,
-      title: "Points Vinca Family & Cercle",
-      description: "Gagne ou achète des points pour débloquer des options exclusives !",
-      color: "from-pink-500 to-purple-500"
+      icon: Zap,
+      title: "Technologie Avancée",
+      description: "Bénéficiez de visualisations 3D et d'animations modernes pour une expérience unique"
+    },
+    {
+      icon: Users,
+      title: "Accompagnement Personnalisé",
+      description: "Profitez de services sur mesure adaptés à vos besoins spécifiques"
+    },
+    {
+      icon: Shield,
+      title: "Flexibilité Maximale",
+      description: "Système de points et forfaits modulaires pour s'adapter à votre croissance"
+    },
+    {
+      icon: Award,
+      title: "Performance Mesurable",
+      description: "Reportings détaillés pour suivre et optimiser vos résultats marketing"
+    },
+    {
+      icon: Settings,
+      title: "Interface Intuitive",
+      description: "Design moderne et responsive pour une utilisation optimale sur tous vos appareils"
     }
   ];
 
   return (
-    <div
-      className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 text-white"
-      style={{
-        backgroundImage: `url(${bgImage}), linear-gradient(to bottom right, #0f172a, #6d28d9, #0f172a)`,
-        backgroundSize: '100vw 100vh',
-        backgroundRepeat: 'no-repeat',
-        backgroundPosition: 'center',
-        backgroundAttachment: 'fixed',
-      }}
-    >
-      <AnimatedBackground isPlaying={isPlaying} />
-      
-      {/* Curseur personnalisé */}
-      <div
-        className="fixed w-6 h-6 bg-blue-400 rounded-full pointer-events-none z-50 mix-blend-difference"
-        style={{
-          left: mousePosition.x - 12,
-          top: mousePosition.y - 12,
-        }}
-      />
-
-      {/* Header avec navigation */}
-      <header className="relative z-10 p-4 sm:p-6">
-        <nav className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-          <FloatingElement delay={0.2}>
-            <div className="flex items-center gap-3">
-              <img
-                src={vincaCircle}
-                alt="Logo Vinca Cercle"
-                className="h-20 w-auto sm:h-32 md:h-[200px]"
-              />
-              
+    <div className="min-h-screen bg-white">
+      {/* Header */}
+      <header className="bg-white shadow-sm sticky top-0 z-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center py-4">
+            <div className="flex items-center space-x-3">
+              <div className="w-10 h-10 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
+                <span className="text-white font-bold text-lg">V</span>
+              </div>
+              <div>
+                <h1 className="text-xl font-bold text-gray-900">Vinca Circle</h1>
+                <p className="text-sm text-gray-500">Dashboard Client</p>
+              </div>
             </div>
-          </FloatingElement>
-
-          <div className="flex items-center gap-4">
-            <Button
-              onClick={() => setIsPlaying(!isPlaying)}
-              variant="outline"
-              size="sm"
-              className="bg-white/10 border-white/20 text-white hover:bg-white/20"
-            >
-              {isPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
-              {isPlaying ? 'Pause' : 'Play'} Animations
-            </Button>
-            <Link to="/login">
-              <Button
-                variant="default"
-                size="sm"
-                className="bg-gradient-to-r from-blue-500 to-purple-600 text-white hover:from-blue-600 hover:to-purple-700"
+            <div className="flex items-center space-x-4">
+              <Link
+                to="/login"
+                className="text-gray-600 hover:text-gray-900 px-4 py-2 rounded-md text-sm font-medium transition-colors"
               >
                 Se connecter
-              </Button>
-            </Link>
+              </Link>
+              <Link
+                to="/register"
+                className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-2 rounded-md text-sm font-medium hover:from-blue-700 hover:to-purple-700 transition-all duration-200 shadow-md hover:shadow-lg"
+              >
+                Commencer
+              </Link>
+            </div>
           </div>
-        </nav>
+        </div>
       </header>
 
-      {/* Section Hero */}
-      <section className="relative z-10 text-center py-12 sm:py-20 px-4 sm:px-6">
-        <FloatingElement amplitude={30} delay={0.5}>
-          <h2
-            className="text-4xl sm:text-6xl md:text-8xl font-extrabold mb-6"
-            style={{
-              background: "linear-gradient(45deg, #3b82f6, #8b5cf6, #06b6d4, #3b82f6)",
-              backgroundSize: "300% 300%",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              backgroundClip: "text",
-            }}
-          >
-            Vinca Circle
-          </h2>
-        </FloatingElement>
-
-        <p className="text-base sm:text-xl text-gray-300 max-w-3xl mx-auto mb-8 sm:mb-12 leading-relaxed">
-          Bienvenue sur Vinca Circle, la plateforme pour gérer ton compte, publier des posts, des reels, des stories et développer ta communauté digitale. 
-          Gagne ou achète des points Vinca Family & Vinca Circle pour accéder à des options exclusives et booster ta présence en ligne !
-        </p>
-
-        <div className="flex flex-wrap justify-center gap-2 sm:gap-4">
-          {sections.map((section, index) => (
-            <button
-              key={section}
-              onClick={() => setCurrentSection(index)}
-              className={`px-4 py-2 sm:px-6 sm:py-3 rounded-full border transition-all duration-300 text-sm sm:text-base ${
-                currentSection === index
-                  ? 'bg-blue-500 border-blue-500 text-white shadow-lg shadow-blue-500/25'
-                  : 'bg-white/10 border-white/20 text-gray-300 hover:bg-white/20'
-              }`}
-            >
-              {section}
-            </button>
-          ))}
+      {/* Hero Section */}
+      <section id="hero" className="relative overflow-hidden bg-gradient-to-br from-blue-50 via-white to-purple-50 py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
+              Gérez votre
+              <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent"> Marketing Digital </span>
+              avec Excellence
+            </h1>
+            <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed">
+              Vinca Circle est votre plateforme de gestion client complète. Suivez vos projets, 
+              analysez vos performances et développez votre présence digitale avec des outils innovants.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+              <Link
+                to="/register"
+                className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-200 shadow-lg hover:shadow-xl flex items-center group"
+              >
+                Démarrer Gratuitement
+                <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </Link>
+              <button className="flex items-center text-gray-600 hover:text-gray-900 px-6 py-4 rounded-lg border border-gray-300 hover:border-gray-400 transition-colors">
+                <Play className="mr-2 w-5 h-5" />
+                Voir la démonstration
+              </button>
+            </div>
+          </div>
         </div>
+        
+        {/* Floating Elements */}
+        <div className="absolute top-20 left-10 w-20 h-20 bg-blue-200 rounded-full opacity-20 animate-pulse"></div>
+        <div className="absolute bottom-20 right-10 w-32 h-32 bg-purple-200 rounded-full opacity-20 animate-pulse delay-1000"></div>
+        <div className="absolute top-1/2 right-20 w-16 h-16 bg-cyan-200 rounded-full opacity-20 animate-pulse delay-500"></div>
       </section>
 
-      {/* Section des fonctionnalités */}
-      <section className="relative z-10 py-12 sm:py-20 px-4 sm:px-6">
-        <div className="max-w-7xl mx-auto">
-          <h3 className="text-2xl sm:text-4xl font-bold text-center mb-10 sm:mb-16 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-            Fonctionnalités Vinca circle
-          </h3>
-
-          <div className="flex flex-wrap justify-center gap-6 sm:gap-8">
-            {features.map((feature, index) => (
-              <div key={feature.title} className="w-full sm:w-80 max-w-xs">
-                <FeatureCard
-                  {...feature}
-                  delay={1.6 + index * 0.1}
-                />
+      {/* Stats Section */}
+      <section id="stats" className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            {stats.map((stat, index) => (
+              <div key={index} className="text-center">
+                <div className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">{stat.number}</div>
+                <div className="text-gray-600">{stat.label}</div>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Section d'analyse du code */}
-      <section
-        className="relative z-10 py-20 px-6"
-      >
-        <div className="max-w-6xl mx-auto space-y-12">
+      {/* Features Section */}
+      <section id="features" className="py-20 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              Fonctionnalités Principales
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Découvrez tous les outils dont vous avez besoin pour gérer et optimiser 
+              votre présence digitale efficacement.
+            </p>
+          </div>
           
-          <CodeSection
-            title="1. Structure et Imports"
-            icon={Code}
-            delay={0.2}
-          >
-            <p className="text-gray-300 mb-4">
-              Le composant LandingPage.jsx utilise une architecture React moderne avec des imports optimisés :
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {features.map((feature, index) => {
+              const Icon = feature.icon;
+              return (
+                <div
+                  key={index}
+                  className={`p-6 bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 cursor-pointer transform hover:-translate-y-1 ${
+                    isVisible.features ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+                  }`}
+                  style={{ transitionDelay: `${index * 100}ms` }}
+                  onClick={() => setCurrentFeature(index)}
+                >
+                  <div className={`w-12 h-12 bg-gradient-to-r ${feature.color} rounded-lg flex items-center justify-center mb-4`}>
+                    <Icon className="w-6 h-6 text-white" />
+                  </div>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">{feature.title}</h3>
+                  <p className="text-gray-600 text-sm">{feature.description}</p>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Benefits Section */}
+      <section id="benefits" className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              Pourquoi Choisir Vinca Circle ?
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Une plateforme conçue pour vous offrir une expérience client exceptionnelle 
+              et des résultats mesurables.
             </p>
-            <CodeBlock>
-{`import React from 'react';
-import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
-import { FaChartLine, FaShoppingCart, FaFileInvoiceDollar, FaCog, FaArrowRight } from 'react-icons/fa';
-import Button from './button';
-import Card from './card';
-import Badge from './badge';`}
-            </CodeBlock>
-            <div className="mt-4 p-4 bg-blue-500/10 border border-blue-500/20 rounded-lg">
-              <p className="text-blue-300 text-sm">
-                <strong>Points clés :</strong> Utilisation de framer-motion pour les animations, 
-                react-router-dom pour la navigation, et react-icons pour les icônes vectorielles.
-              </p>
-            </div>
-          </CodeSection>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {benefits.map((benefit, index) => {
+              const Icon = benefit.icon;
+              return (
+                <div
+                  key={index}
+                  className={`p-6 border border-gray-200 rounded-xl hover:border-blue-300 transition-all duration-300 ${
+                    isVisible.benefits ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+                  }`}
+                  style={{ transitionDelay: `${index * 100}ms` }}
+                >
+                  <Icon className="w-8 h-8 text-blue-600 mb-4" />
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">{benefit.title}</h3>
+                  <p className="text-gray-600">{benefit.description}</p>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
 
-          <CodeSection
-            title="2. gerer ton compte"
-            icon={Sparkles}
-            delay={0.4}
-          >
-            <p className="text-gray-300 mb-4">
-              Les animations sont gérées par Framer Motion avec des effets d'apparition sophistiqués :
+      {/* Navigation Preview Section */}
+      <section id="navigation" className="py-20 bg-gradient-to-br from-blue-50 to-purple-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              Votre Espace Client Complet
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Accédez à tous vos outils de gestion depuis une interface intuitive et moderne.
             </p>
-            <CodeBlock>
-{`<motion.div
-  initial={{ opacity: 0, y: 20 }}
-  animate={{ opacity: 1, y: 0 }}
-  transition={{ duration: 0.5 }}
-  className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20"
->
-  {/* Contenu de la section Hero */}
-</motion.div>`}
-            </CodeBlock>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
-              <div className="p-4 bg-purple-500/10 border border-purple-500/20 rounded-lg">
-                <h4 className="text-purple-300 font-semibold mb-2">Animation d'entrée</h4>
-                <p className="text-gray-300 text-sm">
-                  Effet de glissement vertical (y: 20 → 0) avec transition d'opacité
-                </p>
-              </div>
-              <div className="p-4 bg-pink-500/10 border border-pink-500/20 rounded-lg">
-                <h4 className="text-pink-300 font-semibold mb-2">Animation en cascade</h4>
-                <p className="text-gray-300 text-sm">
-                  Délai progressif (delay: index * 0.1) pour les cartes de fonctionnalités
-                </p>
-              </div>
-            </div>
-          </CodeSection>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[
+              { name: "Tableau de bord", desc: "Vue d'ensemble de vos performances", icon: BarChart3 },
+              { name: "Boutique", desc: "Services et produits disponibles", icon: ShoppingBag },
+              { name: "Mes commandes", desc: "Suivi de vos demandes", icon: FileText },
+              { name: "Mon forfait", desc: "Détails de votre abonnement", icon: Settings },
+              { name: "Mes reportings", desc: "Analyses et statistiques", icon: TrendingUp },
+              { name: "Vinca Family", desc: "Programme de fidélité", icon: Award }
+            ].map((item, index) => {
+              const Icon = item.icon;
+              return (
+                <div key={index} className="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow">
+                  <Icon className="w-8 h-8 text-blue-600 mb-3" />
+                  <h3 className="font-semibold text-gray-900 mb-1">{item.name}</h3>
+                  <p className="text-gray-600 text-sm">{item.desc}</p>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
 
-          <CodeSection
-            title="3. posts"
-            icon={Palette}
-            delay={0.6}
-          >
-            <p className="text-gray-300 mb-4">
-              Le design utilise Tailwind CSS pour un styling utilitaire et responsive :
-            </p>
-            <CodeBlock>
-{`<div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
-  <nav className="bg-white shadow-sm">
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div className="flex justify-between h-16">
-        {/* Navigation content */}
-      </div>
-    </div>
-  </nav>
-</div>`}
-            </CodeBlock>
-            <div className="mt-4 space-y-3">
-              <div className="flex items-center gap-3">
-                <div className="w-4 h-4 bg-gradient-to-b from-gray-50 to-white rounded"></div>
-                <span className="text-sm text-gray-300">Dégradé de background subtil</span>
-              </div>
-              <div className="flex items-center gap-3">
-                <div className="w-4 h-4 bg-white shadow-sm rounded"></div>
-                <span className="text-sm text-gray-300">Navigation avec ombre légère</span>
-              </div>
-              <div className="flex items-center gap-3">
-                <div className="w-4 h-4 bg-blue-600 rounded"></div>
-                <span className="text-sm text-gray-300">Couleurs d'accent cohérentes</span>
-              </div>
-            </div>
-          </CodeSection>
-
-          <CodeSection
-            title="4. reels"
-            icon={Zap}
-            delay={0.8}
-          >
-            <p className="text-gray-300 mb-4">
-              Pour un design "très très très belle et avancer avec des bouco animations et 3d" :
-            </p>
-            
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6">
-              <motion.div
-                whileHover={{ scale: 1.02 }}
-                className="p-6 bg-gradient-to-br from-blue-500/10 to-cyan-500/10 border border-blue-500/20 rounded-xl"
-              >
-                <h4 className="text-blue-300 font-semibold mb-3 flex items-center gap-2">
-                  <Cpu className="w-5 h-5" />
-                  Intégration 3D avec Three.js
-                </h4>
-                <CodeBlock language="bash">
-{`npm install three @react-three/fiber @react-three/drei`}
-                </CodeBlock>
-                <p className="text-gray-300 text-sm mt-2">
-                  Ajouter des objets 3D interactifs, des particules et des effets de parallaxe
-                </p>
-              </motion.div>
-
-              <motion.div
-                whileHover={{ scale: 1.02 }}
-                className="p-6 bg-gradient-to-br from-purple-500/10 to-pink-500/10 border border-purple-500/20 rounded-xl"
-              >
-                <h4 className="text-purple-300 font-semibold mb-3 flex items-center gap-2">
-                  <MousePointer className="w-5 h-5" />
-                  Animations Avancées
-                </h4>
-                <CodeBlock language="jsx">
-{`<motion.div
-  whileHover={{ 
-    scale: 1.05, 
-    rotateY: 5,
-    boxShadow: "0 25px 50px rgba(0,0,0,0.25)"
-  }}
-  transition={{ type: "spring" }}
->`}
-                </CodeBlock>
-                <p className="text-gray-300 text-sm mt-2">
-                  Effets de survol 3D, transitions élastiques et micro-interactions
-                </p>
-              </motion.div>
-            </div>
-
-            <div className="mt-6 p-6 bg-gradient-to-r from-green-500/10 to-emerald-500/10 border border-green-500/20 rounded-xl">
-              <h4 className="text-green-300 font-semibold mb-3 flex items-center gap-2">
-                <Eye className="w-5 h-5" />
-                Background Animé Actuel
-              </h4>
-              <p className="text-gray-300 text-sm mb-3">
-                Cette page utilise déjà un background animé avec particules, formes géométriques et lignes de connexion dynamiques !
-              </p>
-              <div className="flex flex-wrap gap-2">
-                <span className="px-3 py-1 bg-blue-500/20 text-blue-300 rounded-full text-xs">Particules flottantes</span>
-                <span className="px-3 py-1 bg-purple-500/20 text-purple-300 rounded-full text-xs">Formes géométriques</span>
-                <span className="px-3 py-1 bg-cyan-500/20 text-cyan-300 rounded-full text-xs">Lignes de connexion</span>
-                <span className="px-3 py-1 bg-green-500/20 text-green-300 rounded-full text-xs">Animation Canvas</span>
-              </div>
-            </div>
-          </CodeSection>
-
+      {/* CTA Section */}
+      <section id="cta" className="py-20 bg-gradient-to-r from-blue-600 to-purple-600">
+        <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+            Prêt à Transformer Votre Marketing Digital ?
+          </h2>
+          <p className="text-xl text-blue-100 mb-8">
+            Rejoignez des centaines d'entreprises qui font confiance à Vinca Circle 
+            pour gérer et optimiser leur présence digitale.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link
+              to="/register"
+              className="bg-white text-blue-600 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-gray-50 transition-colors shadow-lg flex items-center justify-center group"
+            >
+              Commencer Maintenant
+              <ChevronRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            </Link>
+            <Link
+              to="/login"
+              className="border-2 border-white text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-white hover:text-blue-600 transition-colors"
+            >
+              Se Connecter
+            </Link>
+          </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer
-        className="relative z-10 py-12 px-6 border-t border-white/10"
-      >
-        <div className="max-w-4xl mx-auto text-center">
-          <FloatingElement delay={1} amplitude={15}>
-            <p className="text-gray-400 mb-4">
-              Vinca Cercle : la plateforme pour gérer, publier et booster ta présence digitale !
-            </p>
-            <div className="flex justify-center gap-4">
-              <Button
-                variant="outline"
-                size="sm"
-                className="bg-white/10 border-white/20 text-white hover:bg-white/20"
-              >
-                <RotateCcw className="w-4 h-4 mr-2" />
-                Recommencer l'analyse
-              </Button>
-              <Button
-                size="sm"
-                className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700"
-              >
-                Voir le code source
-                <ChevronRight className="w-4 h-4 ml-2" />
-              </Button>
+      <footer className="bg-gray-900 text-white py-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div className="col-span-1 md:col-span-2">
+              <div className="flex items-center space-x-3 mb-4">
+                <div className="w-10 h-10 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
+                  <span className="text-white font-bold text-lg">V</span>
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold">Vinca Circle</h3>
+                  <p className="text-gray-400 text-sm">Marketing Digital Excellence</p>
+                </div>
+              </div>
+              <p className="text-gray-400 mb-4">
+                Votre partenaire de confiance pour une gestion transparente et efficace 
+                de vos projets marketing digital.
+              </p>
             </div>
-          </FloatingElement>
+            
+            <div>
+              <h4 className="font-semibold mb-4">Plateforme</h4>
+              <ul className="space-y-2 text-gray-400">
+                <li><Link to="/login" className="hover:text-white transition-colors">Tableau de bord</Link></li>
+                <li><Link to="/login" className="hover:text-white transition-colors">Boutique</Link></li>
+                <li><Link to="/login" className="hover:text-white transition-colors">Reportings</Link></li>
+                <li><Link to="/login" className="hover:text-white transition-colors">Support</Link></li>
+              </ul>
+            </div>
+            
+            <div>
+              <h4 className="font-semibold mb-4">Contact</h4>
+              <ul className="space-y-2 text-gray-400">
+                <li>support@vinca.fr</li>
+                <li>+33 1 23 45 67 89</li>
+                <li>Disponible 24/7</li>
+              </ul>
+            </div>
+          </div>
+          
+          <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+            <p>&copy; 2025 Vinca Circle. Tous droits réservés.</p>
+          </div>
         </div>
       </footer>
     </div>
   );
-}
+};
 
 export default Home;
-
